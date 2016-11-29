@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">D3HStore</string>
+
+    <string name="nav_open_drawer">Drawer Opened</string>
+    <string name="nav_close_drawer">Drawer Closed</string>
+</resources>

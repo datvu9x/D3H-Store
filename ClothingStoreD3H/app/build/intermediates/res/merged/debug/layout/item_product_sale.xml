@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/border_label"
+        android:elevation="10dp"
+        android:padding="5dp"
+        android:weightSum="6">
+
+        <ImageView
+            android:id="@+id/imgProduct"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:padding="1dp"
+            android:src="@drawable/product_0" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <dev.datvt.clothingstored3h.utils.CustomFontTextView
+                android:id="@+id/nameProduct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Áo khoác đôi Hàn Quốc"
+                android:textColor="@color/colorBlack"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <dev.datvt.clothingstored3h.utils.CustomFontTextView
+                android:id="@+id/numberProduct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Số lượng: 100"
+                android:textColor="@color/colorGray2"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/cbxSale"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.75" />
+
+        <EditText
+            android:id="@+id/etSoLuongBan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1.25"
+            android:enabled="false"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="10"
+            android:textColor="@color/colorRed"
+            android:textSize="15sp" />
+    </LinearLayout>
+</LinearLayout>

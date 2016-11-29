@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/icon_home"
+            android:title="Cửa hàng" />
+
+    </group>
+
+    <item android:title="Chức năng">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_lap_hoa_don"
+                    android:icon="@drawable/icon_create_bill"
+                    android:title="Lập hóa đơn" />
+                <item
+                    android:id="@+id/nav_don_hang"
+                    android:icon="@drawable/icon_bill"
+                    android:title="Quản lý đơn hàng" />
+                <item
+                    android:id="@+id/nav_nhap_hang"
+                    android:icon="@drawable/icon_add_product"
+                    android:title="Nhập hàng hóa" />
+
+                <item
+                    android:id="@+id/nav_tra_cuu"
+                    android:icon="@drawable/icon_search"
+                    android:title="Tra cứu" />
+
+                <item
+                    android:id="@+id/nav_chuyen_ca"
+                    android:icon="@drawable/icon_transfer_shift"
+                    android:title="Bàn giao ca" />
+
+                <item
+                    android:id="@+id/nav_tong_ket"
+                    android:icon="@drawable/icon_summary"
+                    android:title="Tổng kết cuối ngày" />
+
+                <item
+                    android:id="@+id/nav_customer"
+                    android:icon="@drawable/icon_customer"
+                    android:title="Quản lý khách hàng" />
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="Công cụ">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_share"
+                    android:icon="@drawable/icon_share"
+                    android:title="Chia sẻ" />
+
+                <item
+                    android:id="@+id/nav_rate"
+                    android:icon="@drawable/icon_rate"
+                    android:title="Đánh giá" />
+
+                <item
+                    android:id="@+id/nav_feedback"
+                    android:icon="@drawable/icon_feedback"
+                    android:title="Phản hồi" />
+
+                <item
+                    android:id="@+id/nav_logout"
+                    android:icon="@drawable/icon_logout"
+                    android:title="Đăng xuất" />
+            </group>
+        </menu>
+    </item>
+</menu>

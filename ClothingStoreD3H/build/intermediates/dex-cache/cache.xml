@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="6bb82996f3fce3f1745a537562f3c97926100aa6">
+        <dex dex="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_450dfbdb7c5ddb8d01bcc8d07b70cfb90dd60c2b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\exploded-aar\com.android.support\design\24.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="fc29308a7a8f6d4407b34634eb48fb8b817f9b23">
+        <dex dex="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-24.0.0_f379d769418a1d1b544d7a47813b85cac174bab0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="c84e216d9bf618464d6b9564d71d9a656433e7c4">
+        <dex dex="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-24.2.0_fb36f35a765e32eb77cbfd4e8d63f8b13c33113d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="f9b41622897665678d31d78e57a361cb0cebcb0d">
+        <dex dex="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-24.2.0_bef1a9e3729bbf692cb55edffd1d5c622d348e84\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="d8bd2268fdcbfd52c76ade65d9900cd8def93a44">
+        <dex dex="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-24.2.0_6c406b8d35497a10b1a506e40bb4ccfec078a87a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.0\jars\libs\internal_impl-24.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="6e02e34594ebe9c0501ffda8dd48497f81b82977">
+        <dex dex="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.0_ba7c42b290a098b94006ca128558cac35858f3ec\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="8b978a00cdb16ffc48c69eedf64db6dc376b8c11">
+        <dex dex="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_4f185701e52c8829fb129bdadd5a49423fdfcba5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="45f5eda279825ff470e3f51019d374d1ef61e000">
+        <dex dex="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.2.0_752cb7138c73a32d10f0386d287d30e74528f8e9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="f3ee23ef25c9a8fe3d40246d0b7097267963a612">
+        <dex dex="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-24.2.0_dfd5f17ccb64326a4403f32b812abd3926c1e4fa\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="894922f67adeaaef51f077a29e315da21a3382d3">
+        <dex dex="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-24.0.0_ecfc394e87c5f35f2712199ffed993d3a96c37fc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\SDK_AndroidStudio\extras\android\m2repository\com\android\support\support-annotations\24.2.0\support-annotations-24.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="6be858a75633b1f0a2d24cad740db57775cb6871">
+        <dex dex="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.2.0_b2078f119d3467be71c9808f71bb83d5f319a2b0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.0\jars\libs\internal_impl-24.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="771b3cc0e597b54da25f8086ba73180c59c6bc71">
+        <dex dex="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.0_1c063643b68019279c473631d9fa7b586a61ae48\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.0\jars\libs\internal_impl-24.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="045be695d968dd707691cc55d23746dbf8cf569a">
+        <dex dex="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.0_f6c39ab768ed424f299ddf1a900b5ae4fd968059\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="fcc945a86ebcbf527429acb8216ec7dae2c06417">
+        <dex dex="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-24.2.0_4bfa03c9dec7aa7169901c38d1f1e1ce45d35320\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.0\jars\libs\internal_impl-24.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="60d7b23621d31e6f42f4f76f16af467e57a20cda">
+        <dex dex="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.0_6373998d710dbc13282f1253766ab1b27ebda71e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.0\jars\libs\internal_impl-24.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="032a4b53def5e2ceedfc2e793b126c0163cfa1dd">
+        <dex dex="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.0_b5c653dab8854b40f03ac36884d634c5ecec7ef3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="beac40bcc8a320a896dd15f5109cfcaea5e1e0e3">
+        <dex dex="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.2.0_341ccf07c3718fa147000c8c7d4725d462c7a209\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\DatVIT\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\transforms\dex\debug\folders\1000\10\picasso-2.5.2_d6fa8492fac5b93bbc2ab15ff6f6aa2d62d590b7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="c3c638be6e650b165ab9ae144857b64e82787fad">
+        <dex dex="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.2.0_96be8a0934d43de764fb36706ea9ef1c34b86d00\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="6eb9107eb34d2fe2b020662b7fbbec991dcba846">
+        <dex dex="F:\Workspace\Android\ClothingStoreD3H\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-24.2.0_5d1310bada7e9f96ffc6faab4bd7cce997235f41\classes.dex" />
+    </item>
+
+</items>
