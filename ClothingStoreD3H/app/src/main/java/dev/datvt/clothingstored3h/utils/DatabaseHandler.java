@@ -5,16 +5,20 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import dev.datvt.clothingstored3h.activities.ListProduct;
 import dev.datvt.clothingstored3h.models.Bill;
 import dev.datvt.clothingstored3h.models.Customer;
 import dev.datvt.clothingstored3h.models.Employee;
 import dev.datvt.clothingstored3h.models.Product;
 import dev.datvt.clothingstored3h.models.Properties;
+import dev.datvt.clothingstored3h.models.StoreBill;
 import dev.datvt.clothingstored3h.models.StoreProduct;
+import dev.datvt.clothingstored3h.models.Summary;
 
 /**
  * Created by DatVIT on 10/19/2016.
@@ -45,7 +49,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_LOAI_KH = "LoaiKH";
     private static final String KEY_TIEN_MAT = "TienMat";
     private static final String KEY_TIEN_ATM = "TienATM";
-    private static final String KEY_VAT = "VAT";
     private static final String KEY_KHUYEN_MAI = "KhuyenMai";
     private static final String KEY_PHIEU_GIAM_GIA = "PhieuGiamGia";
     private static final String KEY_TIEN_NO = "TienNo";
@@ -119,7 +122,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_MA_NV + " TEXT,"
                 + KEY_TIEN_MAT + " REAL,"
                 + KEY_TIEN_ATM + " REAL,"
-                + KEY_VAT + " INTEGER,"
                 + KEY_KHUYEN_MAI + " INTEGER,"
                 + KEY_PHIEU_GIAM_GIA + " INTEGER,"
                 + KEY_TIEN_NO + " REAL,"
@@ -155,10 +157,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_MA_PHIEU + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + KEY_TRANG_THAI + " TEXT,"
                 + KEY_LOAI_GIAO_DICH + " TEXT,"
-                + KEY_MA_HOA_DON + " INTEGER,"
-                + "FOREIGN KEY (" + KEY_MA_HOA_DON
-                + ") REFERENCES " + TABLE_HOA_DON + " (" + KEY_MA_HOA_DON + ")"
-                + ");";
+                + KEY_MA_HOA_DON + " INTEGER);";
 
         String CREATE_TABLE_KE_HANG = "CREATE TABLE IF NOT EXISTS " + TABLE_KE_HANG + "("
                 + KEY_MA_HANG + " TEXT,"
@@ -193,7 +192,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addProduct(Product product) {
+    public long addProduct(Product product) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -205,11 +204,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_GIAM_GIA, product.getGiamGia());
         values.put(KEY_MA_THUOC_TINH, product.getThuocTinh().getMa());
 
-        db.insert(TABLE_HANG_HOA, null, values);
-        db.close();
+        return db.insert(TABLE_HANG_HOA, null, values);
     }
 
-    public void addThuocTinh(Properties properties) {
+    public long addThuocTinh(Properties properties) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -220,11 +218,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_MUA, properties.getMua());
         values.put(KEY_NSX, properties.getNsx());
 
-        db.insert(TABLE_THUOC_TINH_HANG_HOA, null, values);
-        db.close();
+        return db.insert(TABLE_THUOC_TINH_HANG_HOA, null, values);
     }
 
-    public void addEmployee(Employee employee) {
+    public long addEmployee(Employee employee) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -237,11 +234,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_DIEN_THOAI, employee.getPhone());
         values.put(KEY_EMAIL, employee.getEmail());
 
-        db.insert(TABLE_NHAN_VIEN, null, values);
-        db.close();
+        return db.insert(TABLE_NHAN_VIEN, null, values);
     }
 
-    public void addCustomer(Customer customer) {
+    public long addCustomer(Customer customer) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -251,11 +247,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_DIEN_THOAI, customer.getPhone());
         values.put(KEY_EMAIL, customer.getEmail());
 
-        db.insert(TABLE_KHACH_HANG, null, values);
-        db.close();
+        return db.insert(TABLE_KHACH_HANG, null, values);
     }
 
-    public void addBill(Bill bill) {
+    public long addBill(Bill bill) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -264,37 +259,45 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_MA_NV, bill.getMaNV());
         values.put(KEY_TIEN_MAT, bill.getTienMat());
         values.put(KEY_TIEN_ATM, bill.getTienATM());
-        values.put(KEY_VAT, bill.getVat());
         values.put(KEY_KHUYEN_MAI, bill.getKhuyenMai());
         values.put(KEY_PHIEU_GIAM_GIA, bill.getPhieuGiamGia());
-        values.put(KEY_TIEN_NO, bill.getSoNo());
+        values.put(KEY_TIEN_NO, bill.getTienNo());
         values.put(KEY_NGAY_LAP_HD, bill.getNgayLap());
 
-        db.insert(TABLE_HOA_DON, null, values);
-        db.close();
+        return db.insert(TABLE_HOA_DON, null, values);
     }
 
-    public void addKeHang(StoreProduct storeProduct) {
+    public long addKeHang(StoreProduct storeProduct) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(KEY_MA_HOA_DON, storeProduct.getMaHD());
         values.put(KEY_MA_HANG, storeProduct.getMaHang());
-        values.put(KEY_DON_GIA_BAN, storeProduct.getDonGia());
-        values.put(KEY_SO_LUONG_BAN, storeProduct.getSoLuong());
+        values.put(KEY_DON_GIA_BAN, storeProduct.getDonGiaBan());
+        values.put(KEY_SO_LUONG_BAN, storeProduct.getSoLuongBan());
 
-        db.insert(TABLE_KE_HANG, null, values);
-        db.close();
+        return db.insert(TABLE_KE_HANG, null, values);
+    }
+
+    public long themDonHang(StoreBill storeBill) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_TRANG_THAI, storeBill.getTrangThai());
+        values.put(KEY_LOAI_GIAO_DICH, storeBill.getLoaGiaoDich());
+        values.put(KEY_MA_HOA_DON, storeBill.getMaHD());
+
+        return db.insert(TABLE_DON_HANG, null, values);
     }
 
     // -----------------------------------------------------
-    public int isCheckProperties(String loai, String kichThuoc, String mauSac, String doiTuong, String mua, String nsx) {
+    public int isCheckProperties(String loai, int kichThuoc, String mauSac, String doiTuong, String mua, String nsx) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_THUOC_TINH_HANG_HOA, null,
                 KEY_LOAI + "=? AND " + KEY_KICH_THUOC + "=? AND " + KEY_MAU_SAC + "=? AND " +
                         KEY_DOI_TUONG_DUNG + "=? AND " + KEY_MUA + "=? AND " + KEY_NSX + "=?"
-                , new String[]{loai, kichThuoc, mauSac, doiTuong, mua, nsx}, null, null, null, null);
+                , new String[]{loai, kichThuoc + "", mauSac, doiTuong, mua, nsx}, null, null, null, null);
 
         if (cursor != null && cursor.getCount() > 0) {
             if (cursor.moveToFirst()) {
@@ -323,9 +326,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public boolean isCheckEmployee(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_NHAN_VIEN, new String[]{KEY_MA_NV,
-                KEY_PASS_WORD, KEY_TEN_NV, KEY_GIOI_TINH, KEY_NGAY_SINH, KEY_DIA_CHI, KEY_DIEN_THOAI,
-                KEY_EMAIL}, KEY_MA_NV + "=?", new String[]{id}, null, null, null, null);
+        Cursor cursor = db.query(TABLE_NHAN_VIEN, null, KEY_MA_NV + "=?", new String[]{id}, null, null, null, null);
 
         if (cursor != null && cursor.getCount() > 0) {
             cursor.close();
@@ -337,9 +338,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public boolean isCheckLogin(String id, String pass) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(TABLE_NHAN_VIEN, new String[]{KEY_MA_NV,
-                KEY_PASS_WORD, KEY_TEN_NV, KEY_GIOI_TINH, KEY_NGAY_SINH, KEY_DIA_CHI, KEY_DIEN_THOAI,
-                KEY_EMAIL}, KEY_MA_NV + "=? AND " + KEY_PASS_WORD + "=?", new String[]{id, pass}, null, null, null, null);
+        Cursor cursor = db.query(TABLE_NHAN_VIEN, null, KEY_MA_NV + "=? AND " + KEY_PASS_WORD + "=?", new String[]{id, pass}, null, null, null, null);
+
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.close();
+            return true;
+        }
+        return false;
+    }
+
+    public boolean kiemTraDonHang(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_DON_HANG, null, KEY_MA_HOA_DON + "=?", new String[]{id}, null, null, null, null);
 
         if (cursor != null && cursor.getCount() > 0) {
             cursor.close();
@@ -349,28 +360,45 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     // -----------------------------------------------------
-    public List<Employee> getAllEmployees() {
-        List<Employee> employeeArrayList = new ArrayList<Employee>();
-        String selectQuery = "SELECT  * FROM " + TABLE_NHAN_VIEN;
 
+    public void capNhapDonHang(StoreBill storeBill) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
 
-        if (cursor != null && cursor.getCount() > 0) {
-            if (cursor.moveToFirst()) {
-                do {
-                    Employee employee = new Employee(cursor.getString(0), cursor.getString(1),
-                            cursor.getString(2), cursor.getString(3), cursor.getString(4),
-                            cursor.getString(5), cursor.getString(6), cursor.getString(7));
-                    employeeArrayList.add(employee);
-                } while (cursor.moveToNext());
-            }
-            cursor.close();
-        }
+        ContentValues values = new ContentValues();
+        values.put(KEY_TRANG_THAI, storeBill.getTrangThai());
 
-        return employeeArrayList;
+        db.update(TABLE_DON_HANG, values, KEY_MA_HOA_DON + "=?", new String[]{storeBill.getMaHD() + ""});
+
     }
 
+    public void capNhatHoaDon(Bill bill) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_KHUYEN_MAI, bill.getKhuyenMai());
+        values.put(KEY_PHIEU_GIAM_GIA, bill.getPhieuGiamGia());
+        values.put(KEY_TIEN_MAT, bill.getTienMat());
+        values.put(KEY_TIEN_ATM, bill.getTienATM());
+        values.put(KEY_TIEN_NO, bill.getTienNo());
+        values.put(KEY_LOAI_KH, bill.getLoaiKH());
+
+        db.update(TABLE_HOA_DON, values, KEY_MA_HOA_DON + "=?", new String[]{bill.getMaHD() + ""});
+    }
+
+    public void capNhatKhachHang(Customer customer) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_TEN_KH, customer.getName());
+        values.put(KEY_GIOI_TINH, customer.getGender());
+        values.put(KEY_DIA_CHI, customer.getAddress());
+        values.put(KEY_DIEN_THOAI, customer.getPhone());
+        values.put(KEY_EMAIL, customer.getEmail());
+
+        db.update(TABLE_KHACH_HANG, values, KEY_MA_KH + "=?", new String[]{customer.getId() + ""});
+    }
+
+    // -----------------------------------------------------
     public List<String> getAllIDEmployees() {
         List<String> employeeArrayList = new ArrayList<String>();
         String selectQuery = "SELECT " + KEY_MA_NV + " FROM " + TABLE_NHAN_VIEN;
@@ -409,68 +437,611 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return employee;
     }
 
-    public Product getProduct(String id) {
+    public List<Customer> getAllCustomer() {
+        List<Customer> customerList = new ArrayList<>();
+        String selectQuery = "SELECT  * FROM " + TABLE_KHACH_HANG;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor != null && cursor.getCount() > 0) {
+            if (cursor.moveToFirst()) {
+                do {
+                    Customer customer = new Customer();
+                    customer.setId(cursor.getInt(0));
+                    customer.setName(cursor.getString(1));
+                    customer.setGender(cursor.getString(2));
+                    customer.setAddress(cursor.getString(3));
+                    customer.setPhone(cursor.getString(4));
+                    customer.setEmail(cursor.getString(5));
+                    customerList.add(customer);
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+        }
+
+        return customerList;
+    }
+
+
+    public List<Customer> getAllCustomerNo() {
+        List<Customer> customerList = new ArrayList<>();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.query(TABLE_HOA_DON, null, KEY_TIEN_NO + "> ?", new String[]{"0"}, null, null, null, null);
+
+        if (cursor != null && cursor.getCount() > 0) {
+            if (cursor.moveToFirst()) {
+                do {
+
+                    Cursor cursor1 = db.query(TABLE_KHACH_HANG, null, KEY_MA_KH + "=?", new String[]{cursor.getInt(1) + ""}, null, null, null, null);
+
+                    if (cursor1 != null && cursor1.getCount() > 0) {
+
+                        if (cursor1.moveToFirst()) {
+                            do {
+
+                                Customer customer = new Customer();
+                                customer.setId(cursor1.getInt(0));
+                                customer.setName(cursor1.getString(1));
+                                customer.setGender(cursor1.getString(2));
+                                customer.setAddress(cursor1.getString(3));
+                                customer.setPhone(cursor1.getString(4));
+                                customer.setEmail(cursor1.getString(5));
+                                customerList.add(customer);
+
+                            } while (cursor1.moveToNext());
+                        }
+                        cursor1.close();
+                    }
+
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+        }
+
+        return customerList;
+    }
+
+    public Customer getCusomer(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Product product = null;
-        Cursor cursor = db.query(TABLE_HANG_HOA, null, KEY_MA_HANG + "=?",
-                new String[]{String.valueOf(id)}, null, null, null, null);
+        Customer customer = null;
+
+        Cursor cursor = db.query(TABLE_KHACH_HANG, null, KEY_MA_KH + "=?", new String[]{id}, null, null, null, null);
+
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+
+            while (!cursor.isAfterLast()) {
+                customer = new Customer();
+                customer.setId(cursor.getInt(0));
+                customer.setName(cursor.getString(1));
+                customer.setGender(cursor.getString(2));
+                customer.setAddress(cursor.getString(3));
+                customer.setPhone(cursor.getString(4));
+                customer.setEmail(cursor.getString(5));
+
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+        return customer;
+    }
+
+    public List<Customer> getCusomerByName(String name) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Customer> list = new ArrayList <>();
+        Cursor cursor = db.query(TABLE_KHACH_HANG, null, KEY_TEN_KH + "=?", new String[]{name}, null, null, null, null);
+
+        if (cursor != null && cursor.getCount() > 0) {
+            cursor.moveToFirst();
+
+            while (!cursor.isAfterLast()) {
+                Customer customer = new Customer();
+                customer.setId(cursor.getInt(0));
+                customer.setName(cursor.getString(1));
+                customer.setGender(cursor.getString(2));
+                customer.setAddress(cursor.getString(3));
+                customer.setPhone(cursor.getString(4));
+                customer.setEmail(cursor.getString(5));
+                list.add(customer);
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+        return list;
+    }
+
+    public List<Product> getProductName(String name) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Product> productList = new ArrayList<>();
+        Cursor cursor = db.query(TABLE_HANG_HOA, null, KEY_TEN_HANG + "=?",
+                new String[]{name}, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
 
             while (!cursor.isAfterLast()) {
-                product = new Product();
+                Product product = new Product();
                 product.setMaHang(cursor.getString(0));
                 product.setTenHang(cursor.getString(1));
-                product.setDonGiaNhap(Double.valueOf(cursor.getString(2)));
-                product.setSoLuongNhap(Integer.valueOf(cursor.getString(3)));
-                product.setChietKhau(Integer.valueOf(cursor.getString(4)));
-                product.setGiamGia(Integer.valueOf(cursor.getString(5)));
+                product.setDonGiaNhap(cursor.getDouble(2));
+                product.setSoLuongNhap(cursor.getInt(3));
+                product.setChietKhau(cursor.getInt(4));
+                product.setGiamGia(cursor.getInt(5));
 
                 Cursor cursor2 = db.query(TABLE_THUOC_TINH_HANG_HOA, null, KEY_MA_THUOC_TINH + "=?",
-                        new String[]{String.valueOf(cursor.getString(6))}, null, null, null, null);
+                        new String[]{cursor.getInt(6) + ""}, null, null, null, null);
 
                 if (cursor2 != null) {
                     cursor2.moveToFirst();
-                    Properties properties = null;
                     while (!cursor2.isAfterLast()) {
-                        properties = new Properties();
-                        properties.setMa(cursor2.getString(0));
+                        Properties properties = new Properties();
+                        properties.setMa(cursor2.getInt(0));
                         properties.setLoai(cursor2.getString(1));
-                        properties.setKichThuoc(Integer.parseInt(cursor2.getString(2)));
+                        properties.setKichThuoc(cursor2.getInt(2));
                         properties.setMauSac(cursor2.getString(3));
                         properties.setDoiTuong(cursor2.getString(4));
                         properties.setMua(cursor2.getString(5));
                         properties.setNsx(cursor2.getString(6));
                         product.setThuocTinh(properties);
-                        break;
+                        cursor2.moveToNext();
                     }
-
                     cursor2.close();
                 }
+                productList.add(product);
+                Log.e("LIST", "SIZE: " + productList.size());
+                cursor.moveToNext();
             }
             cursor.close();
         }
 
-        return product;
+        return productList;
+    }
+
+    public List<Product> getProductSale(String sale) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Product> productList = new ArrayList<>();
+        Cursor cursor = db.query(TABLE_HANG_HOA, null, KEY_GIAM_GIA + "=?",
+                new String[]{sale}, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            while (!cursor.isAfterLast()) {
+                Product product = new Product();
+                product.setMaHang(cursor.getString(0));
+                product.setTenHang(cursor.getString(1));
+                product.setDonGiaNhap(cursor.getDouble(2));
+                product.setSoLuongNhap(cursor.getInt(3));
+                product.setChietKhau(cursor.getInt(4));
+                product.setGiamGia(cursor.getInt(5));
+
+                Cursor cursor2 = db.query(TABLE_THUOC_TINH_HANG_HOA, null, KEY_MA_THUOC_TINH + "=?",
+                        new String[]{cursor.getInt(6) + ""}, null, null, null, null);
+
+                if (cursor2 != null) {
+                    cursor2.moveToFirst();
+                    while (!cursor2.isAfterLast()) {
+                        Properties properties = new Properties();
+                        properties.setMa(cursor2.getInt(0));
+                        properties.setLoai(cursor2.getString(1));
+                        properties.setKichThuoc(cursor2.getInt(2));
+                        properties.setMauSac(cursor2.getString(3));
+                        properties.setDoiTuong(cursor2.getString(4));
+                        properties.setMua(cursor2.getString(5));
+                        properties.setNsx(cursor2.getString(6));
+                        product.setThuocTinh(properties);
+                        cursor2.moveToNext();
+                    }
+                    cursor2.close();
+                }
+                productList.add(product);
+                Log.e("LIST", "SIZE: " + productList.size());
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+
+        return productList;
+    }
+
+    public List<Summary> getSumary(String date) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Summary> summaries = new ArrayList<>();
+        Cursor cursor = db.query(TABLE_HOA_DON, null, KEY_NGAY_LAP_HD + "=?",
+                new String[]{String.valueOf(date)}, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                int maHD = cursor.getInt(0);
+
+                Cursor cursor1 = db.query(TABLE_KE_HANG, null, KEY_MA_HOA_DON + "=?",
+                        new String[]{String.valueOf(maHD + "")}, null, null, null, null);
+                if (cursor1 != null) {
+                    cursor1.moveToFirst();
+                    Summary summary = new Summary();
+                    while (!cursor1.isAfterLast()) {
+                        summary.setDonGiaBan(cursor1.getDouble(2));
+                        summary.setSoLuongBan(cursor1.getInt(3));
+                        String maHang = cursor1.getString(0);
+
+                        Cursor cursor2 = db.query(TABLE_HANG_HOA, null, KEY_MA_HANG + "=?",
+                                new String[]{String.valueOf(maHang)}, null, null, null, null);
+                        if (cursor2 != null) {
+                            cursor2.moveToFirst();
+
+                            while (!cursor2.isAfterLast()) {
+                                summary.setTenHang(cursor2.getString(1));
+                                summary.setDonGiaNhap(cursor2.getDouble(2));
+                                summary.setSoLuongNhap(cursor2.getInt(3));
+
+                                cursor2.moveToNext();
+                            }
+
+                            cursor2.close();
+                        }
+
+                        summaries.add(summary);
+                        cursor1.moveToNext();
+                    }
+
+                    cursor1.close();
+                }
+
+                cursor.moveToNext();
+            }
+
+            cursor.close();
+        }
+
+        return summaries;
+    }
+
+    public List<Product> getProductMauSac(String mauSac) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Product> productList = new ArrayList<>();
+        Cursor cursor = db.query(TABLE_THUOC_TINH_HANG_HOA, null, KEY_MAU_SAC + "=?",
+                new String[]{mauSac}, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            while (!cursor.isAfterLast()) {
+
+                Properties properties = new Properties();
+                properties.setMa(cursor.getInt(0));
+                properties.setLoai(cursor.getString(1));
+                properties.setKichThuoc(cursor.getInt(2));
+                properties.setMauSac(cursor.getString(3));
+                properties.setDoiTuong(cursor.getString(4));
+                properties.setMua(cursor.getString(5));
+                properties.setNsx(cursor.getString(6));
+
+                Cursor cursor2 = db.query(TABLE_HANG_HOA, null, KEY_MA_THUOC_TINH + "=?",
+                        new String[]{cursor.getInt(0) + ""}, null, null, null, null);
+
+                if (cursor2 != null) {
+                    cursor2.moveToFirst();
+                    while (!cursor2.isAfterLast()) {
+                        Product product = new Product();
+                        product.setMaHang(cursor2.getString(0));
+                        product.setTenHang(cursor2.getString(1));
+                        product.setDonGiaNhap(cursor2.getDouble(2));
+                        product.setSoLuongNhap(cursor2.getInt(3));
+                        product.setChietKhau(cursor2.getInt(4));
+                        product.setGiamGia(cursor2.getInt(5));
+                        product.setThuocTinh(properties);
+                        productList.add(product);
+                        cursor2.moveToNext();
+                    }
+                    cursor2.close();
+                }
+                Log.e("LIST", "SIZE: " + productList.size());
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+
+        return productList;
+    }
+
+    public List<Product> getProductLoai(String loai) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Product> productList = new ArrayList<>();
+        Cursor cursor = db.query(TABLE_THUOC_TINH_HANG_HOA, null, KEY_LOAI + "=?",
+                new String[]{loai}, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            while (!cursor.isAfterLast()) {
+
+                Properties properties = new Properties();
+                properties.setMa(cursor.getInt(0));
+                properties.setLoai(cursor.getString(1));
+                properties.setKichThuoc(cursor.getInt(2));
+                properties.setMauSac(cursor.getString(3));
+                properties.setDoiTuong(cursor.getString(4));
+                properties.setMua(cursor.getString(5));
+                properties.setNsx(cursor.getString(6));
+
+                Cursor cursor2 = db.query(TABLE_HANG_HOA, null, KEY_MA_THUOC_TINH + "=?",
+                        new String[]{cursor.getInt(0) + ""}, null, null, null, null);
+
+                if (cursor2 != null) {
+                    cursor2.moveToFirst();
+                    while (!cursor2.isAfterLast()) {
+                        Product product = new Product();
+                        product.setMaHang(cursor2.getString(0));
+                        product.setTenHang(cursor2.getString(1));
+                        product.setDonGiaNhap(cursor2.getDouble(2));
+                        product.setSoLuongNhap(cursor2.getInt(3));
+                        product.setChietKhau(cursor2.getInt(4));
+                        product.setGiamGia(cursor2.getInt(5));
+                        product.setThuocTinh(properties);
+                        productList.add(product);
+                        cursor2.moveToNext();
+                    }
+                    cursor2.close();
+                }
+                Log.e("LIST", "SIZE: " + productList.size());
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+
+        return productList;
+    }
+
+    public List<Product> getProductSize(String size) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Product> productList = new ArrayList<>();
+        Cursor cursor = db.query(TABLE_THUOC_TINH_HANG_HOA, null, KEY_KICH_THUOC + "=?",
+                new String[]{size}, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            while (!cursor.isAfterLast()) {
+
+                Properties properties = new Properties();
+                properties.setMa(cursor.getInt(0));
+                properties.setLoai(cursor.getString(1));
+                properties.setKichThuoc(cursor.getInt(2));
+                properties.setMauSac(cursor.getString(3));
+                properties.setDoiTuong(cursor.getString(4));
+                properties.setMua(cursor.getString(5));
+                properties.setNsx(cursor.getString(6));
+
+                Cursor cursor2 = db.query(TABLE_HANG_HOA, null, KEY_MA_THUOC_TINH + "=?",
+                        new String[]{cursor.getInt(0) + ""}, null, null, null, null);
+
+                if (cursor2 != null) {
+                    cursor2.moveToFirst();
+                    while (!cursor2.isAfterLast()) {
+                        Product product = new Product();
+                        product.setMaHang(cursor2.getString(0));
+                        product.setTenHang(cursor2.getString(1));
+                        product.setDonGiaNhap(cursor2.getDouble(2));
+                        product.setSoLuongNhap(cursor2.getInt(3));
+                        product.setChietKhau(cursor2.getInt(4));
+                        product.setGiamGia(cursor2.getInt(5));
+                        product.setThuocTinh(properties);
+                        productList.add(product);
+                        cursor2.moveToNext();
+                    }
+                    cursor2.close();
+                }
+                Log.e("LIST", "SIZE: " + productList.size());
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+
+        return productList;
+    }
+
+    public List<Product> getProductMua(String mua) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Product> productList = new ArrayList<>();
+        Cursor cursor = db.query(TABLE_THUOC_TINH_HANG_HOA, null, KEY_MUA + "=?",
+                new String[]{mua}, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            while (!cursor.isAfterLast()) {
+
+                Properties properties = new Properties();
+                properties.setMa(cursor.getInt(0));
+                properties.setLoai(cursor.getString(1));
+                properties.setKichThuoc(cursor.getInt(2));
+                properties.setMauSac(cursor.getString(3));
+                properties.setDoiTuong(cursor.getString(4));
+                properties.setMua(cursor.getString(5));
+                properties.setNsx(cursor.getString(6));
+
+                Cursor cursor2 = db.query(TABLE_HANG_HOA, null, KEY_MA_THUOC_TINH + "=?",
+                        new String[]{cursor.getInt(0) + ""}, null, null, null, null);
+
+                if (cursor2 != null) {
+                    cursor2.moveToFirst();
+                    while (!cursor2.isAfterLast()) {
+                        Product product = new Product();
+                        product.setMaHang(cursor2.getString(0));
+                        product.setTenHang(cursor2.getString(1));
+                        product.setDonGiaNhap(cursor2.getDouble(2));
+                        product.setSoLuongNhap(cursor2.getInt(3));
+                        product.setChietKhau(cursor2.getInt(4));
+                        product.setGiamGia(cursor2.getInt(5));
+                        product.setThuocTinh(properties);
+                        productList.add(product);
+                        cursor2.moveToNext();
+                    }
+                    cursor2.close();
+                }
+                Log.e("LIST", "SIZE: " + productList.size());
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+
+        return productList;
+    }
+
+    public List<Product> getProductNSX(String object) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Product> productList = new ArrayList<>();
+        Cursor cursor = db.query(TABLE_THUOC_TINH_HANG_HOA, null, KEY_NSX + "=?",
+                new String[]{object}, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            while (!cursor.isAfterLast()) {
+
+                Properties properties = new Properties();
+                properties.setMa(cursor.getInt(0));
+                properties.setLoai(cursor.getString(1));
+                properties.setKichThuoc(cursor.getInt(2));
+                properties.setMauSac(cursor.getString(3));
+                properties.setDoiTuong(cursor.getString(4));
+                properties.setMua(cursor.getString(5));
+                properties.setNsx(cursor.getString(6));
+
+                Cursor cursor2 = db.query(TABLE_HANG_HOA, null, KEY_MA_THUOC_TINH + "=?",
+                        new String[]{cursor.getInt(0) + ""}, null, null, null, null);
+
+                if (cursor2 != null) {
+                    cursor2.moveToFirst();
+                    while (!cursor2.isAfterLast()) {
+                        Product product = new Product();
+                        product.setMaHang(cursor2.getString(0));
+                        product.setTenHang(cursor2.getString(1));
+                        product.setDonGiaNhap(cursor2.getDouble(2));
+                        product.setSoLuongNhap(cursor2.getInt(3));
+                        product.setChietKhau(cursor2.getInt(4));
+                        product.setGiamGia(cursor2.getInt(5));
+                        product.setThuocTinh(properties);
+                        productList.add(product);
+                        cursor2.moveToNext();
+                    }
+                    cursor2.close();
+                }
+                Log.e("LIST", "SIZE: " + productList.size());
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+
+        return productList;
+    }
+
+    public List<Product> getProductObject(String object) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Product> productList = new ArrayList<>();
+        Cursor cursor = db.query(TABLE_THUOC_TINH_HANG_HOA, null, KEY_DOI_TUONG_DUNG + "=?",
+                new String[]{object}, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            while (!cursor.isAfterLast()) {
+
+                Properties properties = new Properties();
+                properties.setMa(cursor.getInt(0));
+                properties.setLoai(cursor.getString(1));
+                properties.setKichThuoc(cursor.getInt(2));
+                properties.setMauSac(cursor.getString(3));
+                properties.setDoiTuong(cursor.getString(4));
+                properties.setMua(cursor.getString(5));
+                properties.setNsx(cursor.getString(6));
+
+                Cursor cursor2 = db.query(TABLE_HANG_HOA, null, KEY_MA_THUOC_TINH + "=?",
+                        new String[]{cursor.getInt(0) + ""}, null, null, null, null);
+
+                if (cursor2 != null) {
+                    cursor2.moveToFirst();
+                    while (!cursor2.isAfterLast()) {
+                        Product product = new Product();
+                        product.setMaHang(cursor2.getString(0));
+                        product.setTenHang(cursor2.getString(1));
+                        product.setDonGiaNhap(cursor2.getDouble(2));
+                        product.setSoLuongNhap(cursor2.getInt(3));
+                        product.setChietKhau(cursor2.getInt(4));
+                        product.setGiamGia(cursor2.getInt(5));
+                        product.setThuocTinh(properties);
+                        productList.add(product);
+                        cursor2.moveToNext();
+                    }
+                    cursor2.close();
+                }
+                Log.e("LIST", "SIZE: " + productList.size());
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+
+        return productList;
+    }
+
+    public List<Product> getProductCost(String cost) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Product> productList = new ArrayList<>();
+        Cursor cursor = db.query(TABLE_HANG_HOA, null, KEY_DON_GIA_NHAP + "=?",
+                new String[]{cost}, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            while (!cursor.isAfterLast()) {
+                Product product = new Product();
+                product.setMaHang(cursor.getString(0));
+                product.setTenHang(cursor.getString(1));
+                product.setDonGiaNhap(cursor.getDouble(2));
+                product.setSoLuongNhap(cursor.getInt(3));
+                product.setChietKhau(cursor.getInt(4));
+                product.setGiamGia(cursor.getInt(5));
+
+                Cursor cursor2 = db.query(TABLE_THUOC_TINH_HANG_HOA, null, KEY_MA_THUOC_TINH + "=?",
+                        new String[]{cursor.getInt(6) + ""}, null, null, null, null);
+
+                if (cursor2 != null) {
+                    cursor2.moveToFirst();
+                    while (!cursor2.isAfterLast()) {
+                        Properties properties = new Properties();
+                        properties.setMa(cursor2.getInt(0));
+                        properties.setLoai(cursor2.getString(1));
+                        properties.setKichThuoc(cursor2.getInt(2));
+                        properties.setMauSac(cursor2.getString(3));
+                        properties.setDoiTuong(cursor2.getString(4));
+                        properties.setMua(cursor2.getString(5));
+                        properties.setNsx(cursor2.getString(6));
+                        product.setThuocTinh(properties);
+                        cursor2.moveToNext();
+                    }
+                    cursor2.close();
+                }
+                productList.add(product);
+                Log.e("LIST", "SIZE: " + productList.size());
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+
+        return productList;
     }
 
     public Customer getCustomer(String name, String gender, String address, String phone, String email) {
         SQLiteDatabase db = this.getReadableDatabase();
         Customer customer = null;
         Cursor cursor = db.query(TABLE_KHACH_HANG, null, KEY_TEN_KH + "=? AND " + KEY_EMAIL + "=? AND "
-                +  KEY_GIOI_TINH + "=? AND " +  KEY_DIA_CHI + "=? AND " +  KEY_DIEN_THOAI + "=?",
+                        + KEY_GIOI_TINH + "=? AND " + KEY_DIA_CHI + "=? AND " + KEY_DIEN_THOAI + "=?",
                 new String[]{name, email, gender, address, phone}, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
 
             while (!cursor.isAfterLast()) {
                 customer = new Customer();
-                customer.setId(cursor.getString(0));
+                customer.setId(cursor.getInt(0));
                 customer.setName(cursor.getString(1));
                 customer.setGender(cursor.getString(2));
                 customer.setAddress(cursor.getString(3));
                 customer.setPhone(cursor.getString(4));
                 customer.setEmail(cursor.getString(5));
+                cursor.moveToNext();
             }
             cursor.close();
         }
@@ -478,25 +1049,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return customer;
     }
 
-    public String getBillID(String makh, String manv, String loaikh, String ngaylap) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_HOA_DON, null, KEY_MA_KH + "=? AND " + KEY_MA_NV + "=? AND "
-                        +  KEY_LOAI_KH + "=? AND " +  KEY_NGAY_LAP_HD + "=?",
-                new String[]{makh, manv, loaikh, ngaylap}, null, null, null, null);
-        if (cursor != null) {
-            cursor.moveToFirst();
-
-            while (!cursor.isAfterLast()) {
-               return cursor.getString(0);
-            }
-            cursor.close();
-        }
-
-        return null;
-    }
-
     public List<Product> getAllProducts() {
-        List<Product> productList = new ArrayList<Product>();
+        List<Product> productList = new ArrayList<>();
         String selectQuery = "SELECT * FROM " + TABLE_HANG_HOA;
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -513,6 +1067,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 product.setSoLuongNhap(Integer.parseInt(cursor.getString(3)));
                 product.setChietKhau(Integer.parseInt(cursor.getString(4)));
                 product.setGiamGia(Integer.parseInt(cursor.getString(5)));
+                product.setSoLuongConLai(getNumberProduct(cursor.getString(0)));
 
                 cursor1 = db.query(TABLE_THUOC_TINH_HANG_HOA, null, KEY_MA_THUOC_TINH + "=?", new String[]{cursor.getString(6)},
                         null, null, null, null);
@@ -523,9 +1078,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
                     while (!cursor1.isAfterLast()) {
                         properties = new Properties();
-                        properties.setMa(cursor1.getString(0));
+                        properties.setMa(cursor1.getInt(0));
                         properties.setLoai(cursor1.getString(1));
-                        properties.setKichThuoc(Integer.parseInt(cursor1.getString(2)));
+                        properties.setKichThuoc(cursor1.getInt(2));
                         properties.setMauSac(cursor1.getString(3));
                         properties.setDoiTuong(cursor1.getString(4));
                         properties.setMua(cursor1.getString(5));
@@ -544,4 +1099,469 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return productList;
     }
 
+    public List<StoreBill> getAllDonHangOffline() {
+        List<StoreBill> list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_DON_HANG, null, KEY_LOAI_GIAO_DICH + "=?", new String[]{"Offline"}, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            while (!cursor.isAfterLast()) {
+                StoreBill storeBill = new StoreBill();
+                storeBill.setMaPhieu(cursor.getInt(0));
+                storeBill.setTrangThai(cursor.getString(1));
+                storeBill.setLoaGiaoDich(cursor.getString(2));
+                storeBill.setMaHD(cursor.getInt(3));
+                list.add(storeBill);
+                cursor.moveToNext();
+            }
+
+            cursor.close();
+        }
+
+        return list;
+    }
+
+    public List<StoreBill> getAllDonHangOnline() {
+        List<StoreBill> list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_DON_HANG, null, KEY_LOAI_GIAO_DICH + "=?", new String[]{"Online"}, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            while (!cursor.isAfterLast()) {
+
+                StoreBill storeBill = new StoreBill();
+                storeBill.setMaPhieu(cursor.getInt(0));
+                storeBill.setTrangThai(cursor.getString(1));
+                storeBill.setLoaGiaoDich(cursor.getString(2));
+                storeBill.setMaHD(cursor.getInt(3));
+
+                list.add(storeBill);
+                cursor.moveToNext();
+            }
+
+            cursor.close();
+        }
+
+        return list;
+    }
+
+    public Bill getBillWithID(String id) {
+        Bill bill = null;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_HOA_DON, null, KEY_MA_HOA_DON + "=?", new String[]{id}, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            while (!cursor.isAfterLast()) {
+
+                bill = new Bill();
+                bill.setMaHD(cursor.getInt(0));
+                bill.setMaKH(cursor.getInt(1));
+                bill.setLoaiKH(cursor.getString(2));
+                bill.setMaNV(cursor.getString(3));
+                bill.setTienMat(cursor.getDouble(4));
+                bill.setTienATM(cursor.getDouble(5));
+                bill.setKhuyenMai(cursor.getInt(6));
+                bill.setPhieuGiamGia(cursor.getInt(7));
+                bill.setTienNo(cursor.getDouble(8));
+                bill.setNgayLap(cursor.getString(9));
+
+                cursor.moveToNext();
+            }
+
+            cursor.close();
+        }
+
+        return bill;
+    }
+
+    public Customer getCustomerWithID(String id) {
+        Customer customer = null;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_KHACH_HANG, null, KEY_MA_KH + "=?", new String[]{id}, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            while (!cursor.isAfterLast()) {
+
+                customer = new Customer();
+                customer.setId(cursor.getInt(0));
+                customer.setName(cursor.getString(1));
+                customer.setGender(cursor.getString(2));
+                customer.setAddress(cursor.getString(3));
+                customer.setPhone(cursor.getString(4));
+                customer.setEmail(cursor.getString(5));
+
+                cursor.moveToNext();
+            }
+
+            cursor.close();
+        }
+
+        return customer;
+    }
+
+    public List<Product> getListProductWithBillID(String id) {
+        List<Product> list = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_KE_HANG, null, KEY_MA_HOA_DON + "=?", new String[]{id}, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            while (!cursor.isAfterLast()) {
+                Product product = new Product();
+                product.setMaHang(cursor.getString(0));
+                product.setDonGiaBan(cursor.getDouble(2));
+                product.setSoLuongBan(cursor.getInt(3));
+                product.setSale(true);
+
+                Cursor cursor1 = db.query(TABLE_HANG_HOA, null, KEY_MA_HANG + "=?", new String[]{cursor.getString(0)}, null, null, null, null);
+
+                if (cursor1 != null) {
+                    cursor1.moveToFirst();
+
+                    while (!cursor1.isAfterLast()) {
+
+                        product.setTenHang(cursor1.getString(1));
+                        product.setDonGiaNhap(cursor1.getDouble(2));
+                        product.setSoLuongNhap(cursor1.getInt(3));
+                        product.setChietKhau(cursor1.getInt(4));
+                        product.setGiamGia(cursor1.getInt(5));
+                        product.setThuocTinh(getProperties(cursor1.getInt(6) + ""));
+                        cursor1.moveToNext();
+                    }
+
+                    cursor1.close();
+                }
+
+                list.add(product);
+                cursor.moveToNext();
+            }
+
+            cursor.close();
+        }
+
+        return list;
+    }
+
+    public Properties getProperties(String id) {
+        Properties properties = null;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor2 = db.query(TABLE_THUOC_TINH_HANG_HOA, null, KEY_MA_THUOC_TINH + "=?", new String[]{id}, null, null, null, null);
+
+        if (cursor2 != null) {
+            cursor2.moveToFirst();
+
+            while (!cursor2.isAfterLast()) {
+
+                properties = new Properties();
+                properties.setMa(cursor2.getInt(0));
+                properties.setLoai(cursor2.getString(1));
+                properties.setKichThuoc(cursor2.getInt(2));
+                properties.setMauSac(cursor2.getString(3));
+                properties.setDoiTuong(cursor2.getString(4));
+                properties.setMua(cursor2.getString(5));
+                properties.setNsx(cursor2.getString(6));
+
+                cursor2.moveToNext();
+            }
+
+            cursor2.close();
+        }
+        return properties;
+    }
+
+    public double getMoneySale(String date, String ma) {
+
+        double tien = 0;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor2 = db.query(TABLE_HOA_DON, null, KEY_NGAY_LAP_HD + "=? AND " + KEY_MA_NV + "=?", new String[]{date, ma}, null, null, null, null);
+
+        if (cursor2 != null) {
+            cursor2.moveToFirst();
+
+            while (!cursor2.isAfterLast()) {
+
+                tien += cursor2.getDouble(4);
+
+                cursor2.moveToNext();
+            }
+
+            Log.e("MAIN", "Tiền bán được: " + tien);
+
+            cursor2.close();
+        }
+        return tien;
+    }
+
+    public int getNumberProduct(String ma) {
+
+        int number = 0;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor2 = db.query(TABLE_HANG_HOA, null, KEY_MA_HANG + "=?", new String[]{ma}, null, null, null, null);
+
+        if (cursor2 != null) {
+            cursor2.moveToFirst();
+
+            while (!cursor2.isAfterLast()) {
+
+                number += cursor2.getInt(3);
+
+                Cursor cursor = db.query(TABLE_KE_HANG, null, KEY_MA_HANG + "=?", new String[]{ma}, null, null, null, null);
+
+                if (cursor != null) {
+                    cursor.moveToFirst();
+
+                    while (!cursor.isAfterLast()) {
+
+                        number -= cursor.getInt(3);
+
+                        cursor.moveToNext();
+                    }
+
+                    cursor.close();
+                }
+
+                cursor2.moveToNext();
+            }
+
+            Log.e("MAIN", "NUMBER: " + number);
+
+            cursor2.close();
+        }
+        return number;
+    }
+
+    public List<String> getListName() {
+
+        List<String> list = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor2 = db.query(TABLE_HANG_HOA, null, null, null, null, null, null, null);
+
+        if (cursor2 != null) {
+            cursor2.moveToFirst();
+
+            while (!cursor2.isAfterLast()) {
+                if (!list.contains(cursor2.getString(1))) {
+                    list.add(cursor2.getString(1));
+                    Log.e("DATA", "NAME: " + cursor2.getString(1));
+                }
+                cursor2.moveToNext();
+            }
+
+            cursor2.close();
+        }
+        return list;
+    }
+
+    public List<String> getListGiamGia() {
+
+        List<String> list = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor2 = db.query(TABLE_HANG_HOA, null, null, null, null, null, null, null);
+
+        if (cursor2 != null) {
+            cursor2.moveToFirst();
+
+            while (!cursor2.isAfterLast()) {
+                if (!list.contains(cursor2.getInt(5))) {
+                    list.add(cursor2.getInt(5) + "");
+                    Log.e("DATA", "GiamGia: " + cursor2.getInt(5));
+                }
+                cursor2.moveToNext();
+            }
+
+            cursor2.close();
+        }
+        return list;
+    }
+
+    public List<String> getListDonGia() {
+
+        List<String> list = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor2 = db.query(TABLE_HANG_HOA, null, null, null, null, null, null, null);
+
+        if (cursor2 != null) {
+            cursor2.moveToFirst();
+
+            while (!cursor2.isAfterLast()) {
+                if (!list.contains(cursor2.getDouble(2) + "")) {
+                    list.add(cursor2.getDouble(2) + "");
+                    Log.e("DATA", "DonGia: " + cursor2.getDouble(2));
+                }
+                cursor2.moveToNext();
+            }
+
+            cursor2.close();
+        }
+        return list;
+    }
+
+    public List<String> getListLoai() {
+
+        List<String> list = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor2 = db.query(TABLE_THUOC_TINH_HANG_HOA, null, null, null, null, null, null, null);
+
+        if (cursor2 != null) {
+            cursor2.moveToFirst();
+
+            while (!cursor2.isAfterLast()) {
+                if (!list.contains(cursor2.getString(1))) {
+                    list.add(cursor2.getString(1));
+                    Log.e("DATA", "Loai: " + cursor2.getString(1));
+                }
+                cursor2.moveToNext();
+            }
+
+            cursor2.close();
+        }
+        return list;
+    }
+
+    public List<String> getListSize() {
+
+        List<String> list = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor2 = db.query(TABLE_THUOC_TINH_HANG_HOA, null, null, null, null, null, null, null);
+
+        if (cursor2 != null) {
+            cursor2.moveToFirst();
+
+            while (!cursor2.isAfterLast()) {
+                if (!list.contains(cursor2.getInt(2) + "")) {
+                    list.add(cursor2.getInt(2) + "");
+                }
+                cursor2.moveToNext();
+            }
+
+            cursor2.close();
+        }
+        return list;
+    }
+
+    public List<String> getListMauSac() {
+
+        List<String> list = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor2 = db.query(TABLE_THUOC_TINH_HANG_HOA, null, null, null, null, null, null, null);
+
+        if (cursor2 != null) {
+            cursor2.moveToFirst();
+
+            while (!cursor2.isAfterLast()) {
+                if (!list.contains(cursor2.getString(3))) {
+                    list.add(cursor2.getString(3));
+                }
+                cursor2.moveToNext();
+            }
+
+            cursor2.close();
+        }
+        return list;
+    }
+
+    public List<String> getListObject() {
+
+        List<String> list = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor2 = db.query(TABLE_THUOC_TINH_HANG_HOA, null, null, null, null, null, null, null);
+
+        if (cursor2 != null) {
+            cursor2.moveToFirst();
+
+            while (!cursor2.isAfterLast()) {
+                if (!list.contains(cursor2.getString(4))) {
+                    list.add(cursor2.getString(4));
+                }
+                cursor2.moveToNext();
+            }
+
+            cursor2.close();
+        }
+        return list;
+    }
+
+    public List<String> getListMua() {
+
+        List<String> list = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor2 = db.query(TABLE_THUOC_TINH_HANG_HOA, null, null, null, null, null, null, null);
+
+        if (cursor2 != null) {
+            cursor2.moveToFirst();
+
+            while (!cursor2.isAfterLast()) {
+                if (!list.contains(cursor2.getString(5))) {
+                    list.add(cursor2.getString(5));
+                }
+                cursor2.moveToNext();
+            }
+
+            cursor2.close();
+        }
+        return list;
+    }
+
+    public List<String> getListNSX() {
+
+        List<String> list = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor2 = db.query(TABLE_THUOC_TINH_HANG_HOA, null, null, null, null, null, null, null);
+
+        if (cursor2 != null) {
+            cursor2.moveToFirst();
+
+            while (!cursor2.isAfterLast()) {
+                if (!list.contains(cursor2.getString(6))) {
+                    list.add(cursor2.getString(6));
+                }
+                cursor2.moveToNext();
+            }
+
+            cursor2.close();
+        }
+        return list;
+    }
+
+    public List<String> getListNameCustomer() {
+
+        List<String> list = new ArrayList<>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor2 = db.query(TABLE_KHACH_HANG, null, null, null, null, null, null, null);
+
+        if (cursor2 != null) {
+            cursor2.moveToFirst();
+
+            while (!cursor2.isAfterLast()) {
+                if (!list.contains(cursor2.getString(1))) {
+                    list.add(cursor2.getString(1));
+                    Log.e("DATA", "NAME: " + cursor2.getString(1));
+                }
+                cursor2.moveToNext();
+            }
+
+            cursor2.close();
+        }
+        return list;
+    }
 }

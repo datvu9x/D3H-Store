@@ -1,14 +1,16 @@
 package dev.datvt.clothingstored3h.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by DatVIT on 10/15/2016.
  */
 
-public class Product {
+public class Product implements Parcelable {
 
     private String maHang;
     private String tenHang;
-    private String img;
 
     private Properties thuocTinh;
 
@@ -16,6 +18,7 @@ public class Product {
     private double donGiaBan;
     private int soLuongNhap;
     private int soLuongBan;
+    private int soLuongConLai;
     private int chietKhau;
     private int giamGia;
 
@@ -39,6 +42,37 @@ public class Product {
     public Product() {
 
     }
+
+    public int getSoLuongConLai() {
+        return soLuongConLai;
+    }
+
+    public void setSoLuongConLai(int soLuongConLai) {
+        this.soLuongConLai = soLuongConLai;
+    }
+
+    protected Product(Parcel in) {
+        maHang = in.readString();
+        tenHang = in.readString();
+        donGiaNhap = in.readDouble();
+        donGiaBan = in.readDouble();
+        soLuongNhap = in.readInt();
+        soLuongBan = in.readInt();
+        chietKhau = in.readInt();
+        giamGia = in.readInt();
+    }
+
+    public static final Creator<Product> CREATOR = new Creator<Product>() {
+        @Override
+        public Product createFromParcel(Parcel in) {
+            return new Product(in);
+        }
+
+        @Override
+        public Product[] newArray(int size) {
+            return new Product[size];
+        }
+    };
 
     public double getDonGiaBan() {
         return donGiaBan;
@@ -120,11 +154,20 @@ public class Product {
         this.giamGia = giamGia;
     }
 
-    public String getImg() {
-        return img;
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(maHang);
+        dest.writeString(tenHang);
+        dest.writeDouble(donGiaNhap);
+        dest.writeDouble(donGiaBan);
+        dest.writeInt(soLuongNhap);
+        dest.writeInt(soLuongBan);
+        dest.writeInt(chietKhau);
+        dest.writeInt(giamGia);
     }
 }

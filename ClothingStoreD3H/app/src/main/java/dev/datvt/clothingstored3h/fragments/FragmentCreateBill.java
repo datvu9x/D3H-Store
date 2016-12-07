@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,9 +27,13 @@ import java.util.Date;
 
 import dev.datvt.clothingstored3h.R;
 import dev.datvt.clothingstored3h.activities.ListProduct;
+import dev.datvt.clothingstored3h.activities.MainActivity;
+import dev.datvt.clothingstored3h.adapters.MyProductAdapter;
 import dev.datvt.clothingstored3h.models.Bill;
 import dev.datvt.clothingstored3h.models.Customer;
 import dev.datvt.clothingstored3h.models.Product;
+import dev.datvt.clothingstored3h.models.StoreBill;
+import dev.datvt.clothingstored3h.models.StoreProduct;
 import dev.datvt.clothingstored3h.utils.ConstantHelper;
 import dev.datvt.clothingstored3h.utils.DatabaseHandler;
 
@@ -42,15 +48,16 @@ public class FragmentCreateBill extends Fragment implements View.OnClickListener
 
     private Spinner spLoaiKH, spGioiTinh;
     private ImageView btnAddProduct;
-    private TextView tvTongTienHang, tvTongTien, tvTienThua, btnCreateBill, btnResetText;
-    private EditText etKH, etDienThoai, etDiaChi, etEmail, etVAT, etKhuyenMai, etPhieuGiamGia, etTienATM, etTienMat;
+    private TextView tvTongTienHang, tvTongTien, tvTienThua, btnCreateBill, btnResetText, tvChietKhau, tvGiamGia;
+    private EditText etKH, etDienThoai, etDiaChi, etEmail, etPhieuGiamGia, etKhuyenMai, etTienATM, etTienMat;
     private ListView listView;
     private ArrayList<Product> arrayList;
-    private ArrayAdapter<Product> arrayAdapter;
+    private MyProductAdapter productArrayAdapter;
 
     private DatabaseHandler databaseHandler;
-    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-    private double tienNo = 0, tienHang = 0, tienPhaiTra = 0, tienThua = 0, tienMatKH = 0, tienATMKH = 0;
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    private double tienNo = 0, tienHang = 0, tienPhaiTra = 0, tienThua = 0, tienMatKH = 0,
+            tienATMKH = 0, tienChietKhau = 0, tienGiamGia = 0;
 
     @Nullable
     @Override
@@ -74,21 +81,43 @@ public class FragmentCreateBill extends Fragment implements View.OnClickListener
         etDiaChi = (EditText) viewFragment.findViewById(R.id.etDiaChi);
         etDienThoai = (EditText) viewFragment.findViewById(R.id.etDienThoai);
         etEmail = (EditText) viewFragment.findViewById(R.id.etEmail);
-        etVAT = (EditText) viewFragment.findViewById(R.id.etVAT);
-        etKhuyenMai = (EditText) viewFragment.findViewById(R.id.etKhuyenMai);
+        tvChietKhau = (TextView) viewFragment.findViewById(R.id.tvChietKhau);
+        tvGiamGia = (TextView) viewFragment.findViewById(R.id.tvGiamGia);
         etPhieuGiamGia = (EditText) viewFragment.findViewById(R.id.etPhieuGiamGia);
+        etKhuyenMai = (EditText) viewFragment.findViewById(R.id.etKhuyenMai);
         etTienATM = (EditText) viewFragment.findViewById(R.id.etTienATM);
         etTienMat = (EditText) viewFragment.findViewById(R.id.etTienMat);
 
         listView = (ListView) viewFragment.findViewById(R.id.listProductInBill);
-        arrayList  = new ArrayList<>();
-        arrayAdapter  = new ArrayAdapter<Product>(getActivity(), android.R.layout.simple_list_item_1, arrayList);
-        listView.setAdapter(arrayAdapter);
+        arrayList = new ArrayList<>();
+        productArrayAdapter = new MyProductAdapter(getActivity(), arrayList);
+        listView.setAdapter(productArrayAdapter);
 
         ArrayList<String> arrLoaiKH = new ArrayList<>();
-        arrLoaiKH.add("Bán buôn");
-        arrLoaiKH.add("Bán lẻ");
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, arrLoaiKH);
+        arrLoaiKH.add("Khách buôn");
+        arrLoaiKH.add("Khách lẻ");
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, arrLoaiKH) {
+
+            public View getView(int position, View convertView, ViewGroup parent) {
+
+                View v = super.getView(position, convertView, parent);
+
+                ((TextView) v).setGravity(Gravity.RIGHT);
+
+                return v;
+
+            }
+
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+
+                View v = super.getDropDownView(position, convertView, parent);
+
+                ((TextView) v).setGravity(Gravity.RIGHT);
+
+                return v;
+
+            }
+        };
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         spLoaiKH.setAdapter(arrayAdapter);
 
@@ -96,7 +125,28 @@ public class FragmentCreateBill extends Fragment implements View.OnClickListener
         arrGioiTinh.add("Nam");
         arrGioiTinh.add("Nữ");
         arrGioiTinh.add("Khác");
-        ArrayAdapter<String> arrayAdapterGT = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, arrGioiTinh);
+        ArrayAdapter<String> arrayAdapterGT = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, arrGioiTinh) {
+
+            public View getView(int position, View convertView, ViewGroup parent) {
+
+                View v = super.getView(position, convertView, parent);
+
+                ((TextView) v).setGravity(Gravity.RIGHT);
+
+                return v;
+
+            }
+
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+
+                View v = super.getDropDownView(position, convertView, parent);
+
+                ((TextView) v).setGravity(Gravity.RIGHT);
+
+                return v;
+
+            }
+        };
         arrayAdapterGT.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         spGioiTinh.setAdapter(arrayAdapterGT);
 
@@ -117,8 +167,8 @@ public class FragmentCreateBill extends Fragment implements View.OnClickListener
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (s != null && !s.toString().isEmpty()) {
-                    tienHang = Double.parseDouble(s.toString());
+                if (tvTongTienHang.getText() != null && !tvTongTienHang.getText().toString().isEmpty()) {
+                    tienHang = Double.parseDouble(tvTongTienHang.getText().toString());
                 }
             }
         });
@@ -136,11 +186,12 @@ public class FragmentCreateBill extends Fragment implements View.OnClickListener
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (s != null && !s.toString().isEmpty()) {
-                    double vat = Double.parseDouble(etVAT.getText().toString().trim());
-                    double khuyenMai = Double.parseDouble(etKhuyenMai.getText().toString().trim());
-                    double giamGia = Double.parseDouble(s.toString().trim());
-                    tienPhaiTra = tienHang + tienHang * (vat + khuyenMai + giamGia) / 100;
+                if (etPhieuGiamGia.getText() != null && !etPhieuGiamGia.getText().toString().isEmpty()) {
+                    double chietKhau = Double.parseDouble(tvChietKhau.getText().toString().trim());
+                    double khuyenMai = Double.parseDouble(tvGiamGia.getText().toString().trim());
+                    int giamGia = Integer.parseInt(etPhieuGiamGia.getText().toString().trim());
+                    int mai = Integer.parseInt(etKhuyenMai.getText().toString().trim());
+                    tienPhaiTra = tienHang - tienHang * ((giamGia + mai) * 1.0 / 100) - khuyenMai - chietKhau;
                     tvTongTien.setText(tienPhaiTra + "");
                 }
             }
@@ -159,8 +210,14 @@ public class FragmentCreateBill extends Fragment implements View.OnClickListener
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (s != null && !s.toString().trim().isEmpty()) {
-                    tienMatKH = Double.parseDouble(s.toString().trim());
+                if (etTienMat.getText() != null && !etTienMat.getText().toString().trim().isEmpty()) {
+                    tienMatKH = Double.parseDouble(etTienMat.getText().toString().trim());
+                    if (tienMatKH + tienATMKH >= tienPhaiTra) {
+                        tienThua = tienATMKH + tienMatKH - tienPhaiTra;
+                    } else {
+                        tienThua = 0;
+                    }
+                    tvTienThua.setText(tienThua + "");
                 }
             }
         });
@@ -178,8 +235,8 @@ public class FragmentCreateBill extends Fragment implements View.OnClickListener
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (s != null && !s.toString().trim().isEmpty()) {
-                    tienATMKH = Double.parseDouble(s.toString().trim());
+                if (etTienATM.getText() != null && !etTienATM.getText().toString().trim().isEmpty()) {
+                    tienATMKH = Double.parseDouble(etTienATM.getText().toString().trim());
                     if (tienMatKH + tienATMKH >= tienPhaiTra) {
                         tienThua = tienATMKH + tienMatKH - tienPhaiTra;
                     } else {
@@ -197,6 +254,9 @@ public class FragmentCreateBill extends Fragment implements View.OnClickListener
     public void onClick(View v) {
         if (v == btnAddProduct) {
             Intent intent = new Intent(getActivity(), ListProduct.class);
+            Bundle bundle = new Bundle();
+            bundle.putParcelableArrayList("list", arrayList);
+            intent.putExtras(bundle);
             startActivityForResult(intent, ConstantHelper.REQUEST_LIST_PRODUCT);
         } else if (v == btnCreateBill) {
             createBill();
@@ -218,68 +278,103 @@ public class FragmentCreateBill extends Fragment implements View.OnClickListener
         String dienThoai = etDienThoai.getText().toString().trim();
         String diaChi = etDiaChi.getText().toString().trim();
         String email = etEmail.getText().toString().trim();
-        String vat = etVAT.getText().toString().trim();
-        String khuyenMai = etKhuyenMai.getText().toString().trim();
         String phieuGiamGia = etPhieuGiamGia.getText().toString().trim();
+        String khuyenMai = etKhuyenMai.getText().toString().trim();
         String tienMat = etTienMat.getText().toString().trim();
         String tienATM = etTienATM.getText().toString().trim();
 
         if (!isCheckNull(khachHang) && !isCheckNull(dienThoai) && !isCheckNull(diaChi)
-                && !isCheckNull(email) && !isCheckNull(vat) && !isCheckNull(khuyenMai)
+                && !isCheckNull(email) && !isCheckNull(khuyenMai)
                 && !isCheckNull(phieuGiamGia) && !isCheckNull(tienMat) && !isCheckNull(tienATM) && arrayList.size() > 0) {
-            Customer customer = new Customer();
+            Customer customer = databaseHandler.getCustomer(khachHang, spGioiTinh.getSelectedItem().toString().trim(),
+                    diaChi, dienThoai, email);
 
-            if (databaseHandler.getCustomer(khachHang, spGioiTinh.getSelectedItem().toString().trim(),
-                    diaChi, dienThoai, email) == null) {
+            if (customer == null) {
+                customer = new Customer();
                 customer.setName(khachHang);
                 customer.setPhone(dienThoai);
                 customer.setAddress(diaChi);
                 customer.setEmail(email);
                 customer.setGender(spGioiTinh.getSelectedItem().toString());
-                databaseHandler.addCustomer(customer);
+                long id = databaseHandler.addCustomer(customer);
+                customer.setId((int) id);
             }
-            customer = databaseHandler.getCustomer(khachHang, spGioiTinh.getSelectedItem().toString().trim(),
-                    diaChi, dienThoai, email);
-            Log.d("CUSTOMER_ID", customer.getId());
+            Log.d("CUSTOMER_ID", customer.getId() + "");
 
             Bill bill = new Bill();
-            bill.setKhuyenMai(khuyenMai);
+            bill.setKhuyenMai(Integer.parseInt(khuyenMai));
             bill.setLoaiKH(spLoaiKH.getSelectedItem().toString().trim());
             bill.setMaKH(customer.getId());
-            bill.setMaNV("NV01");
+            bill.setMaNV(MainActivity.id);
             bill.setNgayLap(simpleDateFormat.format(new Date()));
             Log.d("CUSTOMER_DATE", bill.getNgayLap());
-            bill.setPhieuGiamGia(phieuGiamGia);
-            bill.setVat(vat);
-            bill.setTienATM(tienATM);
-            bill.setTienMat(tienMat);
+            bill.setPhieuGiamGia(Integer.parseInt(phieuGiamGia));
+            bill.setTienATM(Double.parseDouble(tienATM));
+            bill.setTienMat(Double.parseDouble(tienMat));
             if (tienATMKH + tienMatKH < tienPhaiTra) {
                 tienNo = tienPhaiTra - tienATMKH - tienMatKH;
             } else {
                 tienNo = 0;
             }
-            bill.setSoNo(tienNo + "");
+            bill.setTienNo(tienNo);
 
-            databaseHandler.addBill(bill);
+            long idB = databaseHandler.addBill(bill);
 
-            String id_bill = databaseHandler.getBillID(customer.getId(),"NV01", spLoaiKH.getSelectedItem().toString().trim(),
-                    bill.getNgayLap());
+            if (idB > -1) {
+                StoreBill storeBill = new StoreBill();
+                storeBill.setMaHD((int) idB);
+                storeBill.setLoaGiaoDich("Offline");
+                if (tienMatKH + tienATMKH <= 0) {
+                    storeBill.setTrangThai("Chưa thanh toán");
+                } else if (tienMatKH + tienATMKH > 0 && tienNo > 0) {
+                    storeBill.setTrangThai("Còn nợ");
+                } else if (tienMatKH + tienATMKH > 0 && tienNo == 0) {
+                    storeBill.setTrangThai("Đã thanh toán");
+                }
+                if (databaseHandler.kiemTraDonHang(idB + "")) {
+                    databaseHandler.capNhapDonHang(storeBill);
+                } else {
+                    databaseHandler.themDonHang(storeBill);
+                }
 
-            if (id_bill != null) {
+                long isCheck = 0;
+                for (int i = 0; i < arrayList.size(); i++) {
+                    Product product = arrayList.get(i);
+                    StoreProduct storeProduct = new StoreProduct(product.getMaHang(), (int) idB,
+                            product.getDonGiaBan(), product.getSoLuongBan());
+                    isCheck = databaseHandler.addKeHang(storeProduct);
+                }
 
+                if (isCheck != -1) {
+
+                    Toast.makeText(getActivity(), "Tạo hóa đơn thành công", Toast.LENGTH_SHORT).show();
+                    resetText();
+                }
+            } else {
+                Toast.makeText(getActivity(), "Tạo hóa đơn thất bại", Toast.LENGTH_SHORT).show();
             }
+        } else {
+            Toast.makeText(getActivity(), "Bạn nhập chưa đủ thông tin", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void resetText() {
+        tienNo = 0;
+        tienHang = 0;
+        tienPhaiTra = 0;
+        tienThua = 0;
+        tienMatKH = 0;
+        tienATMKH = 0;
+        tienChietKhau = 0;
         etKH.setText("");
         etDiaChi.setText("");
         etDienThoai.setText("");
         etDiaChi.setText("");
         etEmail.setText("");
-        etVAT.setText("");
-        etKhuyenMai.setText("");
+        tvChietKhau.setText("");
+        tvGiamGia.setText("");
         etPhieuGiamGia.setText("");
+        etKhuyenMai.setText("");
         etTienATM.setText("");
         etTienMat.setText("");
         tvTienThua.setText("");
@@ -288,16 +383,32 @@ public class FragmentCreateBill extends Fragment implements View.OnClickListener
         spGioiTinh.setSelection(0);
         spLoaiKH.setSelection(0);
         arrayList.clear();
-        arrayAdapter.notifyDataSetChanged();
+        productArrayAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ConstantHelper.REQUEST_LIST_PRODUCT && data != null) {
+            if (resultCode == ConstantHelper.RESULT_LIST_PRODUCT) {
+                arrayList = data.getExtras().getParcelableArrayList("list_product");
+                Log.e("SIZE", "ĐÃ UPDATE + " + arrayList.size());
+                productArrayAdapter = new MyProductAdapter(getActivity(), arrayList);
+                listView.setAdapter(productArrayAdapter);
+                tienChietKhau = 0;
+                tienGiamGia = 0;
+                if (arrayList.size() > 0) {
+                    double tien = 0;
+                    for (int i = 0; i < arrayList.size(); i++) {
+                        tien += (arrayList.get(i).getDonGiaBan() * arrayList.get(i).getSoLuongBan());
+                        tienChietKhau += (arrayList.get(i).getDonGiaBan() * arrayList.get(i).getChietKhau() / 100);
+                        tienGiamGia += (arrayList.get(i).getDonGiaBan() * arrayList.get(i).getGiamGia() / 100);
+                    }
 
-        if (requestCode ==ConstantHelper.REQUEST_LIST_PRODUCT) {
-            if (resultCode == ConstantHelper.RESULT_LIST_PRODUCT){
-                
+                    tvTongTienHang.setText(tien + "");
+                    tvChietKhau.setText(tienChietKhau + "");
+                    tvGiamGia.setText(tienGiamGia + "");
+                }
             }
         }
     }

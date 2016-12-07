@@ -1,22 +1,32 @@
 package dev.datvt.clothingstored3h.models;
 
+import java.io.Serializable;
+
 /**
  * Created by DatVIT on 10/27/2016.
  */
 
-public class StoreBill {
+public class StoreBill implements Serializable {
 
-    private String maPhieu;
+    private int maPhieu;
     private String trangThai;
     private String loaGiaoDich;
-    private String maHD;
+    private int maHD;
 
-    public String getMaPhieu() {
+    public int getMaPhieu() {
         return maPhieu;
     }
 
-    public void setMaPhieu(String maPhieu) {
+    public void setMaPhieu(int maPhieu) {
         this.maPhieu = maPhieu;
+    }
+
+    public int getMaHD() {
+        return maHD;
+    }
+
+    public void setMaHD(int maHD) {
+        this.maHD = maHD;
     }
 
     public String getTrangThai() {
@@ -35,11 +45,5 @@ public class StoreBill {
         this.loaGiaoDich = loaGiaoDich;
     }
 
-    public String getMaHD() {
-        return maHD;
-    }
 
-    public void setMaHD(String maHD) {
-        this.maHD = maHD;
-    }
 }

@@ -6,22 +6,35 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import dev.datvt.clothingstored3h.R;
-import dev.datvt.clothingstored3h.activities.DetailUser;
+import dev.datvt.clothingstored3h.activities.UserDetail;
+import dev.datvt.clothingstored3h.activities.MainActivity;
 import dev.datvt.clothingstored3h.adapters.ProductAdapter;
+import dev.datvt.clothingstored3h.models.Employee;
 import dev.datvt.clothingstored3h.models.Product;
 import dev.datvt.clothingstored3h.utils.ConstantHelper;
 import dev.datvt.clothingstored3h.utils.DatabaseHandler;
+import dev.datvt.clothingstored3h.utils.ToolsHelper;
 
 /**
  * Created by DatVIT on 10/13/2016.
@@ -36,12 +49,18 @@ public class FragmentMain extends Fragment implements View.OnClickListener {
 
     private ListView lvProduct;
     private ProductAdapter productAdapter;
-    private ArrayList<Product> productArrayList;
+    private List<Product> productArrayList;
+    private List<String> arrayListProduct;
 
     private ImageView imgDel, imgSearch;
+    private TextView nhanVien, tienGiao, tienBan;
 
     private DatabaseHandler databaseHandler;
+    private AutoCompleteTextView etSearch;
 
+    private Employee employee;
+    private double tienBanHang = 0;
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     @Nullable
     @Override
@@ -56,6 +75,19 @@ public class FragmentMain extends Fragment implements View.OnClickListener {
 
         imgDel = (ImageView) view.findViewById(R.id.imgDelete);
         imgSearch = (ImageView) view.findViewById(R.id.imgSearch);
+        nhanVien = (TextView) view.findViewById(R.id.nhanVien);
+        tienGiao = (TextView) view.findViewById(R.id.tienDuocGiao);
+        tienBan = (TextView) view.findViewById(R.id.tienBanHang);
+        etSearch = (AutoCompleteTextView) view.findViewById(R.id.etSearch);
+
+        arrayListProduct = new ArrayList<>();
+        if (databaseHandler.getAllProducts().size() > 0) {
+            for (int i = 0; i < databaseHandler.getAllProducts().size(); i++) {
+                arrayListProduct.add(databaseHandler.getAllProducts().get(i).getTenHang());
+            }
+        }
+        ArrayAdapter arrayAdapter1 = new ArrayAdapter(getActivity(), android.R.layout.simple_dropdown_item_1line, arrayListProduct);
+        etSearch.setAdapter(arrayAdapter1);
 
         lnWarning.setVisibility(View.INVISIBLE);
 
@@ -73,12 +105,19 @@ public class FragmentMain extends Fragment implements View.OnClickListener {
             }
         });
 
+        employee = databaseHandler.getEmployee(MainActivity.id);
+        if (employee != null) {
+            nhanVien.setText(employee.getName());
+            tienGiao.setText(ToolsHelper.intToString((int) Math.round(MainActivity.money)) + " $");
+            tienBanHang = databaseHandler.getMoneySale(simpleDateFormat.format(new Date()), employee.getId());
+            tienBan.setText(ToolsHelper.intToString((int) Math.round(tienBanHang)) + " $");
+        }
+
         infoFrame.setOnClickListener(this);
         imgDel.setOnClickListener(this);
         imgSearch.setOnClickListener(this);
 
         new GetProduct().execute();
-
 
         return view;
     }
@@ -86,9 +125,50 @@ public class FragmentMain extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (v== infoFrame) {
-            Intent intent = new Intent(getActivity(), DetailUser.class);
+        if (v == infoFrame) {
+            Intent intent = new Intent(getActivity(), UserDetail.class);
+            intent.putExtra("id", MainActivity.id);
             startActivityForResult(intent, ConstantHelper.DETAIL_USER);
+        }
+        if (v == imgSearch) {
+            if (etSearch.getText() != null && !etSearch.getText().toString().isEmpty()) {
+                new GetProductName().execute(etSearch.getText().toString().trim());
+            } else {
+                Toast.makeText(getActivity(), "Bạn chưa nhập từ khóa tìm kiếm", Toast.LENGTH_SHORT).show();
+            }
+        }
+        if (v == imgDel) {
+            etSearch.setText("");
+            new GetProduct().execute();
+        }
+    }
+
+    private class GetProductName extends AsyncTask<String, Void, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            ref.setRefreshing(true);
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            productAdapter = new ProductAdapter(getActivity(), productArrayList);
+            lvProduct.setAdapter(productAdapter);
+
+            if (productArrayList.size() <= 0) {
+                Toast.makeText(getActivity(), "Không tìm thấy sản phẩm nào", Toast.LENGTH_SHORT).show();
+            }
+            ref.setRefreshing(false);
+        }
+
+        @Override
+        protected Void doInBackground(String... params) {
+            if (params[0] != null && !params[0].isEmpty()) {
+                productArrayList = databaseHandler.getProductName(params[0]);
+            }
+            return null;
         }
     }
 
@@ -118,25 +198,7 @@ public class FragmentMain extends Fragment implements View.OnClickListener {
 
         @Override
         protected Void doInBackground(Void... params) {
-//            productArrayList = new ArrayList<>();
-//            productArrayList.add(new Product("Áo khoác đôi Singapo", 10));
-//            productArrayList.add(new Product("Áo khoác đôi Hàn Quốc",  20));
-//            productArrayList.add(new Product("Áo khoác đôi Nỉ đẹp",  7));
-//            productArrayList.add(new Product("Áo khoác đôi vải mềm", 60));
-//            productArrayList.add(new Product("Quần thể thao mùa hè",  45));
-//            productArrayList.add(new Product("Mũ sinh viên", 2));
-//            productArrayList.add(new Product("Áo thun sinh viên",9));
-//            productArrayList.add(new Product("Áo vest sang trọng",  14));
-//            productArrayList.add(new Product("Quần jeans chất liệu Hàn Quốc",  38));
-//            productArrayList.add(new Product("Quần shorts đẹp mới nhất", 20));
-//            productArrayList.add(new Product("Quần kaki Singapore",  90));
-//            productArrayList.add(new Product("Áo đẹp",  160));
-//            productArrayList.add(new Product("Váy nữ hàng VN", 204));
-//            productArrayList.add(new Product("Đầm công sở", 100));
-//            productArrayList.add(new Product("Bộ đồ bơi Hàn Quốc",  15));
-//            productArrayList.add(new Product("Áo lót nữ",  10));
-//            productArrayList.add(new Product("Áo sơ mi chất lượng cao", 10));
-            productArrayList = (ArrayList<Product>) databaseHandler.getAllProducts();
+            productArrayList = databaseHandler.getAllProducts();
             Log.d("SIZE", productArrayList.size() + "");
 
             return null;

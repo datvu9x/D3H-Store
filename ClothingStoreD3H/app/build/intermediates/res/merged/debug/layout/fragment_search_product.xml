@@ -13,10 +13,11 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
         android:background="@drawable/border_btn_search"
-        android:padding="3dp">
+        android:elevation="10dp"
+        android:padding="5dp">
 
         <ImageView
-            android:id="@+id/imgSearch"
+            android:id="@+id/btnSearch"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_centerVertical="true"
@@ -24,13 +25,15 @@
             android:src="@drawable/ic_search" />
 
         <AutoCompleteTextView
+            android:id="@+id/etSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@+id/imgDelete"
-            android:layout_toRightOf="@+id/imgSearch"
+            android:layout_toRightOf="@+id/btnSearch"
+            android:completionThreshold="1"
             android:hint="Nhập tên sản phẩm"
             android:textSize="13sp" />
 
@@ -44,6 +47,23 @@
             android:src="@drawable/ic_delete" />
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorWhite"
+        android:elevation="10dp"
+        android:padding="3dp">
+
+        <Spinner
+            android:id="@+id/spPhanLoai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"></Spinner>
+    </LinearLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"

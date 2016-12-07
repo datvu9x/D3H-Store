@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,7 +75,28 @@ public class FragmentAddProduct extends Fragment implements View.OnClickListener
         arrMua.add("Hè");
         arrMua.add("Thu");
         arrMua.add("Đông");
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, arrMua);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, arrMua){
+
+            public View getView(int position, View convertView,ViewGroup parent) {
+
+                View v = super.getView(position, convertView, parent);
+
+                ((TextView) v).setGravity(Gravity.RIGHT);
+
+                return v;
+
+            }
+
+            public View getDropDownView(int position, View convertView,ViewGroup parent) {
+
+                View v = super.getDropDownView(position, convertView,parent);
+
+                ((TextView) v).setGravity(Gravity.RIGHT);
+
+                return v;
+
+            }
+        };
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         spMua.setAdapter(arrayAdapter);
 
@@ -86,7 +108,28 @@ public class FragmentAddProduct extends Fragment implements View.OnClickListener
         arrDoiTuong.add("Người già");
         arrDoiTuong.add("Bà bầu");
         arrDoiTuong.add("Khác");
-        ArrayAdapter<String> arrayAdapterDoiTuong = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, arrDoiTuong);
+        ArrayAdapter<String> arrayAdapterDoiTuong = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, arrDoiTuong){
+
+            public View getView(int position, View convertView,ViewGroup parent) {
+
+                View v = super.getView(position, convertView, parent);
+
+                ((TextView) v).setGravity(Gravity.RIGHT);
+
+                return v;
+
+            }
+
+            public View getDropDownView(int position, View convertView,ViewGroup parent) {
+
+                View v = super.getDropDownView(position, convertView,parent);
+
+                ((TextView) v).setGravity(Gravity.RIGHT);
+
+                return v;
+
+            }
+        };
         arrayAdapterDoiTuong.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         spDoiTuong.setAdapter(arrayAdapterDoiTuong);
     }
@@ -108,13 +151,13 @@ public class FragmentAddProduct extends Fragment implements View.OnClickListener
                 && !isCheckNull(giamGia) && !isCheckNull(chietKhau)) {
             Properties properties = new Properties(loaiHangHoa, mauSac, spDoiTuong.getSelectedItem().toString(),
                     nsx, spMua.getSelectedItem().toString(), Integer.parseInt(kichThuoc));
-            if (databaseHandler.isCheckProperties(loaiHangHoa, kichThuoc, mauSac, spDoiTuong.getSelectedItem().toString(),
+            if (databaseHandler.isCheckProperties(loaiHangHoa, Integer.parseInt(kichThuoc), mauSac, spDoiTuong.getSelectedItem().toString(),
                     spMua.getSelectedItem().toString(), nsx) == -1) {
                 databaseHandler.addThuocTinh(properties);
 
             }
-            properties.setMa(databaseHandler.isCheckProperties(loaiHangHoa, kichThuoc, mauSac, spDoiTuong.getSelectedItem().toString(),
-                    spMua.getSelectedItem().toString(), nsx) + "");
+            properties.setMa(databaseHandler.isCheckProperties(loaiHangHoa, Integer.parseInt(kichThuoc), mauSac, spDoiTuong.getSelectedItem().toString(),
+                    spMua.getSelectedItem().toString(), nsx));
             Log.d("ADD_PRODUCT", "MA_THUOC_TINH: "  + properties.getMa());
             Product product = new Product(maHang, tenHang, Double.parseDouble(donGia),
                     Integer.parseInt(giamGia), Integer.parseInt(chietKhau), Integer.parseInt(soLuong), properties);

@@ -45,7 +45,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:elevation="5dp"
+        android:elevation="10dp"
         android:orientation="horizontal"
         android:padding="10dp">
 
@@ -66,6 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Vũ Thế Đạt"
+                android:id="@+id/nhanVien"
                 android:textAllCaps="true"
                 android:textColor="@color/colorBlack"
                 android:textSize="20sp"
@@ -94,6 +95,7 @@
                     android:layout_marginTop="5dp"
                     android:singleLine="true"
                     android:text="5000000 VND"
+                    android:id="@+id/tienDuocGiao"
                     android:textAllCaps="true"
                     android:textColor="@color/colorBlack"
                     android:textSize="13sp" />
@@ -123,6 +125,7 @@
                     android:layout_marginTop="5dp"
                     android:singleLine="true"
                     android:text="10000000 VND"
+                    android:id="@+id/tienBanHang"
                     android:textAllCaps="true"
                     android:textColor="@color/colorBlack"
                     android:textSize="13sp" />

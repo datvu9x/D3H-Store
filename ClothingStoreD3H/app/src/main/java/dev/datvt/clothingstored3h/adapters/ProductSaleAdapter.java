@@ -2,6 +2,9 @@ package dev.datvt.clothingstored3h.adapters;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +12,9 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -69,53 +74,93 @@ public class ProductSaleAdapter extends BaseAdapter {
 
         final Product product = (Product) getItem(position);
         holder.name.setText(product.getTenHang());
-        if (product.getSoLuongNhap() >= 1000) {
-            holder.number.setText("Số lượng: " + ToolsHelper.intToString((int) product.getSoLuongNhap()));
+        if (product.getSoLuongConLai() >= 1000) {
+            holder.number.setText("Số lượng: " + ToolsHelper.intToString(product.getSoLuongConLai()));
         } else {
-            holder.number.setText("Số lượng: " + product.getSoLuongNhap());
+            holder.number.setText("Số lượng: " + product.getSoLuongConLai());
         }
 
-        if (product.getImg() != null && !product.getImg().isEmpty()) {
-            Picasso.with(context).load(product.getImg()).into(holder.img);
+        if (product.getDonGiaNhap() >= 1000) {
+            holder.donGia.setText("Đơn giá: " + ToolsHelper.intToString((int) Math.round(product.getDonGiaNhap())) + " $");
+        } else {
+            holder.donGia.setText("Đơn giá: " + Math.round(product.getDonGiaNhap()) + " $");
         }
 
-        if (product.getTenHang().contains("Áo lót")) {
-            holder.img.setImageResource(R.drawable.do_lot_nu_1);
-        } else if (product.getTenHang().contains("Áo khoác")) {
-            holder.img.setImageResource(R.drawable.product_13);
-        } else if (product.getTenHang().contains("sơ mi")) {
-            holder.img.setImageResource(R.drawable.ao_so_mi_nu_1);
-        } else if (product.getTenHang().contains("Đầm")) {
-            holder.img.setImageResource(R.drawable.dam_1);
-        } else if (product.getTenHang().contains("Váy")) {
-            holder.img.setImageResource(R.drawable.vay_1);
-        } else if (product.getTenHang().contains("Quần")) {
-            holder.img.setImageResource(R.drawable.quan_nu_1);
-        } else if (product.getTenHang().contains("đồ bơi")) {
-            holder.img.setImageResource(R.drawable.do_boi_nu_0);
+        if (position % 2 == 1) {
+            holder.img.setImageResource(R.drawable.ic_myproducts);
+        } else if (position % 2 == 0) {
+            holder.img.setImageResource(R.drawable.ic_myproducts_1);
+        } else if (position % 10 == 0) {
+            holder.img.setImageResource(R.drawable.ic_myproducts_2);
         } else {
-            holder.img.setImageResource(R.drawable.product_3);
+            holder.img.setImageResource(R.drawable.ic_myproducts);
         }
 
-        if (product.isSale()) {
-            holder.cbx.setChecked(true);
-        } else {
-            holder.cbx.setChecked(false);
-        }
+        holder.etDonGia.setText(Math.round(product.getDonGiaNhap()) + "");
 
         holder.cbx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.editText.setEnabled(true);
-
                 if (holder.cbx.isChecked()) {
+                    holder.frame.setVisibility(View.VISIBLE);
                     product.setSale(true);
-                    product.setSoLuongBan(Integer.parseInt(holder.editText.getText().toString().trim()));
+                    product.setSoLuongBan(Integer.parseInt(holder.etSoLuong.getText().toString()));
+                    product.setDonGiaBan(Double.parseDouble(holder.etDonGia.getText().toString()));
                 } else {
-                    holder.editText.setText("0");
-                    product.setSale(true);
-                    product.setSoLuongBan(0);
+                    holder.frame.setVisibility(View.INVISIBLE);
+                    product.setSale(false);
                 }
+            }
+        });
+
+        holder.etSoLuong.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                try {
+                    if (holder.etSoLuong.getText() != null && !holder.etSoLuong.getText().toString().isEmpty()) {
+                        if (Integer.parseInt(holder.etSoLuong.getText().toString()) > product.getSoLuongConLai()) {
+                            Toast.makeText(context , "Không đủ sản phẩm để bán", Toast.LENGTH_SHORT).show();
+                        } else {
+                            product.setSoLuongBan(Integer.parseInt(holder.etSoLuong.getText().toString()));
+                            Log.e("PRODUCT_SALE", "Số lượng bán: " + holder.etSoLuong.getText().toString());
+                        }
+                    }
+                } catch (Exception e) {
+                }
+            }
+        });
+
+        holder.etDonGia.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                try {
+                    if (holder.etDonGia.getText() != null && !holder.etDonGia.getText().toString().isEmpty()) {
+                        product.setDonGiaBan(Double.parseDouble(holder.etDonGia.getText().toString()));
+                        Log.e("PRODUCT_SALE", "Đơn giá bán: " + holder.etDonGia.getText().toString());
+                    }
+                } catch (Exception e) {
+                }
+
             }
         });
 
@@ -126,17 +171,23 @@ public class ProductSaleAdapter extends BaseAdapter {
         ViewHolder holder = new ViewHolder();
         holder.name = (TextView) v.findViewById(R.id.nameProduct);
         holder.number = (TextView) v.findViewById(R.id.numberProduct);
+        holder.donGia = (TextView) v.findViewById(R.id.donGia);
         holder.img = (ImageView) v.findViewById(R.id.imgProduct);
         holder.cbx = (CheckBox) v.findViewById(R.id.cbxSale);
-        holder.editText = (EditText) v.findViewById(R.id.etSoLuongBan);
+        holder.etSoLuong = (EditText) v.findViewById(R.id.etSoLuongBan);
+        holder.etDonGia = (EditText) v.findViewById(R.id.etDonGiaBan);
+        holder.frame = (LinearLayout) v.findViewById(R.id.frameCustom);
         return holder;
     }
 
     private static class ViewHolder {
         public TextView name;
         public TextView number;
+        public TextView donGia;
         public ImageView img;
         public CheckBox cbx;
-        public EditText editText;
+        public EditText etDonGia;
+        public EditText etSoLuong;
+        public LinearLayout frame;
     }
 }

@@ -4,20 +4,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ListView
-        android:id="@+id/listProductTicketOffline"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="5dp"
-        android:padding="10dp">
-    </ListView>
+        android:layout_above="@+id/btnCreateProductTicket">
+
+        <ListView
+            android:id="@+id/listProductTicketOffline"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:padding="10dp"></ListView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <dev.datvt.clothingstored3h.utils.CustomFontTextView
         android:id="@+id/btnCreateProductTicket"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="5dp"
         android:background="@color/colorRed1"
         android:elevation="10dp"
         android:gravity="center"

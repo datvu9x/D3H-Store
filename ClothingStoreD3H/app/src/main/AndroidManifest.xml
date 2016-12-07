@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="dev.datvt.clothingstored3h">
 
+    <uses-permission android:name="ANDROID.PERMISSION.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".activities.LoginAcitivty"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden">
@@ -21,14 +25,19 @@
         </activity>
 
         <activity
-            android:name=".activities.LoginAcitivty"
-            android:launchMode="singleInstance"
+            android:name=".activities.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".activities.BillActivity"
+            android:name=".activities.ManagementBill"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <activity
+            android:name=".activities.ManagementCustomer"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
@@ -40,14 +49,23 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
 
         <activity
-            android:name=".activities.DetailUser"
+            android:name=".activities.UserDetail"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MyDialog" />
+        <activity
+            android:name=".activities.CustomerDetail"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MyDialog" />
 
         <activity
             android:name=".activities.ListProduct"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.MyDialog" />
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".activities.StoreBillDetail"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
 
     </application>
 

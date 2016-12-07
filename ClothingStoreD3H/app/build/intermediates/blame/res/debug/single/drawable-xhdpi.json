@@ -1,23 +1,11 @@
 [
     {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\product_new_price.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\product_new_price.png"
-    },
-    {
         "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_bill.png",
         "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_bill.png"
     },
     {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_chuyenca.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_chuyenca.png"
-    },
-    {
         "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_logout.png",
         "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_logout.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_share.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_share.png"
     },
     {
         "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\com_garena_shopee_ic_search_white.png",
@@ -36,36 +24,40 @@
         "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_summary.png"
     },
     {
-        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\sale_ribbon.png",
-        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\sale_ribbon.png"
+        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_myproducts.png",
+        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_myproducts.png"
     },
     {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_badge_promotion_off.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_badge_promotion_off.png"
+        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\sale_ribbon.png",
+        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\sale_ribbon.png"
     },
     {
         "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_customer_boy.png",
         "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_customer_boy.png"
     },
     {
+        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\com_garena_shopee_ic_more.png",
+        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\com_garena_shopee_ic_more.png"
+    },
+    {
         "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_myaccount_privacy.png",
         "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_myaccount_privacy.png"
     },
     {
-        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\com_garena_shopee_ic_more.png",
-        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\com_garena_shopee_ic_more.png"
+        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\btn_me_sales.png",
+        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\btn_me_sales.png"
     },
     {
         "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_badge_promotion_off.png",
         "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_badge_promotion_off.png"
     },
     {
-        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\places_ic_search.png",
-        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\places_ic_search.png"
+        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_myproducts_2.png",
+        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_myproducts_2.png"
     },
     {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_search.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_search.png"
+        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\places_ic_search.png",
+        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\places_ic_search.png"
     },
     {
         "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\product_new_price.png",
@@ -88,12 +80,12 @@
         "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_nav_cart_orange.png"
     },
     {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_rate_normal_number_pressed.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_rate_normal_number_pressed.png"
+        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_rate_bad_number_normal.png",
+        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_rate_bad_number_normal.png"
     },
     {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_customer_boy.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_customer_boy.png"
+        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_home.png",
+        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_home.png"
     },
     {
         "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_search.png",
@@ -104,12 +96,16 @@
         "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_share.png"
     },
     {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_banhang.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_banhang.png"
+        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_myproducts_1.png",
+        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_myproducts_1.png"
     },
     {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_add_1.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_add_1.png"
+        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_add_product.png",
+        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_add_product.png"
+    },
+    {
+        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_employee.png",
+        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_employee.png"
     },
     {
         "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\btn_me_income.png",
@@ -124,216 +120,16 @@
         "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\btn_me_assistant.png"
     },
     {
+        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_products.png",
+        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_products.png"
+    },
+    {
         "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_me_likes.png",
         "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_me_likes.png"
     },
     {
         "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_create_bill.png",
         "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_create_bill.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_myaccount_privacy.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_myaccount_privacy.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\online_shop_press.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\online_shop_press.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_back.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_back.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_add.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_add.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_home.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_home.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_customer.png",
-        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_customer.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_nav_cart_orange.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_nav_cart_orange.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\btn_me_income.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\btn_me_income.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\online_shop_press.png",
-        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\online_shop_press.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\com_garena_shopee_ic_me_mysell.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\com_garena_shopee_ic_me_mysell.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\com_garena_shopee_ic_clear.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\com_garena_shopee_ic_clear.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\com_garena_shopee_ic_forward_white.png",
-        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\com_garena_shopee_ic_forward_white.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_summary.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_summary.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_me_account.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_me_account.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_khachhang.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_khachhang.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_logo_2.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_logo_2.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_add.png",
-        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_add.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_rate.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_rate.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\btn_me_sales.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\btn_me_sales.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_myproducts.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_myproducts.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\places_ic_clear.png",
-        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\places_ic_clear.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_rate_bad_number_normal.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_rate_bad_number_normal.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_transfer_shift.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_transfer_shift.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_add_1.png",
-        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_add_1.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_delete.png",
-        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_delete.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\com_garena_shopee_ic_search_white.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\com_garena_shopee_ic_search_white.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_customer.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_customer.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\online_shop.png",
-        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\online_shop.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\sale_ribbon.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\sale_ribbon.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_employee.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_employee.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_logout.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_logout.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_tracuu.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_tracuu.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\online_shop.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\online_shop.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_create_bill.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_create_bill.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\com_garena_shopee_ic_back.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\com_garena_shopee_ic_back.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_badge_soldout.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_badge_soldout.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_myproducts.png",
-        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_myproducts.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\home_press.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\home_press.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_bill.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_bill.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\btn_me_sales.png",
-        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\btn_me_sales.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\places_ic_search.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\places_ic_search.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_products.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_products.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_rate_bad_number_normal.png",
-        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_rate_bad_number_normal.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_logo.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_logo.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_home.png",
-        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_home.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\com_garena_shopee_ic_more.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\com_garena_shopee_ic_more.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_add_product.png",
-        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_add_product.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\places_ic_clear.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\places_ic_clear.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_feedback.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_feedback.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_employee.png",
-        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_employee.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_products.png",
-        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_products.png"
     },
     {
         "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_rate_normal_number_pressed.png",
@@ -348,12 +144,8 @@
         "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\home_press.png"
     },
     {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_search.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_search.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_me_likes.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_me_likes.png"
+        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_customer.png",
+        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_customer.png"
     },
     {
         "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_back.png",
@@ -364,20 +156,20 @@
         "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\com_garena_shopee_ic_me_mysell.png"
     },
     {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_myaccount_profile.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_myaccount_profile.png"
+        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\online_shop_press.png",
+        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\online_shop_press.png"
     },
     {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\com_garena_shopee_ic_filter.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\com_garena_shopee_ic_filter.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\com_garena_shopee_ic_forward_white.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\com_garena_shopee_ic_forward_white.png"
+        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\com_garena_shopee_ic_forward_white.png",
+        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\com_garena_shopee_ic_forward_white.png"
     },
     {
         "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_rate.png",
         "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_rate.png"
+    },
+    {
+        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_add.png",
+        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_add.png"
     },
     {
         "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_logo_2.png",
@@ -392,24 +184,32 @@
         "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_nav_cart_white.png"
     },
     {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\com_garena_shopee_ic_me_order.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\com_garena_shopee_ic_me_order.png"
+        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\places_ic_clear.png",
+        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\places_ic_clear.png"
     },
     {
         "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_nhaphang.png",
         "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_nhaphang.png"
     },
     {
+        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_add_1.png",
+        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_add_1.png"
+    },
+    {
         "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\com_garena_shopee_ic_filter.png",
         "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\com_garena_shopee_ic_filter.png"
     },
     {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_delete.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_delete.png"
+        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_delete.png",
+        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_delete.png"
     },
     {
         "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_banhang.png",
         "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_banhang.png"
+    },
+    {
+        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\online_shop.png",
+        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\online_shop.png"
     },
     {
         "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_search.png",
@@ -424,32 +224,12 @@
         "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\home.png"
     },
     {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\home.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\home.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_tracuu.png",
-        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_tracuu.png"
-    },
-    {
         "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_badge_soldout.png",
         "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_badge_soldout.png"
     },
     {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_nav_cart_white.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_nav_cart_white.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_nhaphang.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_nhaphang.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_add_product.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\icon_add_product.png"
-    },
-    {
-        "merged": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\btn_me_assistant.png",
-        "source": "F:\\Workspace\\Android\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\btn_me_assistant.png"
+        "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_tracuu.png",
+        "source": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\src\\main\\res\\drawable-xhdpi\\ic_tracuu.png"
     },
     {
         "merged": "F:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon_transfer_shift.png",

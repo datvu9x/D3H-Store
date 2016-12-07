@@ -4,14 +4,18 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import dev.datvt.clothingstored3h.R;
 import dev.datvt.clothingstored3h.adapters.ProductSaleAdapter;
@@ -27,22 +31,23 @@ public class ListProduct extends RootActivity implements View.OnClickListener {
 
     private ListView lvProduct;
     private ProductSaleAdapter productSaleAdapter;
-    private ArrayList<Product> productArrayList;
+    private List<Product> productArrayList;
+    private ArrayList<Product> productList;
     private DatabaseHandler databaseHandler;
 
     private SwipeRefreshLayout ref;
     private TextView btnOk;
+    private ImageView btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_product);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorBlack));
-        }
 
         databaseHandler = new DatabaseHandler(this);
+
+        btnBack = (ImageView) findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(this);
 
         ref = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         ref.setColorSchemeColors(getResources().getColor(R.color.colorOrange),
@@ -61,6 +66,14 @@ public class ListProduct extends RootActivity implements View.OnClickListener {
             }
         });
 
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            productList = bundle.getParcelableArrayList("list");
+            if (productList == null) {
+                productList = new ArrayList<>();
+            }
+        }
+
         new GetProduct().execute();
 
     }
@@ -70,15 +83,22 @@ public class ListProduct extends RootActivity implements View.OnClickListener {
         if (v == btnOk) {
             Intent intent = getIntent();
             Bundle bundle = new Bundle();
-            ArrayList arrayList = new ArrayList();
             for (int i = 0; i < productArrayList.size(); i++) {
                 if (productArrayList.get(i).isSale()) {
-                    arrayList.add(productArrayList.get(i));
+                    int ban = productArrayList.get(i).getSoLuongBan();
+                    int conLai = productArrayList.get(i).getSoLuongConLai();
+                    if (conLai >= ban) {
+                        productArrayList.get(i).setSoLuongNhap(conLai - ban);
+                        productList.add(productArrayList.get(i));
+                    }
                 }
             }
-            bundle.putSerializable("product_list", arrayList);
+            bundle.putParcelableArrayList("list_product", productList);
             intent.putExtras(bundle);
             setResult(ConstantHelper.RESULT_LIST_PRODUCT, intent);
+            finish();
+        }
+        if (v == btnBack) {
             finish();
         }
     }
@@ -101,25 +121,7 @@ public class ListProduct extends RootActivity implements View.OnClickListener {
 
         @Override
         protected Void doInBackground(Void... params) {
-//            productArrayList = new ArrayList<>();
-//            productArrayList.add(new Product("Áo khoác đôi Singapo", 10));
-//            productArrayList.add(new Product("Áo khoác đôi Hàn Quốc",  20));
-//            productArrayList.add(new Product("Áo khoác đôi Nỉ đẹp",  7));
-//            productArrayList.add(new Product("Áo khoác đôi vải mềm", 60));
-//            productArrayList.add(new Product("Quần thể thao mùa hè",  45));
-//            productArrayList.add(new Product("Mũ sinh viên", 2));
-//            productArrayList.add(new Product("Áo thun sinh viên",9));
-//            productArrayList.add(new Product("Áo vest sang trọng",  14));
-//            productArrayList.add(new Product("Quần jeans chất liệu Hàn Quốc",  38));
-//            productArrayList.add(new Product("Quần shorts đẹp mới nhất", 20));
-//            productArrayList.add(new Product("Quần kaki Singapore",  90));
-//            productArrayList.add(new Product("Áo đẹp",  160));
-//            productArrayList.add(new Product("Váy nữ hàng VN", 204));
-//            productArrayList.add(new Product("Đầm công sở", 100));
-//            productArrayList.add(new Product("Bộ đồ bơi Hàn Quốc",  15));
-//            productArrayList.add(new Product("Áo lót nữ",  10));
-//            productArrayList.add(new Product("Áo sơ mi chất lượng cao", 10));
-            productArrayList = (ArrayList<Product>) databaseHandler.getAllProducts();
+            productArrayList = databaseHandler.getAllProducts();
             Log.d("SIZE", productArrayList.size() + "");
 
             return null;

@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
+            android:id="@+id/etSearch"
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@+id/imgDelete"
             android:layout_toRightOf="@+id/imgSearch"

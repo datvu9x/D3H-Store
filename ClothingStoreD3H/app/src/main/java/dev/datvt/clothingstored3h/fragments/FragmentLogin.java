@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,11 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import dev.datvt.clothingstored3h.R;
 import dev.datvt.clothingstored3h.activities.MainActivity;
@@ -65,22 +70,6 @@ public class FragmentLogin extends Fragment implements View.OnClickListener {
             idEmployee.setAdapter(arrayAdapter);
         }
 
-//        money.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//                money.setText(ToolsHelper.intToString(Float.parseFloat(money.getText().toString())));
-//            }
-//        });
-
         return view;
     }
 
@@ -94,13 +83,12 @@ public class FragmentLogin extends Fragment implements View.OnClickListener {
         } else {
             if (databaseHandler.isCheckLogin(id, pw)) {
                 Intent intent = new Intent(getActivity(), MainActivity.class);
-                intent.putExtra("money", Float.parseFloat(moneyRecei));
+                intent.putExtra("money", Double.parseDouble(moneyRecei));
                 intent.putExtra("id", id);
                 startActivity(intent);
                 idEmployee.setText("");
                 pass.setText("");
                 money.setText("");
-//                getActivity().finish();
             } else {
                 ToolsHelper.toast(getActivity(), "Mã nhân viên hoặc mật khẩu không đúng");
                 idEmployee.requestFocus();

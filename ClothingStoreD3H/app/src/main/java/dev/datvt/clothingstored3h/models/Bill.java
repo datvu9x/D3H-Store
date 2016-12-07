@@ -6,31 +6,30 @@ package dev.datvt.clothingstored3h.models;
 
 public class Bill {
 
-    private String maHD;
-    private String maKH;
+    private int maHD;
+    private int maKH;
     private String loaiKH;
     private String maNV;
-    private String tienMat;
-    private String tienATM;
-    private String vat;
-    private String khuyenMai;
-    private String phieuGiamGia;
+    private double tienMat;
+    private double tienATM;
+    private int khuyenMai;
+    private int phieuGiamGia;
     private String ngayLap;
-    private String soNo;
+    private double tienNo;
 
-    public String getMaHD() {
+    public int getMaHD() {
         return maHD;
     }
 
-    public void setMaHD(String maHD) {
+    public void setMaHD(int maHD) {
         this.maHD = maHD;
     }
 
-    public String getMaKH() {
+    public int getMaKH() {
         return maKH;
     }
 
-    public void setMaKH(String maKH) {
+    public void setMaKH(int maKH) {
         this.maKH = maKH;
     }
 
@@ -50,43 +49,35 @@ public class Bill {
         this.maNV = maNV;
     }
 
-    public String getTienMat() {
+    public double getTienMat() {
         return tienMat;
     }
 
-    public void setTienMat(String tienMat) {
+    public void setTienMat(double tienMat) {
         this.tienMat = tienMat;
     }
 
-    public String getTienATM() {
+    public double getTienATM() {
         return tienATM;
     }
 
-    public void setTienATM(String tienATM) {
+    public void setTienATM(double tienATM) {
         this.tienATM = tienATM;
     }
 
-    public String getVat() {
-        return vat;
-    }
-
-    public void setVat(String vat) {
-        this.vat = vat;
-    }
-
-    public String getKhuyenMai() {
+    public int getKhuyenMai() {
         return khuyenMai;
     }
 
-    public void setKhuyenMai(String khuyenMai) {
+    public void setKhuyenMai(int khuyenMai) {
         this.khuyenMai = khuyenMai;
     }
 
-    public String getPhieuGiamGia() {
+    public int getPhieuGiamGia() {
         return phieuGiamGia;
     }
 
-    public void setPhieuGiamGia(String phieuGiamGia) {
+    public void setPhieuGiamGia(int phieuGiamGia) {
         this.phieuGiamGia = phieuGiamGia;
     }
 
@@ -98,11 +89,11 @@ public class Bill {
         this.ngayLap = ngayLap;
     }
 
-    public String getSoNo() {
-        return soNo;
+    public double getTienNo() {
+        return tienNo;
     }
 
-    public void setSoNo(String soNo) {
-        this.soNo = soNo;
+    public void setTienNo(double tienNo) {
+        this.tienNo = tienNo;
     }
 }

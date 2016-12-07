@@ -46,14 +46,9 @@ public class LoginAcitivty extends RootActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start_activity);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorBlack));
-        }
-
         if (savedInstanceState == null) {
-            cur_fragment = ConstantHelper.FRAGMENT_START_1;
-            Fragment fragment = new FragmentStart1();
+            cur_fragment = ConstantHelper.FRAGMENT_LOGIN;
+            Fragment fragment = new FragmentLogin();
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
@@ -92,8 +87,6 @@ public class LoginAcitivty extends RootActivity implements View.OnClickListener 
                 databaseHandler.addEmployee(employeeArrayList.get(i));
             }
         }
-
-        ToolsHelper.toast(this, "Đã khởi tạo danh sách nhân viên");
     }
 
     private void getId() {
@@ -104,86 +97,89 @@ public class LoginAcitivty extends RootActivity implements View.OnClickListener 
 
         formIntroBack.setOnClickListener(this);
         formIntroNext.setOnClickListener(this);
+
+        formIntroNext.setVisibility(View.INVISIBLE);
+        formIntroBack.setVisibility(View.INVISIBLE);
     }
 
 
-    private void exchangeFragment(int id) {
-        Fragment fragment = null;
-
-        if (id == ConstantHelper.FRAGMENT_START_1) {
-            cur_fragment = ConstantHelper.FRAGMENT_START_1;
-            fragment = new FragmentStart1();
-
-        } else if (id == ConstantHelper.FRAGMENT_START_2) {
-            cur_fragment = ConstantHelper.FRAGMENT_START_2;
-            fragment = new FragmentStart2();
-
-        } else if (id == ConstantHelper.FRAGMENT_START_3) {
-            cur_fragment = ConstantHelper.FRAGMENT_START_3;
-            fragment = new FragmentStart3();
-
-        } else if (id == ConstantHelper.FRAGMENT_LOGIN) {
-            cur_fragment = ConstantHelper.FRAGMENT_LOGIN;
-            fragment = new FragmentLogin();
-            formIntroNext.setVisibility(View.INVISIBLE);
-            formIntroBack.setVisibility(View.INVISIBLE);
-        }
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        if (isNext) {
-            transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
-        } else {
-            transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_left);
-        }
-        transaction.replace(R.id.fragStart, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
+//    private void exchangeFragment(int id) {
+//        Fragment fragment = null;
+//
+//        if (id == ConstantHelper.FRAGMENT_START_1) {
+//            cur_fragment = ConstantHelper.FRAGMENT_START_1;
+//            fragment = new FragmentStart1();
+//
+//        } else if (id == ConstantHelper.FRAGMENT_START_2) {
+//            cur_fragment = ConstantHelper.FRAGMENT_START_2;
+//            fragment = new FragmentStart2();
+//
+//        } else if (id == ConstantHelper.FRAGMENT_START_3) {
+//            cur_fragment = ConstantHelper.FRAGMENT_START_3;
+//            fragment = new FragmentStart3();
+//
+//        } else if (id == ConstantHelper.FRAGMENT_LOGIN) {
+//            cur_fragment = ConstantHelper.FRAGMENT_LOGIN;
+//            fragment = new FragmentLogin();
+//            formIntroNext.setVisibility(View.INVISIBLE);
+//            formIntroBack.setVisibility(View.INVISIBLE);
+//        }
+//
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        FragmentTransaction transaction = fragmentManager.beginTransaction();
+//        if (isNext) {
+//            transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
+//        } else {
+//            transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_left);
+//        }
+//        transaction.replace(R.id.fragStart, fragment);
+//        transaction.addToBackStack(null);
+//        transaction.commit();
+//    }
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
 
-        switch (id) {
-            case R.id.formIntroBack:
-                cur_fragment--;
-                isNext = false;
-                if (cur_fragment < ConstantHelper.FRAGMENT_START_2) {
-                    formIntroBack.setVisibility(View.INVISIBLE);
-                }
-
-                if (cur_fragment < ConstantHelper.FRAGMENT_LOGIN) {
-                    ivNext.setVisibility(View.VISIBLE);
-                    tvLogin.setVisibility(View.INVISIBLE);
-                }
-
-                if (cur_fragment >= ConstantHelper.FRAGMENT_START_1) {
-                    exchangeFragment(cur_fragment);
-                } else {
-                    cur_fragment = ConstantHelper.FRAGMENT_START_1;
-                }
-                break;
-            case R.id.formIntroNext:
-                isNext = true;
-                cur_fragment++;
-                if (cur_fragment > ConstantHelper.FRAGMENT_START_1) {
-                    formIntroBack.setVisibility(View.VISIBLE);
-                }
-
-                if (cur_fragment > ConstantHelper.FRAGMENT_START_2) {
-                    ivNext.setVisibility(View.INVISIBLE);
-                    tvLogin.setVisibility(View.VISIBLE);
-                }
-
-                if (cur_fragment <= ConstantHelper.FRAGMENT_LOGIN) {
-                    exchangeFragment(cur_fragment);
-                } else {
-                    cur_fragment = ConstantHelper.FRAGMENT_LOGIN;
-                }
-
-                break;
-        }
+//        switch (id) {
+//            case R.id.formIntroBack:
+//                cur_fragment--;
+//                isNext = false;
+//                if (cur_fragment < ConstantHelper.FRAGMENT_START_2) {
+//                    formIntroBack.setVisibility(View.INVISIBLE);
+//                }
+//
+//                if (cur_fragment < ConstantHelper.FRAGMENT_LOGIN) {
+//                    ivNext.setVisibility(View.VISIBLE);
+//                    tvLogin.setVisibility(View.INVISIBLE);
+//                }
+//
+//                if (cur_fragment >= ConstantHelper.FRAGMENT_START_1) {
+//                    exchangeFragment(cur_fragment);
+//                } else {
+//                    cur_fragment = ConstantHelper.FRAGMENT_START_1;
+//                }
+//                break;
+//            case R.id.formIntroNext:
+//                isNext = true;
+//                cur_fragment++;
+//                if (cur_fragment > ConstantHelper.FRAGMENT_START_1) {
+//                    formIntroBack.setVisibility(View.VISIBLE);
+//                }
+//
+//                if (cur_fragment > ConstantHelper.FRAGMENT_START_2) {
+//                    ivNext.setVisibility(View.INVISIBLE);
+//                    tvLogin.setVisibility(View.VISIBLE);
+//                }
+//
+//                if (cur_fragment <= ConstantHelper.FRAGMENT_LOGIN) {
+//                    exchangeFragment(cur_fragment);
+//                } else {
+//                    cur_fragment = ConstantHelper.FRAGMENT_LOGIN;
+//                }
+//
+//                break;
+//        }
     }
 
     @Override

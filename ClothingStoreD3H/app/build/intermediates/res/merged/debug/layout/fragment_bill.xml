@@ -7,9 +7,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="3dp"
         android:layout_weight="1"
         android:background="@drawable/border_background"
         android:orientation="vertical"
@@ -69,8 +69,12 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="3"
-                        android:gravity="center"
-                        android:textColor="@color/colorBlack" />
+                        android:background="@drawable/border_label_title"
+                        android:gravity="right"
+                        android:padding="10dp"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <View
@@ -109,9 +113,11 @@
                         android:layout_marginLeft="10dp"
                         android:layout_weight="3"
                         android:background="@drawable/border_label_title"
+                        android:gravity="right"
                         android:padding="10dp"
                         android:singleLine="true"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <View
@@ -149,8 +155,12 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="3"
-                        android:gravity="center"
-                        android:textColor="@color/colorBlack" />
+                        android:background="@drawable/border_label_title"
+                        android:gravity="right"
+                        android:padding="10dp"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <View
@@ -189,10 +199,12 @@
                         android:layout_marginLeft="10dp"
                         android:layout_weight="3"
                         android:background="@drawable/border_label_title"
+                        android:gravity="right"
                         android:inputType="number"
                         android:padding="10dp"
                         android:singleLine="true"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <View
@@ -231,9 +243,11 @@
                         android:layout_marginLeft="10dp"
                         android:layout_weight="3"
                         android:background="@drawable/border_label_title"
+                        android:gravity="right"
                         android:padding="10dp"
                         android:singleLine="true"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <View
@@ -272,9 +286,11 @@
                         android:layout_marginLeft="10dp"
                         android:layout_weight="3"
                         android:background="@drawable/border_label_title"
+                        android:gravity="right"
                         android:padding="10dp"
                         android:singleLine="true"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp" />
                 </LinearLayout>
 
                 <View
@@ -321,48 +337,59 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:weightSum="8"
-                    android:layout_height="wrap_content">
+                    android:padding="10dp"
+                    android:weightSum="7">
 
                     <dev.datvt.clothingstored3h.utils.CustomFontTextView
                         android:layout_width="0dp"
-                        android:layout_weight="3"
                         android:layout_height="wrap_content"
+                        android:layout_weight="2"
                         android:text="Tên hàng"
+                        android:textColor="@color/colorBlack"
                         android:textSize="13sp"
-                        />
+                        android:textStyle="bold" />
 
                     <dev.datvt.clothingstored3h.utils.CustomFontTextView
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_height="wrap_content"
                         android:text="SL"
+                        android:textColor="@color/colorBlack"
                         android:textSize="13sp"
-                        />
+                        android:textStyle="bold" />
 
                     <dev.datvt.clothingstored3h.utils.CustomFontTextView
                         android:layout_width="0dp"
-                        android:layout_weight="2"
                         android:layout_height="wrap_content"
+                        android:layout_weight="2"
                         android:text="Đơn giá"
+                        android:textColor="@color/colorBlack"
                         android:textSize="13sp"
-                        />
+                        android:textStyle="bold" />
 
                     <dev.datvt.clothingstored3h.utils.CustomFontTextView
                         android:layout_width="0dp"
-                        android:layout_weight="2"
                         android:layout_height="wrap_content"
+                        android:layout_weight="2"
                         android:text="Tổng tiền"
+                        android:textColor="@color/colorBlack"
                         android:textSize="13sp"
-                        />
+                        android:textStyle="bold" />
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorGray1" />
 
                 <ListView
                     android:id="@+id/listProductInBill"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:padding="5dp"></ListView>
+                    android:divider="@color/colorGray"
+                    android:dividerHeight="0.5dp"></ListView>
 
                 <View
                     android:layout_width="match_parent"
@@ -401,9 +428,12 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="2.5"
+                        android:gravity="right"
                         android:padding="10dp"
                         android:singleLine="true"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
                     <ImageView
                         android:layout_width="0dp"
@@ -437,36 +467,34 @@
                         android:layout_marginBottom="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1.5"
-                        android:text="VAT"
+                        android:text="Chiết khấu"
                         android:textColor="@color/colorBlack"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
-                    <EditText
-                        android:id="@+id/etVAT"
+                    <dev.datvt.clothingstored3h.utils.CustomFontTextView
+                        android:id="@+id/tvChietKhau"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="2.5"
                         android:background="@drawable/border_label_title"
+                        android:gravity="right"
                         android:inputType="number"
                         android:padding="10dp"
                         android:singleLine="true"
-                        android:textColor="@color/colorBlack" />
-
-                    <dev.datvt.clothingstored3h.utils.CustomFontTextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="0.5"
-                        android:gravity="center"
-                        android:text="%"
                         android:textColor="@color/colorBlack"
-                        android:textSize="16sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="0.5"
+                        android:src="@drawable/product_new_price" />
                 </LinearLayout>
 
                 <View
@@ -492,7 +520,60 @@
                         android:layout_marginBottom="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1.5"
-                        android:text="Khuyễn mãi"
+                        android:text="Giảm giá"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <dev.datvt.clothingstored3h.utils.CustomFontTextView
+                        android:id="@+id/tvGiamGia"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="2.5"
+                        android:background="@drawable/border_label_title"
+                        android:gravity="right"
+                        android:inputType="number"
+                        android:padding="10dp"
+                        android:textStyle="bold"
+                        android:singleLine="true"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="0.5"
+                        android:src="@drawable/product_new_price" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorGray1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingBottom="6dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="6dp"
+                    android:weightSum="4.5">
+
+                    <dev.datvt.clothingstored3h.utils.CustomFontTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1.5"
+                        android:text="Khuyến Mãi"
                         android:textColor="@color/colorBlack"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -505,10 +586,12 @@
                         android:layout_marginLeft="10dp"
                         android:layout_weight="2.5"
                         android:background="@drawable/border_label_title"
+                        android:gravity="right"
                         android:inputType="number"
                         android:padding="10dp"
                         android:singleLine="true"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp" />
 
                     <dev.datvt.clothingstored3h.utils.CustomFontTextView
                         android:layout_width="0dp"
@@ -560,10 +643,12 @@
                         android:layout_marginLeft="10dp"
                         android:layout_weight="2.5"
                         android:background="@drawable/border_label_title"
+                        android:gravity="right"
                         android:inputType="number"
                         android:padding="10dp"
                         android:singleLine="true"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp" />
 
                     <dev.datvt.clothingstored3h.utils.CustomFontTextView
                         android:layout_width="0dp"
@@ -616,9 +701,12 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="2.5"
+                        android:gravity="right"
                         android:padding="10dp"
                         android:singleLine="true"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
                     <ImageView
                         android:layout_width="0dp"
@@ -628,6 +716,34 @@
                         android:layout_weight="0.5"
                         android:src="@drawable/product_new_price" />
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorGray1" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorOrange1"
+                    android:paddingBottom="6dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="6dp">
+
+                    <dev.datvt.clothingstored3h.utils.CustomFontTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Thanh toán"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -652,7 +768,7 @@
                         android:layout_marginBottom="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1.5"
-                        android:text="Tiền mặt khách trả"
+                        android:text="Tiền mặt"
                         android:textColor="@color/colorBlack"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -665,10 +781,12 @@
                         android:layout_marginLeft="10dp"
                         android:layout_weight="2.5"
                         android:background="@drawable/border_label_title"
+                        android:gravity="right"
                         android:inputType="number"
                         android:padding="10dp"
                         android:singleLine="true"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp" />
 
                     <ImageView
                         android:layout_width="0dp"
@@ -702,7 +820,7 @@
                         android:layout_marginBottom="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1.5"
-                        android:text="Tiền ATM khách trả"
+                        android:text="Thẻ ngân hàng"
                         android:textColor="@color/colorBlack"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -715,10 +833,12 @@
                         android:layout_marginLeft="10dp"
                         android:layout_weight="2.5"
                         android:background="@drawable/border_label_title"
+                        android:gravity="right"
                         android:inputType="number"
                         android:padding="10dp"
                         android:singleLine="true"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp" />
 
                     <ImageView
                         android:layout_width="0dp"
@@ -753,7 +873,7 @@
                         android:layout_marginBottom="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1.5"
-                        android:text="Tiền thừa"
+                        android:text="Tiền trả lại"
                         android:textAllCaps="true"
                         android:textColor="@color/colorRed"
                         android:textSize="16sp"
@@ -766,9 +886,12 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="2.5"
+                        android:gravity="right"
                         android:padding="10dp"
                         android:singleLine="true"
-                        android:textColor="@color/colorBlack" />
+                        android:textColor="@color/colorBlack"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
                     <ImageView
                         android:layout_width="0dp"

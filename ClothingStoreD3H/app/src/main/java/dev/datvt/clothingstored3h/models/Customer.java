@@ -6,7 +6,7 @@ package dev.datvt.clothingstored3h.models;
 
 public class Customer {
 
-    private String id;
+    private int id;
     private String name;
     private String gender;
     private String phone;
@@ -20,11 +20,11 @@ public class Customer {
 
     public Customer(){}
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

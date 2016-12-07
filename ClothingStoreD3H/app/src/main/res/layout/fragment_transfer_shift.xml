@@ -61,6 +61,7 @@
                         android:textStyle="bold" />
 
                     <EditText
+                        android:id="@+id/tvCa"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -71,46 +72,6 @@
                         android:padding="10dp"
                         android:singleLine="true"
                         android:textColor="@color/colorBlack" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/colorGray1" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:paddingBottom="6dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="6dp"
-                    android:weightSum="4.5">
-
-                    <dev.datvt.clothingstored3h.utils.CustomFontTextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="1.5"
-                        android:text="Két tiền"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <dev.datvt.clothingstored3h.utils.CustomFontTextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="3"
-                        android:inputType="number"
-                        android:padding="10dp"
-                        android:singleLine="true"
-                        android:textColor="@color/colorRed" />
                 </LinearLayout>
 
                 <View
@@ -143,12 +104,14 @@
                         android:textStyle="bold" />
 
                     <EditText
+                        android:id="@+id/gioVao"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="3"
                         android:background="@drawable/border_label_title"
+                        android:inputType="time"
                         android:padding="10dp"
                         android:singleLine="true"
                         android:textColor="@color/colorBlack" />
@@ -183,12 +146,14 @@
                         android:textStyle="bold" />
 
                     <EditText
+                        android:id="@+id/gioKetThuc"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="3"
                         android:background="@drawable/border_label_title"
+                        android:inputType="time"
                         android:padding="10dp"
                         android:singleLine="true"
                         android:textColor="@color/colorBlack" />
@@ -223,6 +188,7 @@
                         android:textStyle="bold" />
 
                     <EditText
+                        android:id="@+id/thuNgan"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -263,6 +229,7 @@
                         android:textStyle="bold" />
 
                     <EditText
+                        android:id="@+id/nguoiGiao"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -313,13 +280,14 @@
                         android:textStyle="bold" />
 
                     <EditText
+                        android:id="@+id/quyDau"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="3"
-                        android:inputType="number"
                         android:background="@drawable/border_label_title"
+                        android:inputType="number"
                         android:padding="10dp"
                         android:singleLine="true"
                         android:textColor="@color/colorBlack" />
@@ -354,13 +322,57 @@
                         android:textStyle="bold" />
 
                     <EditText
+                        android:id="@+id/tienmat"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="3"
-                        android:inputType="number"
                         android:background="@drawable/border_label_title"
+                        android:inputType="number"
+                        android:padding="10dp"
+                        android:singleLine="true"
+                        android:textColor="@color/colorBlack" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorGray1" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingBottom="6dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="6dp"
+                    android:weightSum="4.5">
+
+                    <dev.datvt.clothingstored3h.utils.CustomFontTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1.5"
+                        android:text="Tiền quỹ cuối ca"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/tienQuyCuoi"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="3"
+                        android:background="@drawable/border_label_title"
+                        android:inputType="number"
                         android:padding="10dp"
                         android:singleLine="true"
                         android:textColor="@color/colorBlack" />
@@ -395,58 +407,19 @@
                         android:textStyle="bold" />
 
                     <EditText
+                        android:id="@+id/tienChenhLech"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="3"
-                        android:inputType="number"
                         android:background="@drawable/border_label_title"
+                        android:inputType="number"
                         android:padding="10dp"
                         android:singleLine="true"
                         android:textColor="@color/colorBlack" />
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@color/colorGray1" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:paddingBottom="6dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="6dp"
-                    android:weightSum="4.5">
-
-                    <dev.datvt.clothingstored3h.utils.CustomFontTextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="1.5"
-                        android:text="Tiền quỹ cuối ca"
-                        android:textColor="@color/colorBlack"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="3"
-                        android:inputType="number"
-                        android:background="@drawable/border_label_title"
-                        android:padding="10dp"
-                        android:singleLine="true"
-                        android:textColor="@color/colorBlack" />
-                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -477,16 +450,17 @@
                         android:textStyle="bold" />
 
                     <EditText
+                        android:id="@+id/tienBanGiaoLai"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="3"
-                        android:inputType="number"
                         android:background="@drawable/border_label_title"
+                        android:inputType="number"
                         android:padding="10dp"
                         android:singleLine="true"
-                        android:textColor="@color/colorRed" />
+                        android:textColor="@color/colorBlack" />
                 </LinearLayout>
 
                 <View
@@ -518,15 +492,16 @@
                         android:textStyle="bold" />
 
                     <EditText
+                        android:id="@+id/ghiChu"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="3"
-                        android:inputType="textMultiLine"
                         android:background="@drawable/border_label_title"
+                        android:inputType="textMultiLine"
                         android:padding="10dp"
-                        android:textColor="@color/colorRed" />
+                        android:textColor="@color/colorBlack" />
                 </LinearLayout>
 
                 <View
@@ -550,6 +525,7 @@
         android:padding="1dp">
 
         <dev.datvt.clothingstored3h.utils.CustomFontTextView
+            android:id="@+id/btnXuat"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -564,6 +540,7 @@
             android:textStyle="bold" />
 
         <dev.datvt.clothingstored3h.utils.CustomFontTextView
+            android:id="@+id/btnNhapLai"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

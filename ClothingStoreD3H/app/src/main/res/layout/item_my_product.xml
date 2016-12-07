@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_label"
+        android:elevation="10dp"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:weightSum="7">
+
+        <dev.datvt.clothingstored3h.utils.CustomFontTextView
+            android:id="@+id/tvTenSP"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="Áo sơ mi Nam"
+            android:textColor="@color/colorBlack"
+            android:textSize="13sp" />
+
+        <dev.datvt.clothingstored3h.utils.CustomFontTextView
+            android:id="@+id/tvSoLuong"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="10"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="13sp" />
+
+        <dev.datvt.clothingstored3h.utils.CustomFontTextView
+            android:id="@+id/tvDonGia"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="120.000"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="13sp" />
+
+        <dev.datvt.clothingstored3h.utils.CustomFontTextView
+            android:id="@+id/tvThanhTien"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="1.200.000"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,7 +1,4 @@
-#Mon Nov 28 09:49:07 ICT 2016
-base.0=F\:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_4f185701e52c8829fb129bdadd5a49423fdfcba5
-renamed.1=classes.dex
-renamed.0=classes2.dex
-file.1=F\:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_450dfbdb7c5ddb8d01bcc8d07b70cfb90dd60c2b\\classes.dex
-base.1=F\:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_450dfbdb7c5ddb8d01bcc8d07b70cfb90dd60c2b
-file.0=F\:\\Workspace\\Android\\ClothingStoreD3H\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_4f185701e52c8829fb129bdadd5a49423fdfcba5\\classes.dex
+#Thu Dec 08 00:10:08 ICT 2016
+base.0=F\:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
+renamed.0=classes.dex
+file.0=F\:\\Workspace\\Android\\D3HStore\\ClothingStoreD3H\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex

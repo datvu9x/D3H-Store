@@ -6,7 +6,7 @@ package dev.datvt.clothingstored3h.models;
 
 public class Properties {
 
-    private String ma;
+    private int ma;
     private String loai;
     private String mauSac;
     private String doiTuong;
@@ -25,11 +25,11 @@ public class Properties {
 
     public Properties() {}
 
-    public String getMa() {
+    public int getMa() {
         return ma;
     }
 
-    public void setMa(String ma) {
+    public void setMa(int ma) {
         this.ma = ma;
     }
 

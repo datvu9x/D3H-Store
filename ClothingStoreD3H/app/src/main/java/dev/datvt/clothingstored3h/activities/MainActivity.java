@@ -21,7 +21,6 @@ import android.view.WindowManager;
 
 import dev.datvt.clothingstored3h.R;
 import dev.datvt.clothingstored3h.fragments.FragmentAddProduct;
-import dev.datvt.clothingstored3h.fragments.FragmentCustomer;
 import dev.datvt.clothingstored3h.fragments.FragmentTransferShift;
 import dev.datvt.clothingstored3h.fragments.FragmentCreateBill;
 import dev.datvt.clothingstored3h.fragments.FragmentMain;
@@ -36,15 +35,18 @@ public class MainActivity extends RootActivity implements View.OnClickListener,
     private Toolbar toolbar;
 
     private int cur_fragment = ConstantHelper.FRAGMENT_MAIN;
+    public static String  id;
+    public static double  money;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorBlack));
+        Intent intent = getIntent();
+        if (intent != null) {
+            money = intent.getDoubleExtra("money", 0);
+            id = intent.getStringExtra("id");
         }
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -98,10 +100,6 @@ public class MainActivity extends RootActivity implements View.OnClickListener,
         } else if (id == ConstantHelper.FRAGMENT_REPORT) {
             cur_fragment = ConstantHelper.FRAGMENT_REPORT;
             fragment = new FragmentSummary();
-
-        } else if (id == ConstantHelper.FRAGMENT_CUSTOMER) {
-            cur_fragment = ConstantHelper.FRAGMENT_CUSTOMER;
-            fragment = new FragmentCustomer();
 
         }
 
@@ -194,7 +192,7 @@ public class MainActivity extends RootActivity implements View.OnClickListener,
                 exchangeFragment(cur_fragment);
                 break;
             case R.id.nav_don_hang:
-                Intent intent4 = new Intent(this, BillActivity.class);
+                Intent intent4 = new Intent(this, ManagementBill.class);
                 startActivityForResult(intent4, ConstantHelper.PRODUCT_TICKET);
                 break;
             case R.id.nav_nhap_hang:
@@ -220,8 +218,8 @@ public class MainActivity extends RootActivity implements View.OnClickListener,
 
             case R.id.nav_customer:
                 toolbar.setTitle("Quản lý khách hàng");
-                cur_fragment = ConstantHelper.FRAGMENT_CUSTOMER;
-                exchangeFragment(cur_fragment);
+                Intent intent5 = new Intent(this, ManagementCustomer.class);
+                startActivityForResult(intent5, ConstantHelper.REQUEST_CUSTOMER);
                 break;
             case R.id.nav_share:
                 shareApp();
