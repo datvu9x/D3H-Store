@@ -15,6 +15,7 @@ import java.util.List;
 
 import dev.datvt.clothingstored3h.R;
 import dev.datvt.clothingstored3h.models.Product;
+import dev.datvt.clothingstored3h.utils.NumberTextWatcherForThousand;
 import dev.datvt.clothingstored3h.utils.ToolsHelper;
 
 
@@ -67,24 +68,12 @@ public class MyProductAdapter extends BaseAdapter {
 
         Product product = (Product) getItem(position);
         holder.name.setText(product.getTenHang());
-        if (product.getSoLuongBan() >= 1000) {
-            holder.number.setText(ToolsHelper.intToString(product.getSoLuongBan()));
-        } else {
-            holder.number.setText(product.getSoLuongBan() + "");
-        }
-
-        if (product.getDonGiaBan() >= 1000) {
-            holder.donGia.setText(ToolsHelper.intToString((int) product.getDonGiaBan()));
-        } else {
-            holder.donGia.setText((int) product.getDonGiaBan() + "");
-        }
+        holder.number.setText(NumberTextWatcherForThousand.getDecimalFormattedString(product.getSoLuongBan() + ""));
+        holder.donGia.setText(NumberTextWatcherForThousand.getDecimalFormattedString(product.getDonGiaBan() + ""));
 
         double thanhTien = product.getSoLuongBan() * product.getDonGiaBan();
-        if (thanhTien >= 1000) {
-            holder.thanhTien.setText(ToolsHelper.intToString((int) thanhTien));
-        } else {
-            holder.thanhTien.setText(thanhTien + "");
-        }
+
+        holder.thanhTien.setText(NumberTextWatcherForThousand.getDecimalFormattedString(thanhTien + ""));
 
 
         return convertView;

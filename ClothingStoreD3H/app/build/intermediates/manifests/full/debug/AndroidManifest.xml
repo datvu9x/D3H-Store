@@ -58,11 +58,19 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.MyDialog" />
         <activity
+            android:name="dev.datvt.clothingstored3h.activities.BillOnlineDetail"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MyDialog" />
+        <activity
             android:name="dev.datvt.clothingstored3h.activities.ListProduct"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="dev.datvt.clothingstored3h.activities.StoreBillDetail"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="dev.datvt.clothingstored3h.activities.CreateBillOnline"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>

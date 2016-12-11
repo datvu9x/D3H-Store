@@ -2,12 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorOrange"
+
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorOrange"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="10dp">
@@ -15,7 +16,7 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/icon_employee" />
+            android:src="@drawable/ic_khachhang" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -24,33 +25,22 @@
             android:layout_marginLeft="20dp"
             android:orientation="vertical">
 
-            <dev.datvt.clothingstored3h.utils.CustomFontTextView
+            <EditText
+                android:id="@+id/tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Vũ Thế Đạt"
-                android:id="@+id/tvName"
                 android:textAllCaps="true"
                 android:textColor="@color/colorWhite"
                 android:textSize="20sp"
                 android:textStyle="bold" />
-
-            <dev.datvt.clothingstored3h.utils.CustomFontTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="24-06-1995"
-                android:id="@+id/tvDate"
-                android:textAllCaps="true"
-                android:textColor="@color/colorWhite"
-                android:textSize="15sp"
-                android:textStyle="italic" />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:background="@drawable/border_label"
         android:orientation="vertical"
         android:padding="5dp">
@@ -72,12 +62,43 @@
                 android:textSize="15sp" />
 
             <dev.datvt.clothingstored3h.utils.CustomFontTextView
+                android:id="@+id/tvMa"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.5"
                 android:singleLine="true"
-                android:id="@+id/tvMa"
                 android:text="NV01"
+                android:textColor="@color/colorBlack"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorGray1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="4">
+
+            <dev.datvt.clothingstored3h.utils.CustomFontTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="Giới tính: "
+                android:textColor="@color/colorBlack"
+                android:textSize="15sp" />
+
+            <Spinner
+                android:id="@+id/spGioiTinh"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.5"
+                android:singleLine="true"
                 android:textColor="@color/colorBlack"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -103,13 +124,13 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="15sp" />
 
-            <dev.datvt.clothingstored3h.utils.CustomFontTextView
+            <EditText
+                android:id="@+id/tvPhone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.5"
                 android:singleLine="true"
                 android:text="0981449295"
-                android:id="@+id/tvPhone"
                 android:textColor="@color/colorBlack"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -135,12 +156,12 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="15sp" />
 
-            <dev.datvt.clothingstored3h.utils.CustomFontTextView
+            <EditText
+                android:id="@+id/tvAddress"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.5"
                 android:singleLine="true"
-                android:id="@+id/tvAddress"
                 android:text="Kim Sơn - Gia Lâm - Hà Nội"
                 android:textColor="@color/colorBlack"
                 android:textSize="15sp" />
@@ -167,16 +188,34 @@
                 android:textColor="@color/colorBlack"
                 android:textSize="15sp" />
 
-            <dev.datvt.clothingstored3h.utils.CustomFontTextView
+            <EditText
+                android:id="@+id/tvEmail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.5"
-                android:id="@+id/tvEmail"
                 android:text="thedat246@gmail.com"
                 android:textColor="@color/colorBlack"
                 android:textSize="15sp" />
         </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btnOK"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorOrange"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <dev.datvt.clothingstored3h.utils.CustomFontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OK"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>

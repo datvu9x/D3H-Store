@@ -40,6 +40,7 @@ import dev.datvt.clothingstored3h.activities.MainActivity;
 import dev.datvt.clothingstored3h.models.Customer;
 import dev.datvt.clothingstored3h.models.Employee;
 import dev.datvt.clothingstored3h.utils.DatabaseHandler;
+import dev.datvt.clothingstored3h.utils.NumberTextWatcherForThousand;
 import dev.datvt.clothingstored3h.utils.ToolsHelper;
 
 /**
@@ -78,8 +79,8 @@ public class FragmentTransferShift extends Fragment implements View.OnClickListe
         banGiao = (EditText) viewFragment.findViewById(R.id.tienBanGiaoLai);
         ghichu = (EditText) viewFragment.findViewById(R.id.ghiChu);
 
-        quyDau.setText(MainActivity.money + "");
-        tienMat.setText(databaseHandler.getMoneySale(simpleDateFormat.format(new Date()), MainActivity.id) + "");
+        quyDau.setText(NumberTextWatcherForThousand.getDecimalFormattedString(MainActivity.money + ""));
+        tienMat.setText(NumberTextWatcherForThousand.getDecimalFormattedString(databaseHandler.getMoneySale(simpleDateFormat.format(new Date()), MainActivity.id) + ""));
         Employee employee = databaseHandler.getEmployee(MainActivity.id);
         if (employee != null) {
             nguoiGiao.setText(employee.getName());
@@ -99,15 +100,22 @@ public class FragmentTransferShift extends Fragment implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (quyCuoi.getText() != null && !quyCuoi.getText().toString().isEmpty()) {
-                    double t = Double.parseDouble(quyDau.getText().toString()) + Double.parseDouble(tienMat.getText().toString())
-                            - Double.parseDouble(quyCuoi.getText().toString());
+                    double t = Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(quyDau.getText().toString()))
+                            + Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(tienMat.getText().toString()))
+                            - Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(quyCuoi.getText().toString()));
                     if (t < 0) {
                         t *= -1;
                     }
-                    tienChenhLech.setText(t + "");
+                    tienChenhLech.setText(NumberTextWatcherForThousand.getDecimalFormattedString(t + ""));
                 }
             }
         });
+
+        quyCuoi.addTextChangedListener(new NumberTextWatcherForThousand(quyCuoi));
+        quyDau.addTextChangedListener(new NumberTextWatcherForThousand(quyDau));
+        tienMat.addTextChangedListener(new NumberTextWatcherForThousand(tienMat));
+        tienChenhLech.addTextChangedListener(new NumberTextWatcherForThousand(tienChenhLech));
+        banGiao.addTextChangedListener(new NumberTextWatcherForThousand(banGiao));
 
         gioVao.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -232,15 +240,15 @@ public class FragmentTransferShift extends Fragment implements View.OnClickListe
         prPersinalInfo.add("");
         prPersinalInfo.add("Nguoi ban giao:  " + nguoiGiao.getText().toString() + "\n\n");
         prPersinalInfo.add("");
-        prPersinalInfo.add("Tien quy dau ca:  " + ToolsHelper.intToString((int) Math.round(Double.parseDouble(quyDau.getText().toString()))) + " $\n\n");
+        prPersinalInfo.add("Tien quy dau ca:  " + quyDau.getText().toString() + " $\n\n");
         prPersinalInfo.add("");
-        prPersinalInfo.add("Tien mat da thu:  " + ToolsHelper.intToString((int) Math.round(Double.parseDouble(tienMat.getText().toString()))) + " $\n\n");
+        prPersinalInfo.add("Tien mat da thu:  " + tienMat.getText().toString() + " $\n\n");
         prPersinalInfo.add("");
-        prPersinalInfo.add("Tien chenh lech:  " + ToolsHelper.intToString((int) Math.round(Double.parseDouble(tienChenhLech.getText().toString()))) + " $\n\n");
+        prPersinalInfo.add("Tien chenh lech:  " + tienChenhLech.getText().toString() + " $\n\n");
         prPersinalInfo.add("");
-        prPersinalInfo.add("Tien quy cuoi ca:  " + ToolsHelper.intToString((int) Math.round(Double.parseDouble(quyCuoi.getText().toString()))) + " $\n\n");
+        prPersinalInfo.add("Tien quy cuoi ca:  " + quyCuoi.getText().toString() + " $\n\n");
         prPersinalInfo.add("");
-        prPersinalInfo.add("Tien ban giao lai:  " + ToolsHelper.intToString((int) Math.round(Double.parseDouble(banGiao.getText().toString()))) + " $\n\n");
+        prPersinalInfo.add("Tien ban giao lai:  " + banGiao.getText().toString() + " $\n\n");
         prPersinalInfo.add("");
         prPersinalInfo.add("Ghi chu:  " + ghichu.getText().toString() + "\n\n");
         prPersinalInfo.setAlignment(Element.ALIGN_LEFT);

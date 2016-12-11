@@ -43,6 +43,7 @@ public class FragmentSearchProduct extends Fragment {
     private SwipeRefreshLayout ref;
     private AutoCompleteTextView etSearch;
     private ArrayAdapter adapterSearch;
+    public int pos = 0;
 
 
     @Override
@@ -82,7 +83,7 @@ public class FragmentSearchProduct extends Fragment {
         arrayListProduct = new ArrayList<>();
         if (databaseHandler.getListName().size() > 0) {
             arrayListProduct = databaseHandler.getListName();
-            Log.e("DATA_SIZE", arrayListProduct.size() +"");
+            Log.e("DATA_SIZE", arrayListProduct.size() + "");
         }
         adapterSearch = new ArrayAdapter(getActivity(), android.R.layout.simple_dropdown_item_1line, arrayListProduct);
         etSearch.setAdapter(adapterSearch);
@@ -106,6 +107,7 @@ public class FragmentSearchProduct extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 onSelect(position);
+                pos = position;
                 etSearch.setText("");
             }
 
@@ -125,9 +127,12 @@ public class FragmentSearchProduct extends Fragment {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                arrayList.clear();
-                productAdapter.notifyDataSetChanged();
-                search(etSearch.getText().toString().trim(), spPhanLoai.getSelectedItemPosition());
+                String key = etSearch.getText().toString().trim();
+                if (key != null && !key.isEmpty()) {
+                    new GetProductByParams().execute(key);
+                } else {
+                    Toast.makeText(getActivity(), "Bạn chưa nhập từ khóa tìm kiếm", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -238,123 +243,171 @@ public class FragmentSearchProduct extends Fragment {
         }
     }
 
-    private void search(String key, int pos) {
-        switch (pos) {
-            case 0:
-                if (key != null && !key.isEmpty()) {
-                    new GetProductByName().execute(key);
-                } else {
-                    Toast.makeText(getActivity(), "Bạn chưa nhập từ khóa tìm kiếm", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case 1:
-                if (key != null && !key.isEmpty()) {
-                    arrayList = databaseHandler.getProductObject(key);
-                    if (arrayList != null && arrayList.size() > 0) {
-                        productAdapter = new ProductAdapter(getActivity(), arrayList);
-                        listView.setAdapter(productAdapter);
-                    } else {
-                        Toast.makeText(getActivity(), "Không tìm thấy sản phẩm nào", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(getActivity(), "Bạn chưa nhập từ khóa tìm kiếm", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case 2:
-                if (key != null && !key.isEmpty()) {
-                    arrayList = databaseHandler.getProductMauSac(key);
-                    if (arrayList != null && arrayList.size() > 0) {
-                        productAdapter = new ProductAdapter(getActivity(), arrayList);
-                        listView.setAdapter(productAdapter);
-                    } else {
-                        Toast.makeText(getActivity(), "Không tìm thấy sản phẩm nào", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(getActivity(), "Bạn chưa nhập từ khóa tìm kiếm", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case 3:
-                if (key != null && !key.isEmpty()) {
-                    arrayList = databaseHandler.getProductSize(key);
-                    if (arrayList != null && arrayList.size() > 0) {
-                        productAdapter = new ProductAdapter(getActivity(), arrayList);
-                        listView.setAdapter(productAdapter);
-                    } else {
-                        Toast.makeText(getActivity(), "Không tìm thấy sản phẩm nào", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(getActivity(), "Bạn chưa nhập từ khóa tìm kiếm", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case 4:
-                if (key != null && !key.isEmpty()) {
-                    arrayList = databaseHandler.getProductLoai(key);
-                    if (arrayList != null && arrayList.size() > 0) {
-                        productAdapter = new ProductAdapter(getActivity(), arrayList);
-                        listView.setAdapter(productAdapter);
-                    } else {
-                        Toast.makeText(getActivity(), "Không tìm thấy sản phẩm nào", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(getActivity(), "Bạn chưa nhập từ khóa tìm kiếm", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case 5:
-                if (key != null && !key.isEmpty()) {
-                    arrayList = databaseHandler.getProductCost(key);
-                    if (arrayList != null && arrayList.size() > 0) {
-                        productAdapter = new ProductAdapter(getActivity(), arrayList);
-                        listView.setAdapter(productAdapter);
-                    } else {
-                        Toast.makeText(getActivity(), "Không tìm thấy sản phẩm nào", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(getActivity(), "Bạn chưa nhập từ khóa tìm kiếm", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case 6:
-                if (key != null && !key.isEmpty()) {
-                    arrayList = databaseHandler.getProductMua(key);
-                    if (arrayList != null && arrayList.size() > 0) {
-                        productAdapter = new ProductAdapter(getActivity(), arrayList);
-                        listView.setAdapter(productAdapter);
-                    } else {
-                        Toast.makeText(getActivity(), "Không tìm thấy sản phẩm nào", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(getActivity(), "Bạn chưa nhập từ khóa tìm kiếm", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case 7:
-                if (key != null && !key.isEmpty()) {
-                    arrayList = databaseHandler.getProductSale(key);
-                    if (arrayList != null && arrayList.size() > 0) {
-                        productAdapter = new ProductAdapter(getActivity(), arrayList);
-                        listView.setAdapter(productAdapter);
-                    } else {
-                        Toast.makeText(getActivity(), "Không tìm thấy sản phẩm nào", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(getActivity(), "Bạn chưa nhập từ khóa tìm kiếm", Toast.LENGTH_SHORT).show();
-                }
-                break;
-            case 8:
-                if (key != null && !key.isEmpty()) {
-                    arrayList = databaseHandler.getProductNSX(key);
-                    if (arrayList != null && arrayList.size() > 0) {
-                        productAdapter = new ProductAdapter(getActivity(), arrayList);
-                        listView.setAdapter(productAdapter);
-                    } else {
-                        Toast.makeText(getActivity(), "Không tìm thấy sản phẩm nào", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(getActivity(), "Bạn chưa nhập từ khóa tìm kiếm", Toast.LENGTH_SHORT).show();
-                }
-                break;
-        }
-    }
+//    private void search(String key, int pos) {
+//        switch (pos) {
+//            case 0:
+//                if (key != null && !key.isEmpty()) {
+//                    new GetProductByName().execute(key);
+//                } else {
+//                    Toast.makeText(getActivity(), "Bạn chưa nhập từ khóa tìm kiếm", Toast.LENGTH_SHORT).show();
+//                }
+//                break;
+//            case 1:
+//                if (key != null && !key.isEmpty()) {
+//                    if (arrayList.size() > 0) {
+//                        arrayList.clear();
+//                    }
+//                    if (productAdapter != null) {
+//                        productAdapter.notifyDataSetChanged();
+//                    }
+//                    arrayList = databaseHandler.getProductObject(key);
+//                    if (arrayList != null && arrayList.size() > 0) {
+//                        productAdapter = new ProductAdapter(getActivity(), arrayList);
+//                        listView.setAdapter(productAdapter);
+//                    } else {
+//                        Toast.makeText(getActivity(), "Không tìm thấy sản phẩm nào", Toast.LENGTH_SHORT).show();
+//                    }
+//                } else {
+//                    Toast.makeText(getActivity(), "Bạn chưa nhập từ khóa tìm kiếm", Toast.LENGTH_SHORT).show();
+//                }
+//                break;
+//            case 2:
+//                if (key != null && !key.isEmpty()) {
+//                    if (arrayList.size() > 0) {
+//                        arrayList.clear();
+//                    }
+//                    if (productAdapter != null) {
+//                        productAdapter.notifyDataSetChanged();
+//                    }
+//                    arrayList = databaseHandler.getProductMauSac(key);
+//                    if (arrayList != null && arrayList.size() > 0) {
+//                        productAdapter = new ProductAdapter(getActivity(), arrayList);
+//                        listView.setAdapter(productAdapter);
+//                    } else {
+//                        Toast.makeText(getActivity(), "Không tìm thấy sản phẩm nào", Toast.LENGTH_SHORT).show();
+//                    }
+//                } else {
+//                    Toast.makeText(getActivity(), "Bạn chưa nhập từ khóa tìm kiếm", Toast.LENGTH_SHORT).show();
+//                }
+//                break;
+//            case 3:
+//                if (key != null && !key.isEmpty()) {
+//                    if (arrayList.size() > 0) {
+//                        arrayList.clear();
+//                    }
+//                    if (productAdapter != null) {
+//                        productAdapter.notifyDataSetChanged();
+//                    }
+//                    arrayList = databaseHandler.getProductSize(key);
+//                    if (arrayList != null && arrayList.size() > 0) {
+//                        productAdapter = new ProductAdapter(getActivity(), arrayList);
+//                        listView.setAdapter(productAdapter);
+//                    } else {
+//                        Toast.makeText(getActivity(), "Không tìm thấy sản phẩm nào", Toast.LENGTH_SHORT).show();
+//                    }
+//                } else {
+//                    Toast.makeText(getActivity(), "Bạn chưa nhập từ khóa tìm kiếm", Toast.LENGTH_SHORT).show();
+//                }
+//                break;
+//            case 4:
+//                if (key != null && !key.isEmpty()) {
+//                    if (arrayList.size() > 0) {
+//                        arrayList.clear();
+//                    }
+//                    if (productAdapter != null) {
+//                        productAdapter.notifyDataSetChanged();
+//                    }
+//                    arrayList = databaseHandler.getProductLoai(key);
+//                    if (arrayList != null && arrayList.size() > 0) {
+//                        productAdapter = new ProductAdapter(getActivity(), arrayList);
+//                        listView.setAdapter(productAdapter);
+//                    } else {
+//                        Toast.makeText(getActivity(), "Không tìm thấy sản phẩm nào", Toast.LENGTH_SHORT).show();
+//                    }
+//                } else {
+//                    Toast.makeText(getActivity(), "Bạn chưa nhập từ khóa tìm kiếm", Toast.LENGTH_SHORT).show();
+//                }
+//                break;
+//            case 5:
+//                if (key != null && !key.isEmpty()) {
+//                    if (arrayList.size() > 0) {
+//                        arrayList.clear();
+//                    }
+//                    if (productAdapter != null) {
+//                        productAdapter.notifyDataSetChanged();
+//                    }
+//                    arrayList = databaseHandler.getProductCost(key);
+//                    if (arrayList != null && arrayList.size() > 0) {
+//                        productAdapter = new ProductAdapter(getActivity(), arrayList);
+//                        listView.setAdapter(productAdapter);
+//                    } else {
+//                        Toast.makeText(getActivity(), "Không tìm thấy sản phẩm nào", Toast.LENGTH_SHORT).show();
+//                    }
+//                } else {
+//                    Toast.makeText(getActivity(), "Bạn chưa nhập từ khóa tìm kiếm", Toast.LENGTH_SHORT).show();
+//                }
+//                break;
+//            case 6:
+//                if (key != null && !key.isEmpty()) {
+//                    if (arrayList.size() > 0) {
+//                        arrayList.clear();
+//                    }
+//                    if (productAdapter != null) {
+//                        productAdapter.notifyDataSetChanged();
+//                    }
+//                    arrayList = databaseHandler.getProductMua(key);
+//                    if (arrayList != null && arrayList.size() > 0) {
+//                        productAdapter = new ProductAdapter(getActivity(), arrayList);
+//                        listView.setAdapter(productAdapter);
+//                    } else {
+//                        Toast.makeText(getActivity(), "Không tìm thấy sản phẩm nào", Toast.LENGTH_SHORT).show();
+//                    }
+//                } else {
+//                    Toast.makeText(getActivity(), "Bạn chưa nhập từ khóa tìm kiếm", Toast.LENGTH_SHORT).show();
+//                }
+//                break;
+//            case 7:
+//                if (key != null && !key.isEmpty()) {
+//                    if (arrayList.size() > 0) {
+//                        arrayList.clear();
+//                    }
+//                    if (productAdapter != null) {
+//                        productAdapter.notifyDataSetChanged();
+//                    }
+//                    arrayList = databaseHandler.getProductSale(key);
+//                    if (arrayList != null && arrayList.size() > 0) {
+//                        productAdapter = new ProductAdapter(getActivity(), arrayList);
+//                        listView.setAdapter(productAdapter);
+//                    } else {
+//                        Toast.makeText(getActivity(), "Không tìm thấy sản phẩm nào", Toast.LENGTH_SHORT).show();
+//                    }
+//                } else {
+//                    Toast.makeText(getActivity(), "Bạn chưa nhập từ khóa tìm kiếm", Toast.LENGTH_SHORT).show();
+//                }
+//                break;
+//            case 8:
+//                if (key != null && !key.isEmpty()) {
+//                    if (arrayList.size() > 0) {
+//                        arrayList.clear();
+//                    }
+//                    if (productAdapter != null) {
+//                        productAdapter.notifyDataSetChanged();
+//                    }
+//                    arrayList = databaseHandler.getProductNSX(key);
+//                    if (arrayList != null && arrayList.size() > 0) {
+//                        productAdapter = new ProductAdapter(getActivity(), arrayList);
+//                        listView.setAdapter(productAdapter);
+//                    } else {
+//                        Toast.makeText(getActivity(), "Không tìm thấy sản phẩm nào", Toast.LENGTH_SHORT).show();
+//                    }
+//                } else {
+//                    Toast.makeText(getActivity(), "Bạn chưa nhập từ khóa tìm kiếm", Toast.LENGTH_SHORT).show();
+//                }
+//                break;
+//        }
+//    }
 
-    private class GetProductByName extends AsyncTask<String, Void, Void> {
+    private class GetProductByParams extends AsyncTask<String, Void, Void> {
 
         @Override
         protected void onPreExecute() {
@@ -377,7 +430,25 @@ public class FragmentSearchProduct extends Fragment {
         @Override
         protected Void doInBackground(String... params) {
             if (params[0] != null && !params[0].isEmpty()) {
-                arrayList = databaseHandler.getProductName(params[0]);
+                if (pos == 0) {
+                    arrayList = databaseHandler.getProductName(params[0]);
+                } else if (pos == 1) {
+                    arrayList = databaseHandler.getProductObject(params[0]);
+                } else if (pos == 2) {
+                    arrayList = databaseHandler.getProductMauSac(params[0]);
+                } else if (pos == 3) {
+                    arrayList = databaseHandler.getProductSize(params[0]);
+                } else if (pos == 4) {
+                    arrayList = databaseHandler.getProductLoai(params[0]);
+                } else if (pos == 5) {
+                    arrayList = databaseHandler.getProductCost(params[0]);
+                } else if (pos == 6) {
+                    arrayList = databaseHandler.getProductMua(params[0]);
+                } else if (pos == 7) {
+                    arrayList = databaseHandler.getProductSale(params[0]);
+                } else if (pos == 8) {
+                    arrayList = databaseHandler.getProductNSX(params[0]);
+                }
             }
             return null;
         }

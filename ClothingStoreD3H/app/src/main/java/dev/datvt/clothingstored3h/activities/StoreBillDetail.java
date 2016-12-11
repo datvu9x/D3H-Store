@@ -33,6 +33,7 @@ import dev.datvt.clothingstored3h.models.StoreBill;
 import dev.datvt.clothingstored3h.models.StoreProduct;
 import dev.datvt.clothingstored3h.utils.ConstantHelper;
 import dev.datvt.clothingstored3h.utils.DatabaseHandler;
+import dev.datvt.clothingstored3h.utils.NumberTextWatcherForThousand;
 
 /**
  * Created by DatVIT on 12/5/2016.
@@ -198,16 +199,16 @@ public class StoreBillDetail extends RootActivity implements View.OnClickListene
             public void afterTextChanged(Editable s) {
                 if (etTienMat.getText() != null && !etTienMat.getText().toString().trim().isEmpty()) {
                     if (etTienATM.getText() != null && !etTienATM.getText().toString().trim().isEmpty()) {
-                        tienATMKH = Double.parseDouble(etTienATM.getText().toString().trim());
+                        tienATMKH = Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(etTienATM.getText().toString().trim()));
                     } else {
                         tienATMKH = 0;
                     }
                     if (tvTongTien.getText() != null && !tvTongTien.getText().toString().trim().isEmpty()) {
-                        tienPhaiTra = Double.parseDouble(tvTongTien.getText().toString().trim());
+                        tienPhaiTra = Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(tvTongTien.getText().toString().trim()));
                     } else {
                         tienPhaiTra = 0;
                     }
-                    tienMatKH = Double.parseDouble(etTienMat.getText().toString().trim());
+                    tienMatKH = Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(etTienMat.getText().toString().trim()));
                     Log.e("TIEN", "Tiền mặt: " + tienMatKH);
                     Log.e("TIEN", "Tiền ATM: " + tienATMKH);
                     Log.e("TIEN", "Tiền phải trả: " + tienPhaiTra);
@@ -220,8 +221,8 @@ public class StoreBillDetail extends RootActivity implements View.OnClickListene
                         tienNo = tienPhaiTra - (tienMatKH + tienATMKH);
                         spTrangThai.setSelection(2);
                     }
-                    tvTienNo.setText(tienNo + "");
-                    tvTienThua.setText(tienThua + "");
+                    tvTienNo.setText(NumberTextWatcherForThousand.getDecimalFormattedString(tienNo + ""));
+                    tvTienThua.setText(NumberTextWatcherForThousand.getDecimalFormattedString(tienThua + ""));
                     if (tienMatKH + tienATMKH <= 0) {
                         spTrangThai.setSelection(1);
                     }
@@ -245,16 +246,16 @@ public class StoreBillDetail extends RootActivity implements View.OnClickListene
             public void afterTextChanged(Editable s) {
                 if (etTienATM.getText() != null && !etTienATM.getText().toString().trim().isEmpty()) {
                     if (etTienMat.getText() != null && !etTienMat.getText().toString().trim().isEmpty()) {
-                        tienMatKH = Double.parseDouble(etTienMat.getText().toString().trim());
+                        tienMatKH = Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(etTienMat.getText().toString().trim()));
                     } else {
                         tienMatKH = 0;
                     }
                     if (tvTongTien.getText() != null && !tvTongTien.getText().toString().trim().isEmpty()) {
-                        tienPhaiTra = Double.parseDouble(tvTongTien.getText().toString().trim());
+                        tienPhaiTra = Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(tvTongTien.getText().toString().trim()));
                     } else {
                         tienPhaiTra = 0;
                     }
-                    tienATMKH = Double.parseDouble(etTienATM.getText().toString().trim());
+                    tienATMKH = Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(etTienATM.getText().toString().trim()));
                     if (tienMatKH + tienATMKH >= tienPhaiTra) {
                         tienThua = tienATMKH + tienMatKH - tienPhaiTra;
                         tienNo = 0;
@@ -273,6 +274,9 @@ public class StoreBillDetail extends RootActivity implements View.OnClickListene
             }
         });
 
+
+        etTienATM.addTextChangedListener(new NumberTextWatcherForThousand(etTienATM));
+        etTienMat.addTextChangedListener(new NumberTextWatcherForThousand(etTienMat));
     }
 
     private void getData() {
@@ -347,9 +351,9 @@ public class StoreBillDetail extends RootActivity implements View.OnClickListene
                                 tienGiamGia += (arrayList.get(i).getDonGiaBan() * arrayList.get(i).getGiamGia() / 100);
                             }
 
-                            tvTongTienHang.setText(tien + "");
-                            tvChietKhau.setText(tienChietKhau + "");
-                            tvGiamGia.setText(tienGiamGia + "");
+                            tvTongTienHang.setText(NumberTextWatcherForThousand.getDecimalFormattedString(tien + ""));
+                            tvChietKhau.setText(NumberTextWatcherForThousand.getDecimalFormattedString(tienChietKhau + ""));
+                            tvGiamGia.setText(NumberTextWatcherForThousand.getDecimalFormattedString(tienGiamGia + ""));
                         }
                     }
 
@@ -359,24 +363,24 @@ public class StoreBillDetail extends RootActivity implements View.OnClickListene
 
                     etKhuyenMai.setText(bill.getKhuyenMai() + "");
                     etPhieuGiamGia.setText(bill.getPhieuGiamGia() + "");
-                    etTienATM.setText(Math.round(bill.getTienATM()) + "");
-                    etTienMat.setText(Math.round(bill.getTienMat()) + "");
-                    tvTienNo.setText(Math.round(bill.getTienNo()) + "");
+                    etTienATM.setText(NumberTextWatcherForThousand.getDecimalFormattedString(bill.getTienATM() +""));
+                    etTienMat.setText(NumberTextWatcherForThousand.getDecimalFormattedString(bill.getTienMat() + ""));
+                    tvTienNo.setText(NumberTextWatcherForThousand.getDecimalFormattedString(bill.getTienNo() + ""));
 
-                    tienHang = Double.parseDouble(tvTongTienHang.getText().toString());
-                    double chietKhau = Double.parseDouble(tvChietKhau.getText().toString().trim());
-                    double giamGia = Double.parseDouble(tvGiamGia.getText().toString().trim());
-                    int khuyenMai = Integer.parseInt(etKhuyenMai.getText().toString().trim());
-                    int phieu = Integer.parseInt(etPhieuGiamGia.getText().toString().trim());
+                    tienHang = Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(tvTongTienHang.getText().toString()));
+                    double chietKhau = Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(tvChietKhau.getText().toString().trim()));
+                    double giamGia = Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(tvGiamGia.getText().toString().trim()));
+                    int khuyenMai = Integer.parseInt(NumberTextWatcherForThousand.trimCommaOfString(etKhuyenMai.getText().toString().trim()));
+                    int phieu = Integer.parseInt(NumberTextWatcherForThousand.trimCommaOfString(etPhieuGiamGia.getText().toString().trim()));
                     tienPhaiTra = tienHang - tienHang * (khuyenMai + phieu) * 1.0 / 100 - chietKhau - giamGia;
-                    tvTongTien.setText(tienPhaiTra + "");
+                    tvTongTien.setText(NumberTextWatcherForThousand.getDecimalFormattedString(tienPhaiTra + ""));
 
                     if (tienMatKH + tienATMKH >= tienPhaiTra) {
                         tienThua = tienATMKH + tienMatKH - tienPhaiTra;
                     } else {
                         tienThua = 0;
                     }
-                    tvTienThua.setText(tienThua + "");
+                    tvTienThua.setText(NumberTextWatcherForThousand.getDecimalFormattedString(tienThua + ""));
 
                 }
             }
@@ -431,12 +435,12 @@ public class StoreBillDetail extends RootActivity implements View.OnClickListene
 
             Bill bill = new Bill();
             bill.setMaHD(maHD);
-            bill.setKhuyenMai(Integer.parseInt(khuyenMai));
+            bill.setKhuyenMai(Integer.parseInt(NumberTextWatcherForThousand.trimCommaOfString(khuyenMai)));
             bill.setLoaiKH(spLoaiKH.getSelectedItem().toString().trim());
-            bill.setPhieuGiamGia(Integer.parseInt(phieuGiamGia));
-            bill.setTienATM(Double.parseDouble(tienATM));
-            bill.setTienMat(Double.parseDouble(tienMat));
-            bill.setTienNo(Double.parseDouble(_tienNo));
+            bill.setPhieuGiamGia(Integer.parseInt(NumberTextWatcherForThousand.trimCommaOfString(phieuGiamGia)));
+            bill.setTienATM(Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(tienATM)));
+            bill.setTienMat(Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(tienMat)));
+            bill.setTienNo(Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(_tienNo)));
 
             databaseHandler.capNhatHoaDon(bill);
 

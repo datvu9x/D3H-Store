@@ -9,6 +9,8 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dev.datvt.clothingstored3h.R;
+import dev.datvt.clothingstored3h.adapters.ProductAdapter;
 import dev.datvt.clothingstored3h.adapters.ProductSaleAdapter;
 import dev.datvt.clothingstored3h.models.Product;
 import dev.datvt.clothingstored3h.utils.ConstantHelper;
@@ -39,6 +42,10 @@ public class ListProduct extends RootActivity implements View.OnClickListener {
     private TextView btnOk;
     private ImageView btnBack;
 
+    private AutoCompleteTextView etSearch;
+    private ImageView imgDel, imgSearch;
+    private List<String> arrayListProduct;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +55,9 @@ public class ListProduct extends RootActivity implements View.OnClickListener {
 
         btnBack = (ImageView) findViewById(R.id.btnBack);
         btnBack.setOnClickListener(this);
+        imgDel = (ImageView) findViewById(R.id.imgDelete);
+        imgSearch = (ImageView) findViewById(R.id.imgSearch);
+        etSearch = (AutoCompleteTextView) findViewById(R.id.etSearchOne);
 
         ref = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         ref.setColorSchemeColors(getResources().getColor(R.color.colorOrange),
@@ -56,8 +66,6 @@ public class ListProduct extends RootActivity implements View.OnClickListener {
 
         lvProduct = (ListView) findViewById(R.id.listProduct);
         btnOk = (TextView) findViewById(R.id.btnOk);
-
-        btnOk.setOnClickListener(this);
 
         ref.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -73,6 +81,19 @@ public class ListProduct extends RootActivity implements View.OnClickListener {
                 productList = new ArrayList<>();
             }
         }
+
+        arrayListProduct = new ArrayList<>();
+        if (databaseHandler.getAllProducts().size() > 0) {
+            for (int i = 0; i < databaseHandler.getAllProducts().size(); i++) {
+                arrayListProduct.add(databaseHandler.getAllProducts().get(i).getTenHang());
+            }
+        }
+        ArrayAdapter arrayAdapter1 = new ArrayAdapter(ListProduct.this, android.R.layout.simple_dropdown_item_1line, arrayListProduct);
+        etSearch.setAdapter(arrayAdapter1);
+
+        btnOk.setOnClickListener(this);
+        imgDel.setOnClickListener(this);
+        imgSearch.setOnClickListener(this);
 
         new GetProduct().execute();
 
@@ -100,6 +121,47 @@ public class ListProduct extends RootActivity implements View.OnClickListener {
         }
         if (v == btnBack) {
             finish();
+        }
+
+        if (v == imgSearch) {
+            if (etSearch.getText() != null && !etSearch.getText().toString().isEmpty()) {
+                new GetProductName().execute(etSearch.getText().toString().trim());
+            } else {
+                Toast.makeText(ListProduct.this, "Bạn chưa nhập từ khóa tìm kiếm", Toast.LENGTH_SHORT).show();
+            }
+        }
+        if (v == imgDel) {
+            etSearch.setText("");
+            new GetProduct().execute();
+        }
+    }
+
+    private class GetProductName extends AsyncTask<String, Void, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            ref.setRefreshing(true);
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            productSaleAdapter = new ProductSaleAdapter(ListProduct.this, productArrayList);
+            lvProduct.setAdapter(productSaleAdapter);
+
+            if (productArrayList.size() <= 0) {
+                Toast.makeText(ListProduct.this, "Không tìm thấy sản phẩm nào", Toast.LENGTH_SHORT).show();
+            }
+            ref.setRefreshing(false);
+        }
+
+        @Override
+        protected Void doInBackground(String... params) {
+            if (params[0] != null && !params[0].isEmpty()) {
+                productArrayList = databaseHandler.getProductName(params[0]);
+            }
+            return null;
         }
     }
 

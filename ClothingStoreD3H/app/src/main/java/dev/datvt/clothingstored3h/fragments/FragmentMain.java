@@ -21,6 +21,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wang.avi.AVLoadingIndicatorView;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,6 +36,7 @@ import dev.datvt.clothingstored3h.models.Employee;
 import dev.datvt.clothingstored3h.models.Product;
 import dev.datvt.clothingstored3h.utils.ConstantHelper;
 import dev.datvt.clothingstored3h.utils.DatabaseHandler;
+import dev.datvt.clothingstored3h.utils.NumberTextWatcherForThousand;
 import dev.datvt.clothingstored3h.utils.ToolsHelper;
 
 /**
@@ -52,15 +55,17 @@ public class FragmentMain extends Fragment implements View.OnClickListener {
     private List<Product> productArrayList;
     private List<String> arrayListProduct;
 
-    private ImageView imgDel, imgSearch;
+
     private TextView nhanVien, tienGiao, tienBan;
 
     private DatabaseHandler databaseHandler;
     private AutoCompleteTextView etSearch;
+    private ImageView imgDel, imgSearch;
 
     private Employee employee;
     private double tienBanHang = 0;
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    private AVLoadingIndicatorView avi;
 
     @Nullable
     @Override
@@ -79,6 +84,7 @@ public class FragmentMain extends Fragment implements View.OnClickListener {
         tienGiao = (TextView) view.findViewById(R.id.tienDuocGiao);
         tienBan = (TextView) view.findViewById(R.id.tienBanHang);
         etSearch = (AutoCompleteTextView) view.findViewById(R.id.etSearch);
+        avi = (AVLoadingIndicatorView) view.findViewById(R.id.avi);
 
         arrayListProduct = new ArrayList<>();
         if (databaseHandler.getAllProducts().size() > 0) {
@@ -108,9 +114,9 @@ public class FragmentMain extends Fragment implements View.OnClickListener {
         employee = databaseHandler.getEmployee(MainActivity.id);
         if (employee != null) {
             nhanVien.setText(employee.getName());
-            tienGiao.setText(ToolsHelper.intToString((int) Math.round(MainActivity.money)) + " $");
+            tienGiao.setText(NumberTextWatcherForThousand.getDecimalFormattedString(MainActivity.money + "") + " $");
             tienBanHang = databaseHandler.getMoneySale(simpleDateFormat.format(new Date()), employee.getId());
-            tienBan.setText(ToolsHelper.intToString((int) Math.round(tienBanHang)) + " $");
+            tienBan.setText(NumberTextWatcherForThousand.getDecimalFormattedString(tienBanHang + "") + " $");
         }
 
         infoFrame.setOnClickListener(this);
@@ -178,6 +184,7 @@ public class FragmentMain extends Fragment implements View.OnClickListener {
         protected void onPreExecute() {
             super.onPreExecute();
             ref.setRefreshing(true);
+            avi.smoothToShow();
         }
 
         @Override
@@ -194,6 +201,7 @@ public class FragmentMain extends Fragment implements View.OnClickListener {
                 lnWarning.setVisibility(View.INVISIBLE);
             }
             ref.setRefreshing(false);
+            avi.smoothToHide();
         }
 
         @Override

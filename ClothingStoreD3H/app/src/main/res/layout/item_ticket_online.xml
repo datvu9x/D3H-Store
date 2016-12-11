@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/bg_selected_item"
+        android:padding="5dp">
+
+        <dev.datvt.clothingstored3h.utils.CustomFontTextView
+            android:id="@+id/index"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:text="1"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_toLeftOf="@+id/isCheck"
+            android:layout_toRightOf="@+id/index"
+            android:orientation="vertical">
+
+            <dev.datvt.clothingstored3h.utils.CustomFontTextView
+                android:id="@+id/tenKH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Khách hàng: Vũ Thế Đạt"
+                android:textColor="@color/colorBlack"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <dev.datvt.clothingstored3h.utils.CustomFontTextView
+                android:id="@+id/loaiKH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Loại: Khách buôn"
+                android:textColor="@color/colorBlack"
+                android:textSize="13sp" />
+
+            <dev.datvt.clothingstored3h.utils.CustomFontTextView
+                android:id="@+id/diaChi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Địa chỉ: Gia Lâm - Hà Nội"
+                android:textColor="@color/colorBlack"
+                android:textSize="13sp" />
+
+            <dev.datvt.clothingstored3h.utils.CustomFontTextView
+                android:id="@+id/soLuong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Số lượng mua: 5 SP"
+                android:textColor="@color/colorBlack"
+                android:textSize="13sp" />
+
+            <dev.datvt.clothingstored3h.utils.CustomFontTextView
+                android:id="@+id/ngayMua"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Ngày mua: 24/06/1995"
+                android:textColor="@color/colorBlack"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/isCheck"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/oval_red" />
+    </RelativeLayout>
+</LinearLayout>

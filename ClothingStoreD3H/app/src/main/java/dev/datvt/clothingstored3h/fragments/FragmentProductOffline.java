@@ -15,6 +15,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wang.avi.AVLoadingIndicatorView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +45,7 @@ public class FragmentProductOffline extends Fragment implements View.OnClickList
     private TicketOfflineAdapter ticketOfflineAdapter;
     private SwipeRefreshLayout ref;
     private int index = 0;
+    private AVLoadingIndicatorView avi;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,6 +61,7 @@ public class FragmentProductOffline extends Fragment implements View.OnClickList
 
         btnCreateProductTicket = (TextView) viewFragment.findViewById(R.id.btnCreateProductTicket);
         listView = (ListView) viewFragment.findViewById(R.id.listProductTicketOffline);
+        avi = (AVLoadingIndicatorView) viewFragment.findViewById(R.id.avi);
 
         ref = (SwipeRefreshLayout) viewFragment.findViewById(R.id.swipeRefreshLayout);
         ref.setColorSchemeColors(getResources().getColor(R.color.colorOrange),
@@ -97,6 +101,7 @@ public class FragmentProductOffline extends Fragment implements View.OnClickList
         protected void onPreExecute() {
             super.onPreExecute();
             ref.setRefreshing(true);
+            avi.smoothToShow();
         }
 
         @Override
@@ -109,6 +114,7 @@ public class FragmentProductOffline extends Fragment implements View.OnClickList
                 Toast.makeText(getActivity(), "Không có đơn hàng nào", Toast.LENGTH_SHORT).show();
             }
             ref.setRefreshing(false);
+            avi.smoothToHide();
         }
 
         @Override

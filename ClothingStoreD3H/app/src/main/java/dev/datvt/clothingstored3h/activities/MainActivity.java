@@ -1,10 +1,13 @@
 package dev.datvt.clothingstored3h.activities;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,9 +17,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 
 import dev.datvt.clothingstored3h.R;
@@ -35,8 +40,9 @@ public class MainActivity extends RootActivity implements View.OnClickListener,
     private Toolbar toolbar;
 
     private int cur_fragment = ConstantHelper.FRAGMENT_MAIN;
-    public static String  id;
-    public static double  money;
+    public static String id;
+    public static double money;
+    public Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +57,17 @@ public class MainActivity extends RootActivity implements View.OnClickListener,
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+//        // initialize the Floating button
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//
+//        // set Click listener
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                CustomDialog();
+//            }
+//        });
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -114,6 +131,57 @@ public class MainActivity extends RootActivity implements View.OnClickListener,
     @Override
     public void onClick(View v) {
 
+    }
+
+    public void CustomDialog() {
+
+        dialog = new Dialog(MainActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialogbox);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams param = window.getAttributes();
+        param.gravity = Gravity.BOTTOM | Gravity.RIGHT;
+        dialog.setCanceledOnTouchOutside(true);
+        // initialize the item of the dialog box, whose id is demo1
+        View demodialog = (View) dialog.findViewById(R.id.cross);
+
+        demodialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int id = v.getId();
+                switch (id) {
+                    case R.id.addBill:
+                        toolbar.setTitle("Lập hóa đơn");
+                        cur_fragment = ConstantHelper.FRAGMENT_CREATE_BILL;
+                        exchangeFragment(cur_fragment);
+                        break;
+                    case R.id.addProduct:
+                        toolbar.setTitle("Nhập hàng hóa");
+                        cur_fragment = ConstantHelper.FRAGMENT_ADD_PRODUCT;
+                        exchangeFragment(cur_fragment);
+                        break;
+                    case R.id.search:
+                        toolbar.setTitle("Tra cứu");
+                        cur_fragment = ConstantHelper.FRAGMENT_SEARCH_PRODUCT;
+                        exchangeFragment(cur_fragment);
+                        break;
+                    case R.id.transfer:
+                        toolbar.setTitle("Bàn giao ca");
+                        cur_fragment = ConstantHelper.FRAGMENT_TRANSFER_SHIFT;
+                        exchangeFragment(cur_fragment);
+                        break;
+                    case R.id.summary:
+                        toolbar.setTitle("Tổng kết cuối ngày");
+                        cur_fragment = ConstantHelper.FRAGMENT_REPORT;
+                        exchangeFragment(cur_fragment);
+                        break;
+                }
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
     @Override
@@ -196,7 +264,7 @@ public class MainActivity extends RootActivity implements View.OnClickListener,
                 startActivityForResult(intent4, ConstantHelper.PRODUCT_TICKET);
                 break;
             case R.id.nav_nhap_hang:
-                toolbar.setTitle("Thêm hàng hóa");
+                toolbar.setTitle("Nhập hàng hóa");
                 cur_fragment = ConstantHelper.FRAGMENT_ADD_PRODUCT;
                 exchangeFragment(cur_fragment);
                 break;

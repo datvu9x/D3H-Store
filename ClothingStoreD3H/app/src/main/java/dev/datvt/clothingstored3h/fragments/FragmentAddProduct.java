@@ -21,6 +21,7 @@ import dev.datvt.clothingstored3h.R;
 import dev.datvt.clothingstored3h.models.Product;
 import dev.datvt.clothingstored3h.models.Properties;
 import dev.datvt.clothingstored3h.utils.DatabaseHandler;
+import dev.datvt.clothingstored3h.utils.NumberTextWatcherForThousand;
 
 /**
  * Created by DatVIT on 10/16/2016.
@@ -132,6 +133,11 @@ public class FragmentAddProduct extends Fragment implements View.OnClickListener
         };
         arrayAdapterDoiTuong.setDropDownViewResource(android.R.layout.simple_list_item_single_choice);
         spDoiTuong.setAdapter(arrayAdapterDoiTuong);
+
+        etDonGia.addTextChangedListener(new NumberTextWatcherForThousand(etDonGia));
+        etSoLuong.addTextChangedListener(new NumberTextWatcherForThousand(etSoLuong));
+        etGiamGia.addTextChangedListener(new NumberTextWatcherForThousand(etGiamGia));
+        etChietKhau.addTextChangedListener(new NumberTextWatcherForThousand(etChietKhau));
     }
 
     private void addProduct() {
@@ -159,8 +165,9 @@ public class FragmentAddProduct extends Fragment implements View.OnClickListener
             properties.setMa(databaseHandler.isCheckProperties(loaiHangHoa, Integer.parseInt(kichThuoc), mauSac, spDoiTuong.getSelectedItem().toString(),
                     spMua.getSelectedItem().toString(), nsx));
             Log.d("ADD_PRODUCT", "MA_THUOC_TINH: "  + properties.getMa());
-            Product product = new Product(maHang, tenHang, Double.parseDouble(donGia),
-                    Integer.parseInt(giamGia), Integer.parseInt(chietKhau), Integer.parseInt(soLuong), properties);
+            Product product = new Product(maHang, tenHang, Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(donGia)),
+                    Integer.parseInt(NumberTextWatcherForThousand.trimCommaOfString(giamGia)),
+                    Integer.parseInt(NumberTextWatcherForThousand.trimCommaOfString(chietKhau)), Integer.parseInt(NumberTextWatcherForThousand.trimCommaOfString(soLuong)), properties);
             Log.d("ADD_PRODUCT", !databaseHandler.isCheckProduct(maHang) + "");
             if (!databaseHandler.isCheckProduct(maHang)) {
                 databaseHandler.addProduct(product);

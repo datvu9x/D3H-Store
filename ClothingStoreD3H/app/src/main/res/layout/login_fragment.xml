@@ -96,7 +96,7 @@
 
                 <ImageView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="32dp"
                     android:layout_weight="1"
                     android:padding="5dp"
                     android:src="@drawable/account_login" />
@@ -127,7 +127,7 @@
 
                 <ImageView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="32dp"
                     android:layout_weight="1"
                     android:padding="5dp"
                     android:src="@drawable/key_login" />
@@ -157,7 +157,7 @@
 
                 <ImageView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="32dp"
                     android:layout_weight="1"
                     android:padding="5dp"
                     android:src="@drawable/money_ban" />

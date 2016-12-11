@@ -21,6 +21,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.wang.avi.AVLoadingIndicatorView;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,6 +32,7 @@ import dev.datvt.clothingstored3h.R;
 import dev.datvt.clothingstored3h.adapters.SummaryAdapter;
 import dev.datvt.clothingstored3h.models.Summary;
 import dev.datvt.clothingstored3h.utils.DatabaseHandler;
+import dev.datvt.clothingstored3h.utils.NumberTextWatcherForThousand;
 import dev.datvt.clothingstored3h.utils.ToolsHelper;
 
 /**
@@ -51,6 +54,7 @@ public class FragmentSummary extends Fragment {
     private ImageView loadData;
     private LinearLayout frameSummary;
     private double lai = 0, von = 0;
+    private AVLoadingIndicatorView avi;
 
     @Nullable
     @Override
@@ -67,6 +71,7 @@ public class FragmentSummary extends Fragment {
         titleSummary = (TextView) viewFragment.findViewById(R.id.titleSummary);
         loadData = (ImageView) viewFragment.findViewById(R.id.loadData);
         frameSummary = (LinearLayout) viewFragment.findViewById(R.id.frameSummary);
+        avi = (AVLoadingIndicatorView) viewFragment.findViewById(R.id.avi);
 
         etDate.setText(simpleDateFormat.format(new Date()));
 
@@ -80,10 +85,13 @@ public class FragmentSummary extends Fragment {
         loadData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                summaryList.clear();
-                summaryAdapter.notifyDataSetChanged();
-
                 if (etDate.getText() != null && !etDate.getText().toString().isEmpty()) {
+                    if (summaryList != null && summaryList.size() > 0) {
+                        summaryList.clear();
+                    }
+                    if (summaryAdapter != null) {
+                        summaryAdapter.notifyDataSetChanged();
+                    }
                     new GetSummary().execute(etDate.getText().toString());
                 }
             }
@@ -99,11 +107,13 @@ public class FragmentSummary extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            avi.smoothToShow();
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            avi.smoothToHide();
             if (summaryList.size() > 0) {
                 frameSummary.setVisibility(View.VISIBLE);
                 summaryAdapter = new SummaryAdapter(getActivity(), summaryList);
@@ -116,11 +126,11 @@ public class FragmentSummary extends Fragment {
                     lai += (summaryList.get(i).getDonGiaBan() * summaryList.get(i).getSoLuongBan()) - (summaryList.get(i).getDonGiaNhap() * summaryList.get(i).getSoLuongBan());
                 }
 
-                tienVon.setText(ToolsHelper.intToString((int) Math.round(von)) + " $");
+                tienVon.setText(NumberTextWatcherForThousand.getDecimalFormattedString(von + "") + " $");
                 if (lai < 0) {
-                    tienLai.setText("-" + ToolsHelper.intToString((int) Math.round(lai * (-1))) + " $");
+                    tienLai.setText("-" + NumberTextWatcherForThousand.getDecimalFormattedString((lai * (-1)) + "") + " $");
                 } else {
-                    tienVon.setText(ToolsHelper.intToString((int) Math.round(lai)) + " $");
+                    tienVon.setText(NumberTextWatcherForThousand.getDecimalFormattedString(lai + "") + " $");
                 }
 
                 if (lai > 0) {

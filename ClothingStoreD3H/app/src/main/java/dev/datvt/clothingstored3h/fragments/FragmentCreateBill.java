@@ -36,6 +36,7 @@ import dev.datvt.clothingstored3h.models.StoreBill;
 import dev.datvt.clothingstored3h.models.StoreProduct;
 import dev.datvt.clothingstored3h.utils.ConstantHelper;
 import dev.datvt.clothingstored3h.utils.DatabaseHandler;
+import dev.datvt.clothingstored3h.utils.NumberTextWatcherForThousand;
 
 
 /**
@@ -168,7 +169,7 @@ public class FragmentCreateBill extends Fragment implements View.OnClickListener
             @Override
             public void afterTextChanged(Editable s) {
                 if (tvTongTienHang.getText() != null && !tvTongTienHang.getText().toString().isEmpty()) {
-                    tienHang = Double.parseDouble(tvTongTienHang.getText().toString());
+                    tienHang = Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(tvTongTienHang.getText().toString()));
                 }
             }
         });
@@ -187,12 +188,12 @@ public class FragmentCreateBill extends Fragment implements View.OnClickListener
             @Override
             public void afterTextChanged(Editable s) {
                 if (etPhieuGiamGia.getText() != null && !etPhieuGiamGia.getText().toString().isEmpty()) {
-                    double chietKhau = Double.parseDouble(tvChietKhau.getText().toString().trim());
-                    double khuyenMai = Double.parseDouble(tvGiamGia.getText().toString().trim());
-                    int giamGia = Integer.parseInt(etPhieuGiamGia.getText().toString().trim());
-                    int mai = Integer.parseInt(etKhuyenMai.getText().toString().trim());
+                    double chietKhau = Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(tvChietKhau.getText().toString().trim()));
+                    double khuyenMai = Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(tvGiamGia.getText().toString().trim()));
+                    int giamGia = Integer.parseInt(NumberTextWatcherForThousand.trimCommaOfString(etPhieuGiamGia.getText().toString().trim()));
+                    int mai = Integer.parseInt(NumberTextWatcherForThousand.trimCommaOfString(etKhuyenMai.getText().toString().trim()));
                     tienPhaiTra = tienHang - tienHang * ((giamGia + mai) * 1.0 / 100) - khuyenMai - chietKhau;
-                    tvTongTien.setText(tienPhaiTra + "");
+                    tvTongTien.setText(NumberTextWatcherForThousand.getDecimalFormattedString(tienPhaiTra + ""));
                 }
             }
         });
@@ -211,13 +212,13 @@ public class FragmentCreateBill extends Fragment implements View.OnClickListener
             @Override
             public void afterTextChanged(Editable s) {
                 if (etTienMat.getText() != null && !etTienMat.getText().toString().trim().isEmpty()) {
-                    tienMatKH = Double.parseDouble(etTienMat.getText().toString().trim());
+                    tienMatKH = Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(etTienMat.getText().toString().trim()));
                     if (tienMatKH + tienATMKH >= tienPhaiTra) {
                         tienThua = tienATMKH + tienMatKH - tienPhaiTra;
                     } else {
                         tienThua = 0;
                     }
-                    tvTienThua.setText(tienThua + "");
+                    tvTienThua.setText(NumberTextWatcherForThousand.getDecimalFormattedString(tienThua + ""));
                 }
             }
         });
@@ -236,16 +237,19 @@ public class FragmentCreateBill extends Fragment implements View.OnClickListener
             @Override
             public void afterTextChanged(Editable s) {
                 if (etTienATM.getText() != null && !etTienATM.getText().toString().trim().isEmpty()) {
-                    tienATMKH = Double.parseDouble(etTienATM.getText().toString().trim());
+                    tienATMKH = Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(etTienATM.getText().toString().trim()));
                     if (tienMatKH + tienATMKH >= tienPhaiTra) {
                         tienThua = tienATMKH + tienMatKH - tienPhaiTra;
                     } else {
                         tienThua = 0;
                     }
-                    tvTienThua.setText(tienThua + "");
+                    tvTienThua.setText(NumberTextWatcherForThousand.getDecimalFormattedString(tienThua + ""));
                 }
             }
         });
+
+        etTienATM.addTextChangedListener(new NumberTextWatcherForThousand(etTienATM));
+        etTienMat.addTextChangedListener(new NumberTextWatcherForThousand(etTienMat));
 
         return viewFragment;
     }
@@ -302,15 +306,15 @@ public class FragmentCreateBill extends Fragment implements View.OnClickListener
             Log.d("CUSTOMER_ID", customer.getId() + "");
 
             Bill bill = new Bill();
-            bill.setKhuyenMai(Integer.parseInt(khuyenMai));
+            bill.setKhuyenMai(Integer.parseInt(NumberTextWatcherForThousand.trimCommaOfString(khuyenMai)));
             bill.setLoaiKH(spLoaiKH.getSelectedItem().toString().trim());
             bill.setMaKH(customer.getId());
             bill.setMaNV(MainActivity.id);
             bill.setNgayLap(simpleDateFormat.format(new Date()));
             Log.d("CUSTOMER_DATE", bill.getNgayLap());
-            bill.setPhieuGiamGia(Integer.parseInt(phieuGiamGia));
-            bill.setTienATM(Double.parseDouble(tienATM));
-            bill.setTienMat(Double.parseDouble(tienMat));
+            bill.setPhieuGiamGia(Integer.parseInt(NumberTextWatcherForThousand.trimCommaOfString(phieuGiamGia)));
+            bill.setTienATM(Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(tienATM)));
+            bill.setTienMat(Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(tienMat)));
             if (tienATMKH + tienMatKH < tienPhaiTra) {
                 tienNo = tienPhaiTra - tienATMKH - tienMatKH;
             } else {
@@ -405,9 +409,9 @@ public class FragmentCreateBill extends Fragment implements View.OnClickListener
                         tienGiamGia += (arrayList.get(i).getDonGiaBan() * arrayList.get(i).getGiamGia() / 100);
                     }
 
-                    tvTongTienHang.setText(tien + "");
-                    tvChietKhau.setText(tienChietKhau + "");
-                    tvGiamGia.setText(tienGiamGia + "");
+                    tvTongTienHang.setText(NumberTextWatcherForThousand.getDecimalFormattedString(tien + ""));
+                    tvChietKhau.setText(NumberTextWatcherForThousand.getDecimalFormattedString(tienChietKhau + ""));
+                    tvGiamGia.setText(NumberTextWatcherForThousand.getDecimalFormattedString(tienGiamGia + ""));
                 }
             }
         }

@@ -30,4 +30,6 @@ dependencies {
     compile 'com.android.support:support-v4:24.0.0'
     compile 'com.android.support:design:24.0.0'
     compile 'com.itextpdf:itextpdf:5.3.2'
+    compile 'com.google.code.gson:gson:2.6.2'
+    compile 'com.wang.avi:library:2.1.3'
 }

@@ -15,6 +15,7 @@ import java.util.List;
 
 import dev.datvt.clothingstored3h.R;
 import dev.datvt.clothingstored3h.models.Product;
+import dev.datvt.clothingstored3h.utils.NumberTextWatcherForThousand;
 import dev.datvt.clothingstored3h.utils.ToolsHelper;
 
 
@@ -67,21 +68,8 @@ public class ProductAdapter extends BaseAdapter {
 
         Product product = (Product) getItem(position);
         holder.name.setText(product.getTenHang());
-        if (product.getSoLuongConLai() >= 1000) {
-            holder.number.setText("Số lượng: " + ToolsHelper.intToString(product.getSoLuongConLai()));
-        } else {
-            holder.number.setText("Số lượng: " + product.getSoLuongConLai());
-        }
-
-        if (position % 2 == 1) {
-            holder.img.setImageResource(R.drawable.ic_myproducts);
-        } else if (position % 2 == 0) {
-            holder.img.setImageResource(R.drawable.ic_myproducts_1);
-        } else if (position % 10 == 0) {
-            holder.img.setImageResource(R.drawable.ic_myproducts_2);
-        } else {
-            holder.img.setImageResource(R.drawable.ic_myproducts);
-        }
+        holder.number.setText("Số lượng: " + NumberTextWatcherForThousand.getDecimalFormattedString(product.getSoLuongConLai() + ""));
+        holder.img.setImageResource(R.drawable.ic_myproducts);
 
         return convertView;
     }

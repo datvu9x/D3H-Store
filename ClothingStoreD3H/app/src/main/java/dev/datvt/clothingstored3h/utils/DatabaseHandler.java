@@ -530,7 +530,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public List<Customer> getCusomerByName(String name) {
         SQLiteDatabase db = this.getReadableDatabase();
-        List<Customer> list = new ArrayList <>();
+        List<Customer> list = new ArrayList<>();
         Cursor cursor = db.query(TABLE_KHACH_HANG, null, KEY_TEN_KH + "=?", new String[]{name}, null, null, null, null);
 
         if (cursor != null && cursor.getCount() > 0) {
@@ -552,6 +552,51 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return list;
     }
 
+    public Product getProductWithID(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Product product = null;
+        Cursor cursor = db.query(TABLE_HANG_HOA, null, KEY_MA_HANG + "=?",
+                new String[]{id}, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            while (!cursor.isAfterLast()) {
+                product = new Product();
+                product.setMaHang(cursor.getString(0));
+                product.setTenHang(cursor.getString(1));
+                product.setDonGiaNhap(cursor.getDouble(2));
+                product.setSoLuongNhap(cursor.getInt(3));
+                product.setChietKhau(cursor.getInt(4));
+                product.setGiamGia(cursor.getInt(5));
+                product.setSoLuongConLai(getNumberProduct(cursor.getString(0)));
+
+                Cursor cursor2 = db.query(TABLE_THUOC_TINH_HANG_HOA, null, KEY_MA_THUOC_TINH + "=?",
+                        new String[]{cursor.getInt(6) + ""}, null, null, null, null);
+
+                if (cursor2 != null) {
+                    cursor2.moveToFirst();
+                    while (!cursor2.isAfterLast()) {
+                        Properties properties = new Properties();
+                        properties.setMa(cursor2.getInt(0));
+                        properties.setLoai(cursor2.getString(1));
+                        properties.setKichThuoc(cursor2.getInt(2));
+                        properties.setMauSac(cursor2.getString(3));
+                        properties.setDoiTuong(cursor2.getString(4));
+                        properties.setMua(cursor2.getString(5));
+                        properties.setNsx(cursor2.getString(6));
+                        product.setThuocTinh(properties);
+                        cursor2.moveToNext();
+                    }
+                    cursor2.close();
+                }
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+
+        return product;
+    }
+
     public List<Product> getProductName(String name) {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Product> productList = new ArrayList<>();
@@ -568,6 +613,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 product.setSoLuongNhap(cursor.getInt(3));
                 product.setChietKhau(cursor.getInt(4));
                 product.setGiamGia(cursor.getInt(5));
+                product.setSoLuongConLai(getNumberProduct(cursor.getString(0)));
 
                 Cursor cursor2 = db.query(TABLE_THUOC_TINH_HANG_HOA, null, KEY_MA_THUOC_TINH + "=?",
                         new String[]{cursor.getInt(6) + ""}, null, null, null, null);
@@ -614,6 +660,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 product.setSoLuongNhap(cursor.getInt(3));
                 product.setChietKhau(cursor.getInt(4));
                 product.setGiamGia(cursor.getInt(5));
+                product.setSoLuongConLai(getNumberProduct(cursor.getString(0)));
 
                 Cursor cursor2 = db.query(TABLE_THUOC_TINH_HANG_HOA, null, KEY_MA_THUOC_TINH + "=?",
                         new String[]{cursor.getInt(6) + ""}, null, null, null, null);
@@ -728,6 +775,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         product.setSoLuongNhap(cursor2.getInt(3));
                         product.setChietKhau(cursor2.getInt(4));
                         product.setGiamGia(cursor2.getInt(5));
+                        product.setSoLuongConLai(getNumberProduct(cursor2.getString(0)));
                         product.setThuocTinh(properties);
                         productList.add(product);
                         cursor2.moveToNext();
@@ -775,6 +823,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         product.setSoLuongNhap(cursor2.getInt(3));
                         product.setChietKhau(cursor2.getInt(4));
                         product.setGiamGia(cursor2.getInt(5));
+                        product.setSoLuongConLai(getNumberProduct(cursor2.getString(0)));
                         product.setThuocTinh(properties);
                         productList.add(product);
                         cursor2.moveToNext();
@@ -822,6 +871,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         product.setSoLuongNhap(cursor2.getInt(3));
                         product.setChietKhau(cursor2.getInt(4));
                         product.setGiamGia(cursor2.getInt(5));
+                        product.setSoLuongConLai(getNumberProduct(cursor2.getString(0)));
                         product.setThuocTinh(properties);
                         productList.add(product);
                         cursor2.moveToNext();
@@ -869,6 +919,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         product.setSoLuongNhap(cursor2.getInt(3));
                         product.setChietKhau(cursor2.getInt(4));
                         product.setGiamGia(cursor2.getInt(5));
+                        product.setSoLuongConLai(getNumberProduct(cursor2.getString(0)));
                         product.setThuocTinh(properties);
                         productList.add(product);
                         cursor2.moveToNext();
@@ -917,6 +968,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         product.setChietKhau(cursor2.getInt(4));
                         product.setGiamGia(cursor2.getInt(5));
                         product.setThuocTinh(properties);
+                        product.setSoLuongConLai(getNumberProduct(cursor2.getString(0)));
                         productList.add(product);
                         cursor2.moveToNext();
                     }
@@ -963,6 +1015,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         product.setSoLuongNhap(cursor2.getInt(3));
                         product.setChietKhau(cursor2.getInt(4));
                         product.setGiamGia(cursor2.getInt(5));
+                        product.setSoLuongConLai(getNumberProduct(cursor2.getString(0)));
                         product.setThuocTinh(properties);
                         productList.add(product);
                         cursor2.moveToNext();
@@ -994,6 +1047,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 product.setSoLuongNhap(cursor.getInt(3));
                 product.setChietKhau(cursor.getInt(4));
                 product.setGiamGia(cursor.getInt(5));
+                product.setSoLuongConLai(getNumberProduct(cursor.getString(0)));
 
                 Cursor cursor2 = db.query(TABLE_THUOC_TINH_HANG_HOA, null, KEY_MA_THUOC_TINH + "=?",
                         new String[]{cursor.getInt(6) + ""}, null, null, null, null);
@@ -1102,7 +1156,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public List<StoreBill> getAllDonHangOffline() {
         List<StoreBill> list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_DON_HANG, null, KEY_LOAI_GIAO_DICH + "=?", new String[]{"Offline"}, null, null, null, null);
+
+        Cursor cursor = db.query(TABLE_DON_HANG, null, null, null, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
 
@@ -1122,22 +1177,26 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return list;
     }
 
-    public List<StoreBill> getAllDonHangOnline() {
-        List<StoreBill> list = new ArrayList<>();
+    public List<Bill> getAllBill() {
+        List<Bill> list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_DON_HANG, null, KEY_LOAI_GIAO_DICH + "=?", new String[]{"Online"}, null, null, null, null);
+        Cursor cursor = db.query(TABLE_HOA_DON, null, null, null, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
 
             while (!cursor.isAfterLast()) {
-
-                StoreBill storeBill = new StoreBill();
-                storeBill.setMaPhieu(cursor.getInt(0));
-                storeBill.setTrangThai(cursor.getString(1));
-                storeBill.setLoaGiaoDich(cursor.getString(2));
-                storeBill.setMaHD(cursor.getInt(3));
-
-                list.add(storeBill);
+                Bill bill = new Bill();
+                bill.setMaHD(cursor.getInt(0));
+                bill.setMaKH(cursor.getInt(1));
+                bill.setLoaiKH(cursor.getString(2));
+                bill.setMaNV(cursor.getString(3));
+                bill.setTienMat(cursor.getDouble(4));
+                bill.setTienATM(cursor.getDouble(5));
+                bill.setKhuyenMai(cursor.getInt(6));
+                bill.setPhieuGiamGia(cursor.getInt(7));
+                bill.setTienNo(cursor.getDouble(8));
+                bill.setNgayLap(cursor.getString(9));
+                list.add(bill);
                 cursor.moveToNext();
             }
 
@@ -1218,6 +1277,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 product.setMaHang(cursor.getString(0));
                 product.setDonGiaBan(cursor.getDouble(2));
                 product.setSoLuongBan(cursor.getInt(3));
+                product.setSoLuongConLai(getNumberProduct(cursor.getString(0)));
                 product.setSale(true);
 
                 Cursor cursor1 = db.query(TABLE_HANG_HOA, null, KEY_MA_HANG + "=?", new String[]{cursor.getString(0)}, null, null, null, null);

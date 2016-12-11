@@ -71,18 +71,22 @@ public class TicketOfflineAdapter extends BaseAdapter {
 
         StoreBill storeBill = (StoreBill) getItem(position);
 
-        holder.maPhieu.setText("Mã Phiếu: " + storeBill.getMaPhieu());
-        holder.tenKH.setText("UnKnow");
+        holder.maPhieu.setText("Mã phiếu: " + storeBill.getMaPhieu());
+        holder.tenKH.setText("Khách hàng: " + "UnKnown");
         holder.index.setText((position + 1) + "");
 
         Bill bill = databaseHandler.getBillWithID(storeBill.getMaHD() + "");
         if (bill != null) {
             Customer customer = databaseHandler.getCustomerWithID(bill.getMaKH() + "");
             if (customer != null) {
-                holder.tenKH.setText(customer.getName());
+                holder.tenKH.setText("Khách hàng: " + customer.getName());
             }
         }
 
+        holder.type.setText(storeBill.getLoaGiaoDich());
+        if (storeBill.getLoaGiaoDich().equals("Offline")) {
+            holder.type.setTextColor(context.getResources().getColor(R.color.colorRed));
+        }
         holder.thanhToan.setText("Trạng thái: " + storeBill.getTrangThai());
 
         if (storeBill.getTrangThai().equals("Chưa thanh toán")) {
@@ -101,6 +105,7 @@ public class TicketOfflineAdapter extends BaseAdapter {
         holder.maPhieu = (TextView) v.findViewById(R.id.idPhieu);
         holder.tenKH = (TextView) v.findViewById(R.id.tenKH);
         holder.index = (TextView) v.findViewById(R.id.index);
+        holder.type = (TextView) v.findViewById(R.id.type);
         holder.thanhToan = (TextView) v.findViewById(R.id.thanhToan);
         holder.isCheck = (ImageView) v.findViewById(R.id.isCheck);
         return holder;
@@ -109,6 +114,7 @@ public class TicketOfflineAdapter extends BaseAdapter {
     private static class ViewHolder {
         public TextView maPhieu;
         public TextView tenKH;
+        public TextView type;
         public TextView index;
         public TextView thanhToan;
         public ImageView isCheck;

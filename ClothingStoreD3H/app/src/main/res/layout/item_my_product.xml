@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="10"
+            android:gravity="center"
             android:layout_marginLeft="5dp"
             android:textColor="@color/colorBlack"
             android:textSize="13sp" />
@@ -36,6 +37,7 @@
             android:id="@+id/tvDonGia"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:layout_weight="2"
             android:text="120.000"
             android:layout_marginLeft="5dp"
@@ -48,6 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="1.200.000"
+            android:gravity="center"
             android:layout_marginLeft="5dp"
             android:textColor="@color/colorBlack"
             android:textSize="13sp" />

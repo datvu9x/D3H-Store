@@ -22,6 +22,7 @@ import java.util.List;
 
 import dev.datvt.clothingstored3h.R;
 import dev.datvt.clothingstored3h.models.Product;
+import dev.datvt.clothingstored3h.utils.NumberTextWatcherForThousand;
 import dev.datvt.clothingstored3h.utils.ToolsHelper;
 
 
@@ -74,29 +75,11 @@ public class ProductSaleAdapter extends BaseAdapter {
 
         final Product product = (Product) getItem(position);
         holder.name.setText(product.getTenHang());
-        if (product.getSoLuongConLai() >= 1000) {
-            holder.number.setText("Số lượng: " + ToolsHelper.intToString(product.getSoLuongConLai()));
-        } else {
-            holder.number.setText("Số lượng: " + product.getSoLuongConLai());
-        }
+        holder.number.setText("Số lượng: " + NumberTextWatcherForThousand.getDecimalFormattedString(product.getSoLuongConLai() + ""));
+        holder.donGia.setText("Đơn giá: " + NumberTextWatcherForThousand.getDecimalFormattedString(product.getDonGiaNhap() + "") + " $");
+        holder.img.setImageResource(R.drawable.ic_myproducts);
 
-        if (product.getDonGiaNhap() >= 1000) {
-            holder.donGia.setText("Đơn giá: " + ToolsHelper.intToString((int) Math.round(product.getDonGiaNhap())) + " $");
-        } else {
-            holder.donGia.setText("Đơn giá: " + Math.round(product.getDonGiaNhap()) + " $");
-        }
-
-        if (position % 2 == 1) {
-            holder.img.setImageResource(R.drawable.ic_myproducts);
-        } else if (position % 2 == 0) {
-            holder.img.setImageResource(R.drawable.ic_myproducts_1);
-        } else if (position % 10 == 0) {
-            holder.img.setImageResource(R.drawable.ic_myproducts_2);
-        } else {
-            holder.img.setImageResource(R.drawable.ic_myproducts);
-        }
-
-        holder.etDonGia.setText(Math.round(product.getDonGiaNhap()) + "");
+        holder.etDonGia.setText(NumberTextWatcherForThousand.getDecimalFormattedString(product.getDonGiaNhap() + "") + "");
 
         holder.cbx.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,8 +87,8 @@ public class ProductSaleAdapter extends BaseAdapter {
                 if (holder.cbx.isChecked()) {
                     holder.frame.setVisibility(View.VISIBLE);
                     product.setSale(true);
-                    product.setSoLuongBan(Integer.parseInt(holder.etSoLuong.getText().toString()));
-                    product.setDonGiaBan(Double.parseDouble(holder.etDonGia.getText().toString()));
+                    product.setSoLuongBan(Integer.parseInt(NumberTextWatcherForThousand.trimCommaOfString(holder.etSoLuong.getText().toString())));
+                    product.setDonGiaBan(Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(holder.etDonGia.getText().toString())));
                 } else {
                     holder.frame.setVisibility(View.INVISIBLE);
                     product.setSale(false);
@@ -128,10 +111,10 @@ public class ProductSaleAdapter extends BaseAdapter {
             public void afterTextChanged(Editable s) {
                 try {
                     if (holder.etSoLuong.getText() != null && !holder.etSoLuong.getText().toString().isEmpty()) {
-                        if (Integer.parseInt(holder.etSoLuong.getText().toString()) > product.getSoLuongConLai()) {
-                            Toast.makeText(context , "Không đủ sản phẩm để bán", Toast.LENGTH_SHORT).show();
+                        if (Integer.parseInt(NumberTextWatcherForThousand.trimCommaOfString(holder.etSoLuong.getText().toString())) > product.getSoLuongConLai()) {
+                            Toast.makeText(context, "Không đủ sản phẩm để bán", Toast.LENGTH_SHORT).show();
                         } else {
-                            product.setSoLuongBan(Integer.parseInt(holder.etSoLuong.getText().toString()));
+                            product.setSoLuongBan(Integer.parseInt(NumberTextWatcherForThousand.trimCommaOfString(holder.etSoLuong.getText().toString())));
                             Log.e("PRODUCT_SALE", "Số lượng bán: " + holder.etSoLuong.getText().toString());
                         }
                     }
@@ -155,7 +138,7 @@ public class ProductSaleAdapter extends BaseAdapter {
             public void afterTextChanged(Editable s) {
                 try {
                     if (holder.etDonGia.getText() != null && !holder.etDonGia.getText().toString().isEmpty()) {
-                        product.setDonGiaBan(Double.parseDouble(holder.etDonGia.getText().toString()));
+                        product.setDonGiaBan(Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(holder.etDonGia.getText().toString())));
                         Log.e("PRODUCT_SALE", "Đơn giá bán: " + holder.etDonGia.getText().toString());
                     }
                 } catch (Exception e) {

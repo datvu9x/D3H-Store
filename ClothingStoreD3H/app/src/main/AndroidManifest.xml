@@ -58,12 +58,21 @@
             android:theme="@style/Theme.MyDialog" />
 
         <activity
+            android:name=".activities.BillOnlineDetail"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MyDialog" />
+
+        <activity
             android:name=".activities.ListProduct"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name=".activities.StoreBillDetail"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.CreateBillOnline"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 

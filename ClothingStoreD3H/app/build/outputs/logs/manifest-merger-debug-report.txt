@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:2:1-72:12
+ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:2:1-81:12
 	package
 		ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:3:5-41
 		INJECTED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml
@@ -22,7 +22,7 @@ ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidMa
 	android:name
 		ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:6:22-78
 application
-ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:8:5-70:19
+ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:8:5-79:19
 MERGED from [com.android.support:design:24.0.0] F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\build\intermediates\exploded-aar\com.android.support\design\24.0.0\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:appcompat-v7:24.2.0] F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.0\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:animated-vector-drawable:24.2.0] F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.0\AndroidManifest.xml:22:5-20
@@ -121,22 +121,38 @@ ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidMa
 		ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:58:13-50
 	android:name
 		ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:56:13-54
-activity#dev.datvt.clothingstored3h.activities.ListProduct
-ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:60:9-63:59
+activity#dev.datvt.clothingstored3h.activities.BillOnlineDetail
+ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:60:9-63:53
 	android:screenOrientation
 		ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:62:13-49
 	android:theme
-		ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:63:13-56
+		ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:63:13-50
 	android:name
-		ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:61:13-51
-activity#dev.datvt.clothingstored3h.activities.StoreBillDetail
+		ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:61:13-56
+activity#dev.datvt.clothingstored3h.activities.ListProduct
 ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:65:9-68:59
 	android:screenOrientation
 		ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:67:13-49
 	android:theme
 		ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:68:13-56
 	android:name
-		ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:66:13-55
+		ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:66:13-51
+activity#dev.datvt.clothingstored3h.activities.StoreBillDetail
+ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:70:9-73:59
+	android:screenOrientation
+		ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:72:13-49
+	android:theme
+		ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:73:13-56
+	android:name
+		ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:71:13-55
+activity#dev.datvt.clothingstored3h.activities.CreateBillOnline
+ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:74:9-77:59
+	android:screenOrientation
+		ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:76:13-49
+	android:theme
+		ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:77:13-56
+	android:name
+		ADDED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml:75:13-56
 uses-sdk
 INJECTED from F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:design:24.0.0] F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\build\intermediates\exploded-aar\com.android.support\design\24.0.0\AndroidManifest.xml:20:5-43
@@ -150,6 +166,7 @@ MERGED from [com.android.support:support-core-utils:24.2.0] F:\Workspace\Android
 MERGED from [com.android.support:support-media-compat:24.2.0] F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.0\AndroidManifest.xml:21:5-23:63
 MERGED from [com.android.support:support-core-ui:24.2.0] F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.0\AndroidManifest.xml:21:5-23:58
 MERGED from [com.android.support:support-compat:24.2.0] F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.0\AndroidManifest.xml:21:5-23:58
+MERGED from [com.wang.avi:library:2.1.3] F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\build\intermediates\exploded-aar\com.wang.avi\library\2.1.3\AndroidManifest.xml:7:5-9:41
 	tools:overrideLibrary
 		ADDED from [com.android.support:appcompat-v7:24.2.0] F:\Workspace\Android\D3HStore\ClothingStoreD3H\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.0\AndroidManifest.xml:23:9-75
 	android:targetSdkVersion

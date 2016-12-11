@@ -13,6 +13,7 @@ import java.util.List;
 import dev.datvt.clothingstored3h.R;
 import dev.datvt.clothingstored3h.models.Product;
 import dev.datvt.clothingstored3h.models.Summary;
+import dev.datvt.clothingstored3h.utils.NumberTextWatcherForThousand;
 import dev.datvt.clothingstored3h.utils.ToolsHelper;
 
 
@@ -65,23 +66,9 @@ public class SummaryAdapter extends BaseAdapter {
 
         Summary summary = (Summary) getItem(position);
         holder.name.setText(summary.getTenHang());
-        if (summary.getDonGiaNhap() >= 1000) {
-            holder.donGiaNhap.setText(ToolsHelper.intToString((int) Math.round(summary.getDonGiaNhap())) + " $");
-        } else {
-            holder.donGiaNhap.setText(summary.getDonGiaNhap() + " $");
-        }
-
-        if (summary.getDonGiaBan() >= 1000) {
-            holder.donGiaBan.setText(ToolsHelper.intToString((int) Math.round(summary.getDonGiaBan())) + " $");
-        } else {
-            holder.donGiaBan.setText(summary.getDonGiaBan() + " $");
-        }
-
-        if (summary.getSoLuongBan() >= 1000) {
-            holder.soLuongBan.setText(ToolsHelper.intToString(summary.getSoLuongBan()) + " SP");
-        } else {
-            holder.soLuongBan.setText(summary.getSoLuongBan() + " SP");
-        }
+        holder.donGiaNhap.setText(NumberTextWatcherForThousand.getDecimalFormattedString(summary.getDonGiaNhap() + "") + " $");
+        holder.donGiaBan.setText(NumberTextWatcherForThousand.getDecimalFormattedString(summary.getDonGiaBan() + "") + " $");
+        holder.soLuongBan.setText(NumberTextWatcherForThousand.getDecimalFormattedString(summary.getSoLuongBan() + "") + " SP");
 
 
         return convertView;

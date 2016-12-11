@@ -27,5 +27,8 @@ public class ConstantHelper {
     public static final int FRAGMENT_TRANSFER_SHIFT = 108;
     public static final int FRAGMENT_CUSTOMER = 110;
     public static final int FRAGMENT_REPORT = 109;
+    public static final int REQUEST_BILL_ONLINE = 112;
+    public static final int RESULT_BILL_ONLINE = 113;
+    public static final int BILL_ONLINE_DETAIL = 114;
 
 }

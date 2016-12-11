@@ -2,30 +2,24 @@ package dev.datvt.clothingstored3h.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import dev.datvt.clothingstored3h.R;
-import dev.datvt.clothingstored3h.fragments.FragmentLogin;
-import dev.datvt.clothingstored3h.fragments.FragmentStart1;
-import dev.datvt.clothingstored3h.fragments.FragmentStart2;
-import dev.datvt.clothingstored3h.fragments.FragmentStart3;
 import dev.datvt.clothingstored3h.models.Employee;
-import dev.datvt.clothingstored3h.utils.ConstantHelper;
 import dev.datvt.clothingstored3h.utils.DatabaseHandler;
+import dev.datvt.clothingstored3h.utils.NumberTextWatcherForThousand;
 import dev.datvt.clothingstored3h.utils.ToolsHelper;
 
 /**
@@ -34,41 +28,21 @@ import dev.datvt.clothingstored3h.utils.ToolsHelper;
 
 public class LoginAcitivty extends RootActivity implements View.OnClickListener {
 
-    private int cur_fragment = ConstantHelper.FRAGMENT_START_1;
-    private RelativeLayout formIntroBack, formIntroNext;
-    private ImageView ivNext;
-    private TextView tvLogin;
-    private boolean isNext = false;
     private DatabaseHandler databaseHandler;
+    private AutoCompleteTextView idEmployee;
+    private EditText pass, money;
+    private LinearLayout btnLogin, btnSign, btnPass;
+    private ArrayList<String> employeeArrayList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.start_activity);
-
-        if (savedInstanceState == null) {
-            cur_fragment = ConstantHelper.FRAGMENT_LOGIN;
-            Fragment fragment = new FragmentLogin();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
-            transaction.replace(R.id.fragStart, fragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
-        }
+        setContentView(R.layout.login_fragment);
 
         databaseHandler = new DatabaseHandler(this);
-        getId();
         addEmployeeDefault();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (cur_fragment == ConstantHelper.FRAGMENT_LOGIN) {
-            formIntroNext.setVisibility(View.INVISIBLE);
-            formIntroBack.setVisibility(View.INVISIBLE);
-        }
+        getId();
     }
 
     private void addEmployeeDefault() {
@@ -90,96 +64,27 @@ public class LoginAcitivty extends RootActivity implements View.OnClickListener 
     }
 
     private void getId() {
-        formIntroBack = (RelativeLayout) findViewById(R.id.formIntroBack);
-        formIntroNext = (RelativeLayout) findViewById(R.id.formIntroNext);
-        ivNext = (ImageView) findViewById(R.id.ivNext);
-        tvLogin = (TextView) findViewById(R.id.tvDangNhap);
+        idEmployee = (AutoCompleteTextView) findViewById(R.id.actIdEmployee);
+        pass = (EditText) findViewById(R.id.etPass);
+        money = (EditText) findViewById(R.id.etMoney);
 
-        formIntroBack.setOnClickListener(this);
-        formIntroNext.setOnClickListener(this);
+        btnLogin = (LinearLayout) findViewById(R.id.btnLogin);
+        btnPass = (LinearLayout) findViewById(R.id.btnPassword);
+        btnSign = (LinearLayout) findViewById(R.id.btnSign);
 
-        formIntroNext.setVisibility(View.INVISIBLE);
-        formIntroBack.setVisibility(View.INVISIBLE);
-    }
+        btnLogin.setOnClickListener(this);
+        btnPass.setOnClickListener(this);
+        btnSign.setOnClickListener(this);
 
+        if (employeeArrayList == null) {
+            employeeArrayList = (ArrayList<String>) databaseHandler.getAllIDEmployees();
+        }
 
-//    private void exchangeFragment(int id) {
-//        Fragment fragment = null;
-//
-//        if (id == ConstantHelper.FRAGMENT_START_1) {
-//            cur_fragment = ConstantHelper.FRAGMENT_START_1;
-//            fragment = new FragmentStart1();
-//
-//        } else if (id == ConstantHelper.FRAGMENT_START_2) {
-//            cur_fragment = ConstantHelper.FRAGMENT_START_2;
-//            fragment = new FragmentStart2();
-//
-//        } else if (id == ConstantHelper.FRAGMENT_START_3) {
-//            cur_fragment = ConstantHelper.FRAGMENT_START_3;
-//            fragment = new FragmentStart3();
-//
-//        } else if (id == ConstantHelper.FRAGMENT_LOGIN) {
-//            cur_fragment = ConstantHelper.FRAGMENT_LOGIN;
-//            fragment = new FragmentLogin();
-//            formIntroNext.setVisibility(View.INVISIBLE);
-//            formIntroBack.setVisibility(View.INVISIBLE);
-//        }
-//
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        FragmentTransaction transaction = fragmentManager.beginTransaction();
-//        if (isNext) {
-//            transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
-//        } else {
-//            transaction.setCustomAnimations(R.anim.enter_from_left, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_left);
-//        }
-//        transaction.replace(R.id.fragStart, fragment);
-//        transaction.addToBackStack(null);
-//        transaction.commit();
-//    }
-
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-
-//        switch (id) {
-//            case R.id.formIntroBack:
-//                cur_fragment--;
-//                isNext = false;
-//                if (cur_fragment < ConstantHelper.FRAGMENT_START_2) {
-//                    formIntroBack.setVisibility(View.INVISIBLE);
-//                }
-//
-//                if (cur_fragment < ConstantHelper.FRAGMENT_LOGIN) {
-//                    ivNext.setVisibility(View.VISIBLE);
-//                    tvLogin.setVisibility(View.INVISIBLE);
-//                }
-//
-//                if (cur_fragment >= ConstantHelper.FRAGMENT_START_1) {
-//                    exchangeFragment(cur_fragment);
-//                } else {
-//                    cur_fragment = ConstantHelper.FRAGMENT_START_1;
-//                }
-//                break;
-//            case R.id.formIntroNext:
-//                isNext = true;
-//                cur_fragment++;
-//                if (cur_fragment > ConstantHelper.FRAGMENT_START_1) {
-//                    formIntroBack.setVisibility(View.VISIBLE);
-//                }
-//
-//                if (cur_fragment > ConstantHelper.FRAGMENT_START_2) {
-//                    ivNext.setVisibility(View.INVISIBLE);
-//                    tvLogin.setVisibility(View.VISIBLE);
-//                }
-//
-//                if (cur_fragment <= ConstantHelper.FRAGMENT_LOGIN) {
-//                    exchangeFragment(cur_fragment);
-//                } else {
-//                    cur_fragment = ConstantHelper.FRAGMENT_LOGIN;
-//                }
-//
-//                break;
-//        }
+        if (employeeArrayList != null && employeeArrayList.size() > 0) {
+            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, employeeArrayList);
+            idEmployee.setAdapter(arrayAdapter);
+        }
+        money.addTextChangedListener(new NumberTextWatcherForThousand(money));
     }
 
     @Override
@@ -213,4 +118,42 @@ public class LoginAcitivty extends RootActivity implements View.OnClickListener 
     }
 
 
+    private void loginSystem() {
+        String id = idEmployee.getText().toString().trim();
+        String pw = pass.getText().toString().trim();
+        String moneyRecei = money.getText().toString().trim();
+
+        if (id.isEmpty() || pw.isEmpty() || moneyRecei.isEmpty()) {
+            ToolsHelper.toast(LoginAcitivty.this, "Bạn chưa nhập đầy đủ thông tin");
+        } else {
+            if (databaseHandler.isCheckLogin(id, pw)) {
+                Intent intent = new Intent(LoginAcitivty.this, MainActivity.class);
+                intent.putExtra("money", Double.parseDouble(NumberTextWatcherForThousand.trimCommaOfString(moneyRecei)));
+                intent.putExtra("id", id);
+                startActivity(intent);
+                idEmployee.setText("");
+                pass.setText("");
+                money.setText("");
+            } else {
+                ToolsHelper.toast(LoginAcitivty.this, "Mã nhân viên hoặc mật khẩu không đúng");
+                idEmployee.requestFocus();
+            }
+        }
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == btnLogin) {
+            loginSystem();
+        }
+
+        if (v == btnPass) {
+            Toast.makeText(LoginAcitivty.this, "Thay đổi mật khẩu", Toast.LENGTH_SHORT).show();
+        }
+
+        if (v == btnSign) {
+            Toast.makeText(LoginAcitivty.this, "Đăng ký tài khoản", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
